@@ -26,7 +26,7 @@ axios.get(baseUrl + gameId)
             arrayNotation: false,
             alternateTextNode: false
         };
-        const data = parser.toJson(res.data, options);
-        console.log(data);
+        return JSON.parse(parser.toJson(res.data, options));
     })
-    .catch( err => console.log(err));
+    .then(data => console.log(data.items.item))
+    .catch(err => console.log(err));
