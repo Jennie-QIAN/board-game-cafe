@@ -7,7 +7,9 @@ const gameSchema = new Schema(
             trim: true
         },
 
-        smallImg: String,
+        bggId: String,
+
+        smImg: String,
 
         img: String,
 
