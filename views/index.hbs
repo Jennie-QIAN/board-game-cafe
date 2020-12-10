@@ -1,2 +1,81 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section id="manifesto">
+    <div></div>
+    <h2>Meet other players,<br>share gaming experiences</h2>
+</section>
+
+<section id="search-bars">
+    <form action="/index" method="POST">
+        <label for="game-name"><img src="" alt="search-icon"></label>
+        <input type="text" name="game-name" value="Find the game">
+        <select name="location" id="location">
+            <option value="Paris">Paris</option>
+            <option value="Lyon">Lyon</option>
+            <option value="Nice">Nice</option>
+            <option value="Hyères">Hyères</option>
+            <option value="Corse">Corse</option>
+        </select>
+        <button type="submit" id="btn-plays">game plays</button>
+        <button type="submit">specs</button>
+    </form>
+</section>
+
+<section id="index-plays">
+    <h3>Game plays</h3>
+
+    <div id="slider-plays">
+        <div class="card-play">
+            <div id="img-games"></div>
+            <div id="info-play">
+                <p>dateTime</p>
+                <div id="names-games">
+                    <a href="/games/gameId">ROOT</a>
+                </div>
+                <div id="players">
+                    <div id="avatars"></div>
+                    <div>
+                        <p>numberOfPlays/maxPlayer</p>
+                    </div>
+                </div>
+                <div id="btn-save">
+                    <button>save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="/plays/location?">See all</a>
+</section>
+
+<section id="featured">
+    <h3>Featured game</h3>
+
+    <div id="card-featured-game">
+        <div>img</div>
+        <div>
+            <h4>Title of the game</h4>
+            <p>Description</p>
+            <span>By creator</span>
+            <div class="tags">
+                <div>tag1</div>
+                <div>tag2</div>
+            </div>
+        </div>
+    </div>
+
+    <a href="/games/editors-pick">See all</a>
+</section>
+
+<section>
+    <h3>Discover games</h3>
+
+    <div id="card-game">
+        <div>game's small image</div>
+        <div>
+            <h4>Title of the game</h4>
+            <p>short description</p>
+            <button>like</button>
+        </div>
+    </div>
+
+    <a href="/games">See all</a>
+</section>
