@@ -62,30 +62,32 @@ module.exports = app => {
   app.use(passport.session());
 
 
-  passport.use(new TwitterStrategy({
-    consumerKey: process.env.TWITTER_CONSUMER_KEY,
-    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL: `http://localhost:${process.env.PORT}/auth/twitter/callback`
+  passport.use(new TwitterStrategy(
+    {
+      consumerKey: process.env.TWITTER_CONSUMER_KEY,
+      consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+      callbackURL: `http://localhost:${process.env.PORT}/auth/twitter/callback`
     },
     (accessToken, refreshToken, profile, done) => {
-      // to see the structure of the data in received response:
-      console.log(profile.id);
- 
-      User.findOne({ twitterID: profile.id })
+      const { id, username } = profile;
+
+      User.findOne({ twitterID: id })
         .then(user => {
           if (user) {
             done(null, user);
             return;
           }
  
-          User.create({ twitterID: profile.id })
+          User.create({ 
+            twitterID: id,
+            username, 
+          })
             .then(newUser => {
               done(null, newUser);
-              console.log('new user is created');
             })
-            .catch(err => done(err)); // closes User.create()
+            .catch(err => done(err));
         })
-        .catch(err => done(err)); // closes User.findOne()
+        .catch(err => done(err));
     }
   ));
 
