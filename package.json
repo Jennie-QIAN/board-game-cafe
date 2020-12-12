@@ -7,6 +7,9 @@
     "dev": "DEBUG=board-game-geek-salon:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www"
   },
+  "engines": {
+    "node": "v12.18.3"
+  },
   "dependencies": {
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
