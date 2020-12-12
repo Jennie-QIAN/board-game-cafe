@@ -21,6 +21,8 @@ const userSchema = new Schema(
 
         twitterID: String,
 
+        location: String,
+
         passwordHash: {
             type: String,
             //required: [true, 'Password is required']
