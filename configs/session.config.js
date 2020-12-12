@@ -6,11 +6,12 @@ const mongoose = require('mongoose');
 const bcryptjs = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
 
 const User = require('../models/User.model.js');
 
 module.exports = app => {
-  
+
   app.use(
     session({
       secret: process.env.SESSION_SECRET,
@@ -59,5 +60,33 @@ module.exports = app => {
 
   app.use(passport.initialize());
   app.use(passport.session());
+
+
+  passport.use(new TwitterStrategy({
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: `http://localhost:${process.env.PORT}/auth/twitter/callback`
+    },
+    (accessToken, refreshToken, profile, done) => {
+      // to see the structure of the data in received response:
+      console.log(profile.id);
+ 
+      User.findOne({ twitterID: profile.id })
+        .then(user => {
+          if (user) {
+            done(null, user);
+            return;
+          }
+ 
+          User.create({ twitterID: profile.id })
+            .then(newUser => {
+              done(null, newUser);
+              console.log('new user is created');
+            })
+            .catch(err => done(err)); // closes User.create()
+        })
+        .catch(err => done(err)); // closes User.findOne()
+    }
+  ));
 
 };

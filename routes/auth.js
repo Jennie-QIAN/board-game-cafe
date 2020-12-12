@@ -9,6 +9,8 @@ const saltRounds = 10;
 
 const passport = require('passport');
 
+const ensureAuthenticated = require('../utils/helper.function.js');
+
 router.get('/register', (req, res, next) => res.render('auth/register'));
 
 router.post('/register', (req, res, next) => {
@@ -77,5 +79,20 @@ router.post('/login', (req, res, next) => {
       });
     })(req, res, next);
 });
+
+router.get('/userProfile', ensureAuthenticated, (req, res) => {
+  res.render('user/userProfile', { user: req.user});
+});
+
+router.get('/logout', (req, res, next) => {
+  req.logout();
+  res.redirect('/');
+});
+
+router.get('/auth/twitter', passport.authenticate('twitter'));
+
+router.get('/auth/twitter/callback',
+  passport.authenticate('twitter', { successRedirect: '/userProfile',
+                                     failureRedirect: '/login' }));
 
 module.exports = router;
