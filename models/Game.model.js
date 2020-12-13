@@ -13,6 +13,8 @@ const gameSchema = new Schema(
 
         img: String,
 
+        description: String,
+
         minPlayer: Number,
 
         maxPlayer: Number,

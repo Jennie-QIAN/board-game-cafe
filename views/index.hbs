@@ -8,6 +8,7 @@
         <label for="game-name"><img src="" alt="search-icon"></label>
         <input type="text" name="game-name" value="Find the game">
         <select name="location" id="location">
+            <option value="">in...</option>
             <option value="Paris">Paris</option>
             <option value="Lyon">Lyon</option>
             <option value="Nice">Nice</option>
@@ -55,22 +56,20 @@
         {{/each}}
     </div>
 
-    <a href="/plays/location?">See all</a>
+    <a href="/plays/">See all</a>
 </section>
 
 <section id="featured">
     <h3>Featured game</h3>
 
     <div id="card-featured-game">
-        <div>img</div>
         <div>
-            <h4>Title of the game</h4>
-            <p>Description</p>
-            <span>By creator</span>
-            <div class="tags">
-                <div>tag1</div>
-                <div>tag2</div>
-            </div>
+            <img src="{{latestFeaturedGame.img}}" alt="{{latestFeaturedGame.name}}">
+        </div>
+        <div>
+            <h4>{{latestFeaturedGame.name}}</h4>
+            <p>{{latestFeaturedGame.description}}</p>
+            <span>By {{latestFeaturedGame.designer}}</span>
         </div>
     </div>
 
@@ -80,18 +79,18 @@
 <section>
     <h3>Discover games</h3>
 
-    <div id="card-game">
-        <div>game's small image</div>
+    {{#each games}}
+    <div class="card-game">
         <div>
-            <h4>Title of the game</h4>
-            <p>short description</p>
+            <img src="{{this.smImg}}" alt="{{this.name}}">
+        </div>
+        <div>
+            <h4>{{this.name}}</h4>
+            <p>By {{this.designer}}</p>
             <button>like</button>
         </div>
     </div>
+    {{/each}}
 
     <a href="/games">See all</a>
 </section>
-
-<p>Games: {{games.length}}</p>
-<p>Plays: {{plays.length}}</p>
-<p>Why we picked this: {{latestFeaturedGame.editorNote}}</p>
