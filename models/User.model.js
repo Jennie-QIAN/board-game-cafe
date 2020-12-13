@@ -30,6 +30,8 @@ const userSchema = new Schema(
 
         bio: String,
 
+        avatar: String,
+
         favoriteGames: [{
             type: Schema.Types.ObjectId, 
             ref: 'Game'

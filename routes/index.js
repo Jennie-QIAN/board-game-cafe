@@ -1,45 +1,30 @@
 const express = require('express');
 const router  = express.Router();
 
-const User = require('../models/User.model.js');
-const Play = require('../models/Play.model.js');
-const Game = require('../models/Game.model.js');
-
-function findAllPlays() {
-  return Play.find()
-    .catch(err => console.log(err));
-}
-
-function findAllGames() {
-  return Game.find()
-    .catch(err => console.log(err));
-}
+const { findAllPlays } = require('../queries/plays.query');
+const { findAllGames, findLatestFeaturedGame } = require('../queries/games.query');
 
 router.get('/', async (req, res, next) => {
-  const [ games, plays ] = await Promise.all([
+  let location;
+
+  if (req.isAuthenticated()) {
+    location = req.user.location;
+  }
+  
+  const [ games, plays, latestFeaturedGame ] = await Promise.all([
     findAllGames(),
-    findAllPlays()
+    findAllPlays(location),
+    findLatestFeaturedGame()
   ]);
     
   res.render('index', {
     games,
-    plays
+    plays,
+    latestFeaturedGame,
+    isLoggedIn: req.isAuthenticated()
   });
 
-  return;
-
-  if (req.isAuthenticated()) {
-    const location = req.user.location;
-    Play.find({ 'location.city': location })
-      .then(plays => {
-        res.render('index');
-      })
-      .catch(err => next(err));
-  } else {
-    
-    
-  }
-  
+  return; 
 });
 
 module.exports = router;

@@ -89,7 +89,10 @@ router.get('/auth/twitter/callback',
   }));
 
 router.get('/userProfile', ensureAuthenticated, (req, res) => {
-  res.render('user/userProfile', { user: req.user});
+  res.render('user/userProfile', { 
+    user: req.user,
+    isLoggedIn: req.isAuthenticated()
+  });
 });
 
 router.get('/logout', (req, res, next) => {

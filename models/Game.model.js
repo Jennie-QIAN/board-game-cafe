@@ -41,6 +41,10 @@ const gameSchema = new Schema(
             default: false
         },
 
+        datePickedByEditor: {
+            type: Date
+        },
+
         editorNote: String,
 
         comments: [{

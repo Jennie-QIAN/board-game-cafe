@@ -23,17 +23,28 @@
     <h3>Game plays</h3>
 
     <div id="slider-plays">
+        {{#each plays}}
         <div class="card-play">
-            <div id="img-games"></div>
+            <div id="img-games">
+                {{#each this.gamesForPlay}}
+                <img src="{{this.smImg}}" alt="{{this.name}}">
+                {{/each}}
+            </div>
             <div id="info-play">
-                <p>dateTime</p>
+                <p>{{this.dateTime}}</p>
                 <div id="names-games">
-                    <a href="/games/gameId">ROOT</a>
+                    {{#each this.gamesForPlay}}
+                    <a href="/games/{{this._id}}">{{this.name}}</a>
+                    {{/each}}
                 </div>
                 <div id="players">
-                    <div id="avatars"></div>
+                    <div id="avatars">
+                        {{#each this.players}}
+                        <img src="{{this.avatar}}" alt="{{this.username}}">
+                        {{/each}}
+                    </div>
                     <div>
-                        <p>numberOfPlays/maxPlayer</p>
+                        <p>{{this.players.length}} / {{this.maxPlayer}}</p>
                     </div>
                 </div>
                 <div id="btn-save">
@@ -41,6 +52,7 @@
                 </div>
             </div>
         </div>
+        {{/each}}
     </div>
 
     <a href="/plays/location?">See all</a>
@@ -82,3 +94,4 @@
 
 <p>Games: {{games.length}}</p>
 <p>Plays: {{plays.length}}</p>
+<p>Why we picked this: {{latestFeaturedGame.editorNote}}</p>

@@ -18,8 +18,12 @@
             <a href="/plays">Plays</a>
         </div>
         <div id="auth">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+            {{#if isLoggedIn}}
+              <a href="/userProfile">Profile</a>
+            {{else}}
+              <a href="/login">Login</a>
+              <a href="/register">Register</a>
+            {{/if}}
         </div>
     </div>
   </nav>
@@ -28,7 +32,7 @@
 
   <footer>
     <div>
-      <p>Respect and tributes to Board Game Geek and its gaming community</p>
+      <p>We love board games and the enriched off-line gaming experiences between human players👾</p>
     </div>
     <div>
       <div id="social-media-logos">
