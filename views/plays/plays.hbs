@@ -1,0 +1,37 @@
+<section class="search-bars">
+    <div>
+        <form action="/plays" method="POST">
+            <input type="text" name="game" value="{{game}}">
+            <select name="location">
+                {{#if location}}
+                <option value={{location}}>{{location}}</option>
+                {{#each nonSelectedLocations}}
+                <option value={{this}}>{{this}}</option>
+                {{/each}}
+
+                {{else}}
+                <option value="">in...</option>
+                <option value="Paris">Paris</option>
+                <option value="Lyon">Lyon</option>
+                <option value="Nice">Nice</option>
+                <option value="Hyères">Hyères</option>
+                <option value="Corse">Corse</option>
+                {{/if}}
+            </select>
+
+            <label for="date-from">
+                from
+                <input type="date" name="date-from">
+            </label>
+            <label for="date-to">
+                to
+                <input type="date" name="date-to">
+            </label>
+            
+            <input type="submit" name="search-plays">
+        </form>
+    </div>
+    <div>
+        <button>Create a new game play</button>
+    </div>
+</section>

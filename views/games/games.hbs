@@ -1,0 +1,20 @@
+<section class="search-bars">
+    <div>
+        <form action="/plays" method="POST">
+            <input type="text" name="game" value="{{game}}">
+            <select name="category">
+                <option value="">Category</option>
+            </select>
+            <select name="mechanic">
+                <option value="">Mechanic</option>
+            </select>   
+            <input type="number" name="min-player" placeholder="min player"> 
+            <input type="number" name="max-player" placeholder="max player">   
+            <input type="range" name="play-time">     
+            <input type="submit" name="search-games" value="search">
+        </form>
+    </div>
+    <div>
+        <button>Create a new game play</button>
+    </div>
+</section>

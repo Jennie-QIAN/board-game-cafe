@@ -3,11 +3,11 @@
     <h2>Meet other players,<br>share gaming experiences</h2>
 </section>
 
-<section id="search-bars">
-    <form action="/index" method="POST">
-        <label for="game-name"><img src="" alt="search-icon"></label>
-        <input type="text" name="game-name" value="Find the game">
-        <select name="location" id="location">
+<section class="search-bars">
+    <form action="/" method="POST">
+        <label for="game"><img src="" alt="search-icon"></label>
+        <input type="text" name="game" value="Find the game">
+        <select name="location">
             <option value="">in...</option>
             <option value="Paris">Paris</option>
             <option value="Lyon">Lyon</option>
@@ -15,8 +15,8 @@
             <option value="Hyères">Hyères</option>
             <option value="Corse">Corse</option>
         </select>
-        <button type="submit" id="btn-plays">game plays</button>
-        <button type="submit">specs</button>
+        <input onclick="/plays" type="submit" name="btn" value="play">
+        <input type="submit" name="btn" value="game">
     </form>
 </section>
 

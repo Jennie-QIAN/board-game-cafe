@@ -48,5 +48,10 @@ const index = require('./routes/index');
 app.use('/', index);
 const auth = require('./routes/auth');
 app.use('/', auth);
+const plays = require('./routes/plays');
+app.use('/', plays);
+const games = require('./routes/games');
+app.use('/', games);
+
 
 module.exports = app;
