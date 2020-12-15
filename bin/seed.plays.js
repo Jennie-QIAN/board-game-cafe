@@ -21,7 +21,7 @@ const plays = [
             street: 'Rue du Louvre',
             moreInstruction: 'Meet me there'
         },
-        gamesForPlay: ['5fd15baf7f63b02e034ee758', '5fd15baf7f63b02e034ee759'],
+        gamesForPlay: ['5fd67ff0438c5cb0dac52b69', '5fd67ff0438c5cb0dac52b6f'],
         minPlayer: 3,
         maxPlayer: 6,
         players: ['5fd5359958da9d9166b9aa8b']
@@ -38,7 +38,7 @@ const plays = [
             street: 'Rue de la Plage',
             moreInstruction: 'Rendez-vous ici'
         },
-        gamesForPlay: ['5fd15baf7f63b02e034ee753', '5fd15baf7f63b02e034ee755'],
+        gamesForPlay: ['5fd67ff0438c5cb0dac52b6d', '5fd67ff0438c5cb0dac52b62'],
         minPlayer: 2,
         maxPlayer: 10,
         players: ['5fd53d25b091899367b046ac', '5fd5359958da9d9166b9aa8b']

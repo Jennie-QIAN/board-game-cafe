@@ -1,0 +1,32 @@
+<div class="slider-plays">
+    {{#each plays}}
+    <div class="card-play">
+        <div class="img-games">
+            {{#each this.gamesForPlay}}
+            <img src="{{this.smImg}}" alt="{{this.name}}">
+            {{/each}}
+        </div>
+        <div class="info-play">
+            <p>{{this.dateTime}}</p>
+            <div id="names-games">
+                {{#each this.gamesForPlay}}
+                <a href="/games/{{this._id}}">{{this.name}}</a>
+                {{/each}}
+            </div>
+            <div class="players">
+                <div class="avatars">
+                    {{#each this.players}}
+                    <img src="{{this.avatar}}" alt="{{this.username}}">
+                    {{/each}}
+                </div>
+                <div>
+                    <p>{{this.players.length}} / {{this.maxPlayer}}</p>
+                </div>
+            </div>
+            <div class="btn-save">
+                <button>save</button>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
