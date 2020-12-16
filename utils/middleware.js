@@ -1,4 +1,4 @@
-//Passport provides a useful function inside our req object called isAuthenticated
+//Passport provides a useful function inside our req object called isAuthenticate
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next();

@@ -1,22 +1,48 @@
 const express = require('express');
 const router  = express.Router();
-const url = require('url');
 
+const { findAllGames } = require('../queries/games.query');
+const Game = require('../models/Game.model.js');
 
-// router.get('/games', (req, res, next) => {
-//     if (!req.session.search) {
-//         res.render('games/games');
-//         return;
-//     }
-//     const { game } = req.session.search;
+router.get('/games', async (req, res, next) => {
+    const { game, category, mechanic, minPlayer, maxPlayer } = req.query;
 
-//     res.render('games/games', { game, isLoggedIn: req.isAuthenticated() });
-// });
+    const [ categories, mechanics, games  ] = await Promise.all([
+        Game.distinct('category'),
+        Game.distinct('mechanic'),
+        findAllGames(game, category, mechanic, minPlayer, maxPlayer)
+      ]);
 
-router.get('/games', (req, res, next) => {
-    const {game} = req.query;
-    
-    res.render('games/games', { game, isLoggedIn: req.isAuthenticated() });
+    res.render('games/games', {
+        game,
+        isLoggedIn: req.isAuthenticated(),
+        games,
+        categories,
+        mechanics
+    });
+});
+
+router.post('/games', async (req, res, next) => {
+
+    const { game, category, mechanic, minPlayer, maxPlayer } = req.body;
+
+    const [ categories, mechanics, games  ] = await Promise.all([
+        Game.distinct('category'),
+        Game.distinct('mechanic'),
+        findAllGames(game, category, mechanic, minPlayer, maxPlayer)
+      ]);
+
+    res.render('games/games', {
+        game,
+        category,
+        mechanic,
+        minPlayer,
+        maxPlayer,
+        isLoggedIn: req.isAuthenticated(),
+        games,
+        categories,
+        mechanics
+    });
 });
 
 module.exports = router;

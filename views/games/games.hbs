@@ -1,20 +1,47 @@
 <section class="search-bars">
     <div>
-        <form action="/plays" method="POST">
-            <input type="text" name="game" value="{{game}}">
-            <select name="category">
-                <option value="">Category</option>
-            </select>
-            <select name="mechanic">
-                <option value="">Mechanic</option>
-            </select>   
-            <input type="number" name="min-player" placeholder="min player"> 
-            <input type="number" name="max-player" placeholder="max player">   
-            <input type="range" name="play-time">     
-            <input type="submit" name="search-games" value="search">
+        <form action="/games" method="POST">
+            <label for="game">
+                Name of game
+                <input type="text" name="game" value="{{game}}">
+            </label>
+            <label for="category">
+                Category
+                <select name="category">
+                    <option value={{category}}>{{category}}</option>
+                    <option value=""></option>
+                    {{#each categories}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </label>
+            <label for="mechanic">
+                Mechanic
+                <select name="mechanic">
+                    <option value={{mechanic}}>{{mechanic}}</option>
+                    <option value=""></option>
+                    {{#each mechanics}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>   
+            </label>
+            <input type="number" name="minPlayer" placeholder="min player"> 
+            <input type="number" name="maxPlayer" placeholder="max player">      
+            <input type="submit" value="search">
         </form>
     </div>
+</section>
+
+<section>
     <div>
-        <button>Create a new game play</button>
+        <button>Create your own game</button>
     </div>
+</section>
+
+<section id="games-games">
+
+    {{> gamesPartial}}
+
+    <a href="">See more</a>
+</section>
 </section>

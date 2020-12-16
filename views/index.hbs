@@ -4,19 +4,21 @@
 </section>
 
 <section class="search-bars">
-    <form action="/" method="POST">
-        <label for="game"><img src="" alt="search-icon"></label>
-        <input type="text" name="game" value="Find the game">
+    <form action="/games" method="GET">
+        <input type="text" name="game" placeholder="enter a game name">
+        <input type="submit" value="search games">
+    </form>
+
+    <form action="/plays" method="GET">
         <select name="location">
-            <option value="">in...</option>
+            <option value="">choose a location</option>
             <option value="Paris">Paris</option>
             <option value="Lyon">Lyon</option>
             <option value="Nice">Nice</option>
             <option value="Hyères">Hyères</option>
             <option value="Corse">Corse</option>
         </select>
-        <input onclick="/plays" type="submit" name="btn" value="play">
-        <input type="submit" name="btn" value="game">
+        <input type="submit" value="search plays">      
     </form>
 </section>
 
@@ -49,7 +51,7 @@
     <h3>Discover games</h3>
 
     {{#each games}}
-    <div class="card-game">
+    <div class="vertical-card-game">
         <div>
             <img src="{{this.smImg}}" alt="{{this.name}}">
         </div>

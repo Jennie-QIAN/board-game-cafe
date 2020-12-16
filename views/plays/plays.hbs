@@ -1,7 +1,6 @@
 <section class="search-bars">
     <div>
         <form action="/plays" method="POST">
-            <input type="text" name="game" value="{{game}}">
             <select name="location">
                 {{#if location}}
                 <option value={{location}}>{{location}}</option>
@@ -37,9 +36,11 @@
 </section>
 
 <section id="plays-plays">
-    <h3>Game plays</h3>
-
     {{> playsPartial}}
 
     <a href="">See more</a>
+</section>
+
+<section id="create-new-play">
+    <a href="/plays/create">Initiate a new game play</a>
 </section>

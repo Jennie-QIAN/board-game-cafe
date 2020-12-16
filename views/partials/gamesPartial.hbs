@@ -1,0 +1,16 @@
+<div class="container-games">
+    {{#each games}}
+    <div class="horizontal-card-game">
+        <div class="img-games">
+            <img src="{{this.smImg}}" alt="{{this.name}}">
+        </div>
+        <div class="info-game">
+            <div class="btn-save">
+                <button>like</button>
+            </div>
+            <a href="/games:{{this._id}}">{{this.name}}</a>
+            <p>{{this.description}}</p>
+        </div>
+    </div>
+    {{/each}}
+</div>

@@ -1,15 +1,11 @@
 const Play = require('../models/Play.model.js');
 
 
-function findAllPlays(gameIds, location) {
+function findAllPlays(location) {
     let filter = {};
 
     if (location) {
         filter['location.city'] = location;
-    }
-
-    if (gameIds) {
-        filter.gamesForPlay = {$in: gameIds};
     }
 
     return Play.find(filter)
