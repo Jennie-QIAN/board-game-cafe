@@ -20,7 +20,7 @@ function findAllGames(game, category, mechanic, minPlayer, maxPlayer) {
     }
 
     if (maxPlayer) {
-        filter.maxPlayer = { $gte: minPlayer }
+        filter.maxPlayer = { $gte: minPlayer };
     }
 
     return Game.find(filter);

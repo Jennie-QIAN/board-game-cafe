@@ -4,9 +4,9 @@ const Game = require('../models/Game.model');
 const axios = require('axios');
 const parser = require('xml2json');
 
-const DB_NAME = 'board-game-salon';
+const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
+mongoose.connect(MONGODB_URI, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true

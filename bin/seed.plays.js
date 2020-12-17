@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Play = require('../models/Play.model');
 
-const DB_NAME = 'board-game-salon';
+const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
+mongoose.connect(MONGODB_URI, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true

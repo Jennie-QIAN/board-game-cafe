@@ -7,6 +7,7 @@ const bcryptjs = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
+const TWITTER_CB = process.env.TWITTER_CB;
 
 const User = require('../models/User.model.js');
 
@@ -66,10 +67,10 @@ module.exports = app => {
     {
       consumerKey: process.env.TWITTER_CONSUMER_KEY,
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: `http://localhost:${process.env.PORT}/auth/twitter/callback`
+      callbackURL: TWITTER_CB
     },
     (accessToken, refreshToken, profile, done) => {
-      const { id, username } = profile;
+      const { id, username, photos, _json: {description: bio} } = profile;
 
       User.findOne({ twitterID: id })
         .then(user => {
@@ -81,6 +82,8 @@ module.exports = app => {
           User.create({ 
             twitterID: id,
             username, 
+            avatar: photos[0].value,
+            bio
           })
             .then(newUser => {
               done(null, newUser);
