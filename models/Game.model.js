@@ -21,10 +21,7 @@ const gameSchema = new Schema(
 
         gamePlayTime: Number,
 
-        rate: {
-            type: Number,
-            default: null
-        },
+        rate: [Number],
 
         yearOfPublish: String,
 

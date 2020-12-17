@@ -38,7 +38,7 @@
             <img src="{{latestFeaturedGame.img}}" alt="{{latestFeaturedGame.name}}">
         </div>
         <div>
-            <h4>{{latestFeaturedGame.name}}</h4>
+            <a href="/games/{{latestFeaturedGame.id}}"><h4>{{latestFeaturedGame.name}}</h4></a>
             <p>{{latestFeaturedGame.description}}</p>
             <span>By {{latestFeaturedGame.designer}}</span>
         </div>
@@ -56,7 +56,7 @@
             <img src="{{this.smImg}}" alt="{{this.name}}">
         </div>
         <div>
-            <h4>{{this.name}}</h4>
+            <a href="/games/{{this.id}}"><h4>{{this.name}}</h4></a>
             <p>By {{this.designer}}</p>
             <button>like</button>
         </div>

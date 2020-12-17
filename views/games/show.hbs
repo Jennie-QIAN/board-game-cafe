@@ -1,0 +1,74 @@
+<section>
+    <div>
+        <img src={{img}} alt="{{name}}">
+    </div>
+    <div>
+        <p>
+            <strong>Name:</strong> {{name}}
+        </p>
+        <p>
+            <strong>Minimum player:</strong> {{minPlayer}}
+        </p>
+        <p>
+            <strong>Maximum player:</strong> {{maxPlayer}}
+        </p>
+        <p>
+            <strong>Game play time(minutes):</strong> {{gamePlayTime}}
+        </p>
+        <p>
+            <strong>Rating at BG Salon:</strong> {{rate}}
+        </p>
+        <p>
+            <strong>Description:</strong> {{description}}
+        </p>
+        <p>
+            <strong>Published in:</strong> {{yearOfPublish}}
+        </p>
+        <p>
+            <strong>Designer:</strong> {{designer}}
+        </p>
+        <p>
+            <strong>Publisher:</strong> {{publisher}}
+        </p>
+        <p>
+            <strong>Category:</strong> 
+            {{#each category}}
+                {{this}}, 
+            {{/each}}
+        </p>
+        <p>
+            <strong>Mechanic:</strong> 
+            {{#each mechanic}}
+                {{this}}, 
+            {{/each}}
+        </p>
+    </div>
+</section>
+
+{{#if isEditorPick}}
+<section>
+    <div>
+        <h3>
+            Editor's pick:
+        </h3>
+        <p>
+            {{editorNote}}
+        </p>
+    </div>
+</section>
+{{/if}}
+
+<section>
+    <h3>
+        Plays with this game
+    </h3>
+    <div>
+        {{> playsPartial}}
+    </div>
+</section>
+
+<section>
+    <h3>
+        Comments:
+    </h3>
+</section>

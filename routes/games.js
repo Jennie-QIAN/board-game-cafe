@@ -27,4 +27,26 @@ router.get('/games', async (req, res, next) => {
     });
 });
 
+router.get('/games/new', (req, res, next) => {
+    res.render('games/new');
+});
+
+router.post('/games/new', (req, res, next) => {
+    Game.create(req.body)
+        .then(newGame => {
+            const id = newGame._id;
+            res.redirect(`/games/${id}`);
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect('/games/new');
+        });   
+});
+
+router.get('/games/:id', (req, res, next) => {
+    Game.findById(req.params.id)
+        .then(game => res.render('games/show', game))
+        .catch(err => next(err));
+})
+
 module.exports = router;
