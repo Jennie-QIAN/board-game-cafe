@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const { findAllPlays } = require('../queries/plays.query');
+const { findPlaysByLocation } = require('../queries/plays.query');
 const { findAllGames, findLatestFeaturedGame } = require('../queries/games.query');
 
 router.get('/', async (req, res, next) => {
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
   
   const [ games, plays, latestFeaturedGame ] = await Promise.all([
     findAllGames(),
-    findAllPlays(location),
+    findPlaysByLocation(location),
     findLatestFeaturedGame()
   ]);
     

@@ -1,0 +1,12 @@
+<div>
+    <img src="{{game.img}}">
+</div>
+<div>
+    <p>Make a new comment on {{game.name}}</p>
+</div>
+<div>
+    <form action="/games/{{game.id}}/addcomment" method="POST">
+        <textarea name="content"cols="30" rows="10"></textarea>
+        <input type="submit" name="Submit">
+    </form>
+</div>

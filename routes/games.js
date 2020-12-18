@@ -1,8 +1,11 @@
 const express = require('express');
 const router  = express.Router();
 
-const { findAllGames } = require('../queries/games.query');
+const Comment = require('../models/Comment.model.js');
 const Game = require('../models/Game.model.js');
+const { findPlaysByGame } = require('../queries/plays.query');
+const { findGameById, findAllGames } = require('../queries/games.query');
+const { findCommentsOfGame } = require('../queries/comments.query');
 
 router.get('/games', async (req, res, next) => {
 
@@ -43,10 +46,49 @@ router.post('/games/new', (req, res, next) => {
         });   
 });
 
-router.get('/games/:id', (req, res, next) => {
-    Game.findById(req.params.id)
-        .then(game => res.render('games/show', game))
-        .catch(err => next(err));
-})
+router.get('/games/:id', async (req, res, next) => {
+    const gameId = req.params.id;
+    const [game, plays, comments] = await Promise.all([
+        findGameById(gameId),
+        findPlaysByGame(gameId),
+        findCommentsOfGame(gameId)
+    ]);
+
+    res.render('games/show', {
+        game,
+        plays,
+        comments,
+        isLoggedIn: req.isAuthenticated(),
+    });
+});
+
+router.post('/games/:id', (req, res) => {
+    res.redirect(`/games/${req.params.id}/addcomment`);
+});
+
+router.get('/games/:id/addcomment', async (req, res) => {
+    const game = await findGameById(req.params.id);
+    res.render('games/comment', {
+        game,
+        isLoggedIn: req.isAuthenticated(),
+    });
+});
+
+router.post('/games/:id/addcomment', async (req, res) => {
+    const author = req.user.id;
+    const game = req.params.id;
+    const content = req.body.content;
+    const comment = {
+        author,
+        game,
+        content
+    };
+
+    await Comment.create(comment);
+    
+    res.redirect(`/games/${game}`);
+
+});
+
 
 module.exports = router;

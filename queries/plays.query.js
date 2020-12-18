@@ -1,7 +1,7 @@
 const Play = require('../models/Play.model.js');
 
 
-function findAllPlays(location) {
+function findPlaysByLocation(location) {
     let filter = {};
 
     if (location) {
@@ -13,7 +13,19 @@ function findAllPlays(location) {
         .populate('players', 'username avatar');
 }
 
+function findPlaysByGame(gameId) {
+    let filter = {};
+
+    if (gameId) {
+        filter.gamesForPlay = gameId;
+    }
+
+    return Play.find(filter)
+        .populate('gamesForPlay', 'name smImg')
+        .populate('players', 'username avatar');
+}
 
 module.exports = {
-    findAllPlays,
+    findPlaysByLocation,
+    findPlaysByGame,
 };

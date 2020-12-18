@@ -1,5 +1,10 @@
 const Game = require('../models/Game.model.js');
 
+function findGameById(id) {
+    return Game.findById(id)
+        .catch(err => console.log(err));
+}
+
 function findAllGames(game, category, mechanic, minPlayer, maxPlayer) {
     let filter = {};
 
@@ -33,6 +38,7 @@ return Game.find({isEditorPick: true}).sort({datePickedByEditor: -1})
 }
 
 module.exports = {
+    findGameById,
     findAllGames,
     findLatestFeaturedGame,
 };

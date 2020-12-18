@@ -1,58 +1,58 @@
 <section>
     <div>
-        <img src={{img}}>
+        <img src={{game.img}}>
     </div>
     <div>
         <p>
-            <strong>Name:</strong> {{name}}
+            <strong>Name:</strong> {{game.name}}
         </p>
         <p>
-            <strong>Minimum player:</strong> {{minPlayer}}
+            <strong>Minimum player:</strong> {{game.minPlayer}}
         </p>
         <p>
-            <strong>Maximum player:</strong> {{maxPlayer}}
+            <strong>Maximum player:</strong> {{game.maxPlayer}}
         </p>
         <p>
-            <strong>Game play time(minutes):</strong> {{gamePlayTime}}
+            <strong>Game play time(minutes):</strong> {{game.gamePlayTime}}
         </p>
         <p>
-            <strong>Rating at BG Salon:</strong> {{rate}}
+            <strong>Rating at BG Salon:</strong> {{game.rate}}
         </p>
         <p>
-            <strong>Description:</strong> {{description}}
+            <strong>Description:</strong> {{game.description}}
         </p>
         <p>
-            <strong>Published in:</strong> {{yearOfPublish}}
+            <strong>Published in:</strong> {{game.yearOfPublish}}
         </p>
         <p>
-            <strong>Designer:</strong> {{designer}}
+            <strong>Designer:</strong> {{game.designer}}
         </p>
         <p>
-            <strong>Publisher:</strong> {{publisher}}
+            <strong>Publisher:</strong> {{game.publisher}}
         </p>
         <p>
             <strong>Category:</strong> 
-            {{#each category}}
+            {{#each game.category}}
                 {{this}}, 
             {{/each}}
         </p>
         <p>
             <strong>Mechanic:</strong> 
-            {{#each mechanic}}
+            {{#each game.mechanic}}
                 {{this}}, 
             {{/each}}
         </p>
     </div>
 </section>
 
-{{#if isEditorPick}}
+{{#if game.isEditorPick}}
 <section>
     <div>
         <h3>
             Editor's pick:
         </h3>
         <p>
-            {{editorNote}}
+            {{game.editorNote}}
         </p>
     </div>
 </section>
@@ -71,4 +71,28 @@
     <h3>
         Comments:
     </h3>
+
+    {{#if isLoggedIn}}
+    <div class="new-comment">
+        <form action="/games/{{game._id}}" method="POST">
+            <input type="submit" value="Add comment">
+        </form>
+    </div>
+    {{/if}}
+
+    <div class="container-comments">
+        {{#each comments}}
+        <div class="card-comment">
+            <div>
+                <img src="{{this.author.avatar}}">
+                <h5>{{this.author.username}}</h5>
+            </div>
+            <div>
+                <p>
+                    {{this.content}}
+                </p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 </section>

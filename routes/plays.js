@@ -1,14 +1,14 @@
 const express = require('express');
 const router  = express.Router();
 
-const { findAllPlays } = require('../queries/plays.query');
+const { findPlaysByLocation } = require('../queries/plays.query');
 
 router.get('/plays', async (req, res, next) => {
     const {location} = req.query;
     const availableLocations = ["Paris", "Lyon", "Nice", "Hyères", "Corse"];
     const nonSelectedLocations = availableLocations.filter((loc => loc !== location));
 
-    const plays = await findAllPlays(location);
+    const plays = await findPlaysByLocation(location);
 
     res.render('plays/plays', {
         location,
