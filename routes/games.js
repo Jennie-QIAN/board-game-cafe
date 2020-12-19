@@ -7,6 +7,8 @@ const { findPlaysByGame } = require('../queries/plays.query');
 const { findGameById, findAllGames } = require('../queries/games.query');
 const { findCommentsOfGame } = require('../queries/comments.query');
 
+const { uploadGameImg } = require('../configs/cloudinary.config');
+
 router.get('/games', async (req, res, next) => {
 
     const { game, category, mechanic, minPlayer, maxPlayer } = req.query;
@@ -34,8 +36,41 @@ router.get('/games/new', (req, res, next) => {
     res.render('games/new');
 });
 
-router.post('/games/new', (req, res, next) => {
-    Game.create(req.body)
+router.post('/games/new', uploadGameImg.single('image'), (req, res, next) => {
+    const imgPath = req.file.path;
+    const BASE_PATH = 'https://res.cloudinary.com/zhennisapp/image/upload';
+    const scaledHeight = '/c_scale,h_150';
+    const smImg = BASE_PATH + scaledHeight + imgPath.replace(BASE_PATH, '');
+    
+    const {
+        name,
+        minPlayer,
+        maxPlayer,
+        gamePlayTime,
+        description,
+        yearOfPublish,
+        designer,
+        artist,
+        publisher,
+        category,
+        mechanic,
+    } = req.body;
+
+    Game.create({
+        name,
+        minPlayer,
+        maxPlayer,
+        gamePlayTime,
+        description,
+        yearOfPublish,
+        designer,
+        artist,
+        publisher,
+        category,
+        mechanic,
+        img: imgPath,
+        smImg,
+    })
         .then(newGame => {
             const id = newGame._id;
             res.redirect(`/games/${id}`);
@@ -85,7 +120,7 @@ router.post('/games/:id/addcomment', async (req, res) => {
     };
 
     await Comment.create(comment);
-    
+
     res.redirect(`/games/${game}`);
 
 });

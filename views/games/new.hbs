@@ -1,6 +1,8 @@
 <section>
-    <form action="/games/new" method="POST">
-        <p>placeholder for uploading image</p>
+    <form action="/games/new" method="POST" enctype="multipart/form-data">
+        <label for="image">
+            <input type="file" name="image">
+        </label>
         <label for="name">
             Name:
             <input type="text" name="name">
