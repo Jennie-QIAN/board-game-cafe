@@ -13,7 +13,10 @@ const playSchema = new Schema(
         },
 
         location: {
-            country: String,
+            country: {
+                type: String,
+                default: 'France'
+            },
             city: String,
             postCode: String,
             nameOfCommerce: String,

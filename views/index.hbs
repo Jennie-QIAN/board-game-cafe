@@ -50,18 +50,11 @@
 <section>
     <h3>Discover games</h3>
 
-    {{#each games}}
-    <div class="vertical-card-game">
-        <div>
-            <img src="{{this.smImg}}" alt="{{this.name}}">
-        </div>
-        <div>
-            <a href="/games/{{this.id}}"><h4>{{this.name}}</h4></a>
-            <p>By {{this.designer}}</p>
-            <button>like</button>
-        </div>
+    <div class="container-games">
+        {{#each games}}
+        {{> bisGPartial}}
+        {{/each}}
     </div>
-    {{/each}}
 
     <a href="/games">See all</a>
 </section>

@@ -1,8 +1,11 @@
 const express = require('express');
 const router  = express.Router();
 
+const ensureAuthenticated = require('../utils/middleware.js');
+
 const Comment = require('../models/Comment.model.js');
 const Game = require('../models/Game.model.js');
+
 const { findPlaysByGame } = require('../queries/plays.query');
 const { findGameById, findAllGames } = require('../queries/games.query');
 const { findCommentsOfGame } = require('../queries/comments.query');
@@ -32,16 +35,25 @@ router.get('/games', async (req, res, next) => {
     });
 });
 
-router.get('/games/new', (req, res, next) => {
-    res.render('games/new');
+router.get('/games/new', ensureAuthenticated, (req, res, next) => {
+    res.render('games/new', {
+        isLoggedIn: req.isAuthenticated(),
+    });
 });
 
 router.post('/games/new', uploadGameImg.single('image'), (req, res, next) => {
-    const imgPath = req.file.path;
+    let img;
+    let smImg;
+   if (req.file) {
+    img = req.file.path;
     const BASE_PATH = 'https://res.cloudinary.com/zhennisapp/image/upload';
     const scaledHeight = '/c_scale,h_150';
-    const smImg = BASE_PATH + scaledHeight + imgPath.replace(BASE_PATH, '');
-    
+    smImg = BASE_PATH + scaledHeight + img.replace(BASE_PATH, '');
+   } else {
+       img = 'https://via.placeholder.com/468x60';
+       smImg = 'https://via.placeholder.com/150';
+   }
+
     const {
         name,
         minPlayer,
@@ -68,8 +80,9 @@ router.post('/games/new', uploadGameImg.single('image'), (req, res, next) => {
         publisher,
         category,
         mechanic,
-        img: imgPath,
+        img,
         smImg,
+        createdBy: req.user,
     })
         .then(newGame => {
             const id = newGame._id;

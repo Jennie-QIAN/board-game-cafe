@@ -1,0 +1,58 @@
+<section>
+    <div id="play-basic-info">
+        <div>
+            <h3>{{localdate play.dateTime}}</h3>
+            <div>
+                <img src="{{play.organizer.avatar}}">
+                <p>Initiated by:<br>{{play.organizer.username}}</p>
+            </div>
+        </div>
+        <div>
+            <button>save</button>
+            <button>join</button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div>
+        <h3>Location of this game play</h3>
+        <h4>
+            {{play.location.nameOfCommerce}}
+        </h4>
+        <h4>
+            {{play.location.street}}<br>{{play.location.city}}, {{play.location.postCode}}, {{play.location.country}}
+        </h4>
+        <div id="map">
+            placeholder for googleMap
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3>Games to play</h3>
+    <div class="container-games">
+        {{#each play.gamesForPlay}}
+        {{> bisGPartial}}
+        {{/each}}
+    </div>
+</section>
+
+<section>
+    <h3>Plays</h3>
+    <div>
+        <p>min: {{play.minPlayer}}</p>
+        <p>max: {{play.maxPlayer}}</p>
+    </div>
+    <div>
+        <h4>participants:</h4>
+        <div>
+            {{#each play.players}}
+                <div>
+                    <img src="{{this.avatar}}">
+                    <a href="/users/{{this._id}}"><h5>{{this.username}}</h5></a>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

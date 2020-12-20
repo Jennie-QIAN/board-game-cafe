@@ -7,7 +7,8 @@
             {{/each}}
         </div>
         <div class="info-play">
-            <p>{{this.dateTime}}</p>
+            <a href="/plays/{{this._id}}">
+            <p>{{localdate this.dateTime}}</p>
             <div id="names-games">
                 {{#each this.gamesForPlay}}
                 <a href="/games/{{this._id}}">{{this.name}}</a>
@@ -26,6 +27,7 @@
             <div class="btn-save">
                 <button>save</button>
             </div>
+            </a>
         </div>
     </div>
     {{/each}}

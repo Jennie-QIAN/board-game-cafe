@@ -9,7 +9,10 @@ function findAllGames(game, category, mechanic, minPlayer, maxPlayer) {
     let filter = {};
 
     if (game) {
-        filter.name = game;
+        filter.name = {
+            $regex: game,
+            $options: 'i'
+        };
     }
 
     if (category) {

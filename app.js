@@ -40,6 +40,10 @@ hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+//register handlebars helper function
+hbs.registerHelper('localdate', function(dateTime) {
+  return dateTime.toLocaleString();
+});
 
 // default value for title local
 app.locals.title = 'Board Game Salon';

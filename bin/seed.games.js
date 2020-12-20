@@ -4,7 +4,8 @@ const Game = require('../models/Game.model');
 const axios = require('axios');
 const parser = require('xml2json');
 
-const MONGODB_URI = process.env.MONGODB_URI;
+//const MONGODB_URI = process.env.MONGODB_URI;
+MONGODB_URI = "mongodb://localhost/board-game-salon";
 
 mongoose.connect(MONGODB_URI, {
   useCreateIndex: true,
@@ -67,7 +68,7 @@ getObjectFromBgg(baseBggApiUrl + collectionParam)
                         bggId,
                         smImg,
                         img,
-                        description,
+                        description: description.replace(/&#10;/g, '\n'),
                         minPlayer: minplayers.value,
                         maxPlayer: maxplayers.value,
                         gamePlayTime: playingtime.value,

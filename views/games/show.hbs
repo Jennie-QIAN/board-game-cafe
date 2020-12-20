@@ -18,9 +18,8 @@
         <p>
             <strong>Rating at BG Salon:</strong> {{game.rate}}
         </p>
-        <p>
-            <strong>Description:</strong> {{game.description}}
-        </p>
+        <strong>Description:</strong>
+        <p>{{{game.description}}}</p>
         <p>
             <strong>Published in:</strong> {{game.yearOfPublish}}
         </p>
@@ -31,16 +30,10 @@
             <strong>Publisher:</strong> {{game.publisher}}
         </p>
         <p>
-            <strong>Category:</strong> 
-            {{#each game.category}}
-                {{this}}, 
-            {{/each}}
+            <strong>Category:</strong> {{game.category}}
         </p>
         <p>
-            <strong>Mechanic:</strong> 
-            {{#each game.mechanic}}
-                {{this}}, 
-            {{/each}}
+            <strong>Mechanic:</strong> {{game.mechanic}}
         </p>
     </div>
 </section>
