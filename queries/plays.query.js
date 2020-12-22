@@ -29,8 +29,7 @@ function findPlayById(id) {
     return Play.findById(id)
         .populate('organizer', 'username avatar')
         .populate('gamesForPlay', 'name smImg designer')
-        .populate('players', 'username avatar')
-        .catch(err => console.log(err));
+        .populate('players', 'username avatar');
 }
 
 module.exports = {

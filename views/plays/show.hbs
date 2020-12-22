@@ -7,10 +7,20 @@
                 <p>Initiated by:<br>{{play.organizer.username}}</p>
             </div>
         </div>
+        {{#if isOrganizer}}
+        <div>
+            <a href="/plays/{{play.id}}/edit">edit</a>
+            <form action="/plays/{{play.id}}/delete" method="POST">
+                <button type="submit">delete</button>
+            </form>
+        </div>
+        {{else}}
         <div>
             <button>save</button>
             <button>join</button>
         </div>
+        {{/if}}
+
     </div>
 </section>
 

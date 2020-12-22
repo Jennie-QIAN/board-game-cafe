@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const ensureAuthenticated = require('../utils/middleware.js');
+const { ensureAuthenticated } = require('../utils/middleware.js');
 
 const Comment = require('../models/Comment.model.js');
 const Game = require('../models/Game.model.js');

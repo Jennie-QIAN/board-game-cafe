@@ -9,7 +9,7 @@ const saltRounds = 10;
 
 const passport = require('passport');
 
-const ensureAuthenticated = require('../utils/middleware.js');
+const { ensureAuthenticated } = require('../utils/middleware.js');
 
 router.get('/register', (req, res, next) => res.render('auth/register'));
 

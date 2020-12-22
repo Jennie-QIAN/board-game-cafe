@@ -45,6 +45,10 @@ hbs.registerHelper('localdate', function(dateTime) {
   return dateTime.toLocaleString();
 });
 
+hbs.registerHelper('isodate', function(dateTime) {
+  return (new Date(dateTime)).toISOString().slice(0, 16);
+});
+
 // default value for title local
 app.locals.title = 'Board Game Salon';
 

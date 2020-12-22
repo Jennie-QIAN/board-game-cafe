@@ -1,0 +1,38 @@
+<section>
+    <form action="/plays/{{play.id}}/edit" method="POST">
+        <label for="datetime">
+            When:
+            <input type="datetime-local" name="datetime" value="{{isodate play.dateTime}}">
+        </label>
+
+        <label>
+            Where:
+            <input type="text" name="nameOfCommerce" value="{{play.location.nameOfCommerce}}">
+            <input type="text" name="street" placeholder="the address">
+            <input type="text" name="postCode" placeholder="post code">
+            <select name="city">
+                <option value="">choose a city</option>
+                <option value="Paris">Paris</option>
+                <option value="Lyon">Lyon</option>
+                <option value="Nice">Nice</option>
+                <option value="Hyères">Hyères</option>
+                <option value="Corse">Corse</option>
+            </select>
+            <textarea name="moreInstruction" cols="30" rows="10"></textarea>
+        </label>
+
+
+        
+        <label for="minPlayer">
+            Minimum player:
+            <input type="number" name="minPlayer">
+        </label>
+
+        <label for="maxPlayer">
+            Maximum player:
+            <input type="number" name="maxPlayer">
+        </label>
+
+        <input type="submit">
+    </form>
+</section>
