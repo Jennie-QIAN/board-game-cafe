@@ -50,7 +50,7 @@ hbs.registerHelper('isodate', function(dateTime) {
 });
 
 // default value for title local
-app.locals.title = 'Board Game Salon';
+app.locals.title = 'Board Game Café';
 
 
 const index = require('./routes/index');

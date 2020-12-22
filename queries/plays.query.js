@@ -13,6 +13,22 @@ function findPlaysByLocation(location) {
         .populate('players', 'username avatar');
 }
 
+// function findPlaysByLocAndDate(location, dateFrom, dateTo) {
+//     let filter = {};
+
+//     if (location) {
+//         filter['location.city'] = location;
+//     }
+
+//     if (dateFrom && dateTo) {
+//         filter[dateTime] = {$and }
+//     }
+
+//     return Play.find(filter)
+//         .populate('gamesForPlay', 'name smImg')
+//         .populate('players', 'username avatar');
+// }
+
 function findPlaysByGame(gameId) {
     let filter = {};
 

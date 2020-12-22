@@ -8,7 +8,11 @@ const { ensureAuthenticated } = require('../utils/middleware.js');
 const { findPlaysByLocation, findPlayById } = require('../queries/plays.query');
 
 router.get('/plays', async (req, res, next) => {
-    const {location} = req.query;
+    const {
+        location,
+        dateFrom,
+        dateTo,
+    } = req.query;
     const availableLocations = ["Paris", "Lyon", "Nice", "Hyères", "Corse"];
     const nonSelectedLocations = availableLocations.filter((loc => loc !== location));
 
@@ -73,22 +77,54 @@ router.get('/plays/:id', async(req, res, next) => {
     });
 });
 
-router.get('/plays/:id/edit', async(req, res, next) => {
+router.get('/plays/:id/edit', ensureAuthenticated, async(req, res, next) => {
     const playId = req.params.id;
     const play = await findPlayById(playId);
-    if (req.user.id !== play.organizer.id) {
-        return res.send("You are not the owner of this play");
-    }
-    console.log(play.dateTime.toUTCString());
+    const isLoggedIn = req.isAuthenticated();
+
+    const isOrganizer = isLoggedIn? (req.user.id === play.organizer.id) : false;
+
     res.render('plays/edit', {
         play,
-        isLoggedIn: req.isAuthenticated(),
+        isLoggedIn,
+        isOrganizer,
     });
 });
 
+router.post('/plays/:id/edit', (req, res, next) => {
+    const playId = req.params.id;
+    const {
+        dateTime,
+        nameOfCommerce,
+        street,
+        postCode,
+        city,
+        moreInstruction,
+        minPlayer,
+        maxPlayer,
+    } = req.body;
+
+    const updatedPlay = {
+        dateTime,
+        location: {
+            nameOfCommerce,
+            street,
+            postCode,
+            city,
+            moreInstruction,
+        },
+        minPlayer,
+        maxPlayer,
+    };
+
+    Play.findByIdAndUpdate(playId, updatedPlay)
+        .then(() => res.redirect(`/plays/${playId}`))
+        .catch(err => console.log(err));
+});
+
 router.post('/plays/:id/delete', (req, res, next) => {
-    Celebrity.findByIdAndRemove(req.params.id)
-        .then(()=> res.redirect('/celebrities'))
+    Play.findByIdAndRemove(req.params.id)
+        .then(()=> res.redirect('/plays'))
         .catch(err => next(err));
 });
 

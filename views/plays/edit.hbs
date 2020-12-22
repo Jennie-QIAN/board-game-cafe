@@ -1,38 +1,42 @@
+{{#if isOrganizer}}
 <section>
     <form action="/plays/{{play.id}}/edit" method="POST">
         <label for="datetime">
             When:
-            <input type="datetime-local" name="datetime" value="{{isodate play.dateTime}}">
+            <input type="datetime-local" name="dateTime" value="{{isodate play.dateTime}}">
         </label>
 
         <label>
             Where:
             <input type="text" name="nameOfCommerce" value="{{play.location.nameOfCommerce}}">
-            <input type="text" name="street" placeholder="the address">
-            <input type="text" name="postCode" placeholder="post code">
+            <input type="text" name="street" value="{{play.location.street}}">
+            <input type="text" name="postCode" value="{{play.location.postCode}}">
             <select name="city">
-                <option value="">choose a city</option>
+                <option value="{{play.location.city}}">{{play.location.city}}</option>
                 <option value="Paris">Paris</option>
                 <option value="Lyon">Lyon</option>
                 <option value="Nice">Nice</option>
                 <option value="Hyères">Hyères</option>
                 <option value="Corse">Corse</option>
             </select>
-            <textarea name="moreInstruction" cols="30" rows="10"></textarea>
+            <textarea name="moreInstruction" cols="30" rows="10">{{play.location.moreInstruction}}</textarea>
         </label>
-
-
-        
+       
         <label for="minPlayer">
             Minimum player:
-            <input type="number" name="minPlayer">
+            <input type="number" name="minPlayer" value="{{play.minPlayer}}">
         </label>
 
         <label for="maxPlayer">
             Maximum player:
-            <input type="number" name="maxPlayer">
+            <input type="number" name="maxPlayer" value="{{play.maxPlayer}}">
         </label>
 
         <input type="submit">
     </form>
 </section>
+{{else}}
+<div class="error-message">
+    <p>Sorry, only the organizer of the play can modify/delete</p>
+</div>
+{{/if}}

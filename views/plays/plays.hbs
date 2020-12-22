@@ -1,6 +1,6 @@
 <section class="search-bars">
     <div>
-        <form action="/plays" method="POST">
+        <form action="/plays" method="GET">
             <select name="location">
                 {{#if location}}
                 <option value={{location}}>{{location}}</option>
@@ -20,11 +20,11 @@
 
             <label for="date-from">
                 from
-                <input type="date" name="date-from">
+                <input type="date" name="dateFrom">
             </label>
             <label for="date-to">
                 to
-                <input type="date" name="date-to">
+                <input type="date" name="dateTo">
             </label>
             
             <input type="submit" name="search-plays">
