@@ -33,7 +33,11 @@ router.get('/plays', async (req, res, next) => {
 
 router.get('/plays/new', ensureAuthenticated, (req, res, next) => {
     res.render('plays/new', {
-        isLoggedIn: req.isAuthenticated()
+        isLoggedIn: req.isAuthenticated(),
+        scripts: [
+            "https://unpkg.com/axios@0.21.0/dist/axios.min.js",
+            "/javascripts/play-form.js"
+        ],
     });
 });
 
@@ -45,11 +49,11 @@ router.post('/plays/new', (req, res, next) => {
         postCode,
         city,
         moreInstruction,
-        //gamesForPlay,
+        gamesForPlay,
         minPlayer,
         maxPlayer,  
     } = req.body;
-    console.log(dateTime);
+    console.log(req.body);
     Play.create({
         organizer: req.user,
         dateTime,
@@ -60,6 +64,7 @@ router.post('/plays/new', (req, res, next) => {
             street,
             moreInstruction
         },
+        gamesForPlay,
         minPlayer,
         maxPlayer
     })

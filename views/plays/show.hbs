@@ -1,7 +1,11 @@
 <section>
     <div id="play-basic-info">
         <div>
+            {{#if play.dateTime}}
             <h3>{{localdate play.dateTime}}</h3>
+            {{else}}
+            <h3>{{localdate play.dateTime}}</h3>
+            {{/if}}
             <div>
                 <img src="{{play.organizer.avatar}}">
                 <p>Initiated by:<br>{{play.organizer.username}}</p>

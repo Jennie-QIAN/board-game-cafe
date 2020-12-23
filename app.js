@@ -61,6 +61,7 @@ const plays = require('./routes/plays');
 app.use('/', plays);
 const games = require('./routes/games');
 app.use('/', games);
-
+const api = require('./routes/api');
+app.use('/api', api);
 
 module.exports = app;
