@@ -20,11 +20,19 @@
 
             <label for="date-from">
                 from
-                <input type="date" name="dateFrom">
+                {{#if dateFrom}}
+                <input type="datetime-local" name="dateFrom" value="{{isodate dateFrom}}">
+                {{else}}
+                <input type="datetime-local" name="dateFrom">
+                {{/if}}
             </label>
             <label for="date-to">
                 to
-                <input type="date" name="dateTo">
+                {{#if dateTo}}
+                <input type="datetime-local" name="dateTo" value="{{isodate dateTo}}">
+                {{else}}
+                <input type="datetime-local" name="dateTo">
+                {{/if}}
             </label>
             
             <input type="submit" name="search-plays">
@@ -33,9 +41,12 @@
 </section>
 
 <section id="plays-plays">
+    {{#if plays}}
     {{> playsPartial}}
-
     <a href="">See more</a>
+    {{else}}
+    <p>Oops, there is no game play matching your search</p>
+    {{/if}}
 </section>
 
 <section id="create-new-play">

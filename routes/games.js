@@ -60,6 +60,7 @@ router.post('/games/new', uploadGameImg.single('image'), (req, res, next) => {
         maxPlayer,
         gamePlayTime,
         description,
+        shortDescription,
         yearOfPublish,
         designer,
         artist,
@@ -74,6 +75,7 @@ router.post('/games/new', uploadGameImg.single('image'), (req, res, next) => {
         maxPlayer,
         gamePlayTime,
         description,
+        shortDescription,
         yearOfPublish,
         designer,
         artist,
@@ -102,16 +104,50 @@ router.get('/games/:id', async (req, res, next) => {
         findCommentsOfGame(gameId)
     ]);
 
+    const isLoggedIn = req.isAuthenticated();
+
+    const isCreator = isLoggedIn? (req.user.id === game.createdBy.id) : false;
+
     res.render('games/show', {
         game,
         plays,
         comments,
         isLoggedIn: req.isAuthenticated(),
+        isCreator,
     });
 });
 
 router.post('/games/:id', (req, res) => {
     res.redirect(`/games/${req.params.id}/addcomment`);
+});
+
+router.get('/games/:id/edit', ensureAuthenticated, async(req, res, next) => {
+    const gameId = req.params.id;
+    const game = await findGameById(gameId);
+    const isLoggedIn = req.isAuthenticated();
+
+    const isCreator = isLoggedIn? (req.user.id === game.createdBy.id) : false;
+
+    res.render('games/edit', {
+        game,
+        isLoggedIn,
+        isCreator,
+    });
+});
+
+router.post('/games/:id/edit', (req, res, next) => {
+    const gameId = req.params.id;
+    const updatedGame = req.body;
+
+    Game.findByIdAndUpdate(gameId, updatedGame)
+        .then(() => res.redirect(`/games/${gameId}`))
+        .catch(err => console.log(err));
+});
+
+router.post('/games/:id/delete', (req, res, next) => {
+    Game.findByIdAndRemove(req.params.id)
+        .then(()=> res.redirect('/games'))
+        .catch(err => next(err));
 });
 
 router.get('/games/:id/addcomment', async (req, res) => {

@@ -5,7 +5,7 @@ const Play = require('../models/Play.model.js');
 
 const { ensureAuthenticated } = require('../utils/middleware.js');
 
-const { findPlaysByLocation, findPlayById } = require('../queries/plays.query');
+const { findPlaysByLocation, findPlaysByLocAndDate, findPlayById } = require('../queries/plays.query');
 
 router.get('/plays', async (req, res, next) => {
     const {
@@ -13,13 +13,18 @@ router.get('/plays', async (req, res, next) => {
         dateFrom,
         dateTo,
     } = req.query;
+
     const availableLocations = ["Paris", "Lyon", "Nice", "Hyères", "Corse"];
     const nonSelectedLocations = availableLocations.filter((loc => loc !== location));
 
-    const plays = await findPlaysByLocation(location);
+    const plays = await findPlaysByLocAndDate(location, dateFrom, dateTo);
+
+    //const plays = await findPlaysByLocation(location);
 
     res.render('plays/plays', {
         location,
+        dateFrom,
+        dateTo,
         nonSelectedLocations,
         isLoggedIn: req.isAuthenticated(),
         plays,

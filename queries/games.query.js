@@ -2,6 +2,7 @@ const Game = require('../models/Game.model.js');
 
 function findGameById(id) {
     return Game.findById(id)
+        .populate('createdBy', 'username')
         .catch(err => console.log(err));
 }
 

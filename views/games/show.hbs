@@ -2,6 +2,20 @@
     <div>
         <img src={{game.img}}>
     </div>
+
+    {{#if isCreator}}
+    <div>
+        <a href="/games/{{game.id}}/edit">edit</a>
+        <form action="/games/{{game.id}}/delete" method="POST">
+            <button type="submit">delete</button>
+        </form>
+    </div>
+    {{else}}
+    <div>
+        <button>like</button>
+    </div>
+    {{/if}}
+
     <div>
         <p>
             <strong>Name:</strong> {{game.name}}

@@ -13,21 +13,24 @@ function findPlaysByLocation(location) {
         .populate('players', 'username avatar');
 }
 
-// function findPlaysByLocAndDate(location, dateFrom, dateTo) {
-//     let filter = {};
+function findPlaysByLocAndDate(location, dateFrom, dateTo) {
+    let filter = {};
 
-//     if (location) {
-//         filter['location.city'] = location;
-//     }
+    if (location) {
+        filter['location.city'] = location;
+    }
 
-//     if (dateFrom && dateTo) {
-//         filter[dateTime] = {$and }
-//     }
+    if (dateFrom || dateTo) {
+        filter.dateTime = {
+            $gte: new Date(dateFrom), 
+            $lte: new Date(dateTo)
+        };
+    }
 
-//     return Play.find(filter)
-//         .populate('gamesForPlay', 'name smImg')
-//         .populate('players', 'username avatar');
-// }
+    return Play.find(filter)
+        .populate('gamesForPlay', 'name smImg')
+        .populate('players', 'username avatar');
+}
 
 function findPlaysByGame(gameId) {
     let filter = {};
@@ -50,6 +53,7 @@ function findPlayById(id) {
 
 module.exports = {
     findPlaysByLocation,
+    findPlaysByLocAndDate,
     findPlaysByGame,
     findPlayById,
 };

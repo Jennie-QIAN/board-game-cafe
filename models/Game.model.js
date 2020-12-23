@@ -15,6 +15,11 @@ const gameSchema = new Schema(
 
         description: String,
 
+        shortDescription: {
+            type: String,
+            default: "Board Game Café's crème de la crème"
+        },
+
         minPlayer: Number,
 
         maxPlayer: Number,
