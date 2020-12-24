@@ -53,7 +53,7 @@ router.post('/plays/new', (req, res, next) => {
         minPlayer,
         maxPlayer,  
     } = req.body;
-    console.log(req.body);
+
     Play.create({
         organizer: req.user,
         dateTime,
@@ -98,6 +98,10 @@ router.get('/plays/:id/edit', ensureAuthenticated, async(req, res, next) => {
         play,
         isLoggedIn,
         isOrganizer,
+        scripts: [
+            "https://unpkg.com/axios@0.21.0/dist/axios.min.js",
+            "/javascripts/play-form.js"
+        ],
     });
 });
 
@@ -110,6 +114,7 @@ router.post('/plays/:id/edit', (req, res, next) => {
         postCode,
         city,
         moreInstruction,
+        gamesForPlay,
         minPlayer,
         maxPlayer,
     } = req.body;
@@ -123,6 +128,7 @@ router.post('/plays/:id/edit', (req, res, next) => {
             city,
             moreInstruction,
         },
+        gamesForPlay,
         minPlayer,
         maxPlayer,
     };
