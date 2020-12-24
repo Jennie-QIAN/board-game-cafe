@@ -45,11 +45,7 @@
 
 <section>
     <h3>Games to play</h3>
-    <div class="container-games">
-        {{#each play.gamesForPlay}}
-        {{> bisGPartial}}
-        {{/each}}
-    </div>
+    {{> bisGPartial games=play.gamesForPlay}}
 </section>
 
 <section>

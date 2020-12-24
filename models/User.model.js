@@ -37,11 +37,6 @@ const userSchema = new Schema(
             ref: 'Game'
         }],
 
-        numberOfPlays: {
-            type: Number,
-            default: 0
-        },
-
         comments: [{
             type: Schema.Types.ObjectId, 
             ref: 'Comment'

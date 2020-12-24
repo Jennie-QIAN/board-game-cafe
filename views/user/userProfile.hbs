@@ -1,4 +1,28 @@
-<h4>Welcome back, {{ user.username }}</h4>
-<img src="{{user.avatar}}" alt="{{user.username}}">
-<p>{{user.bio}}</p>
-<a href="/logout">Logout</a>
+<section>
+    <h4>Welcome back, {{ user.username }}</h4>
+    <a href="/logout">logout</a>
+    <button>modify profile</button>
+</section>
+
+<section>
+    <img src="{{user.avatar}}">
+    <p><strong>Bio:</strong><br>{{user.bio}}</p>
+</section>
+
+<section>
+    {{> playsPartial plays=playsOrganized}}
+</section>
+
+<section>
+    {{> playsPartial plays=playsParticipate}}
+</section>
+
+<section>
+    {{> bisGPartial games=gamesCreated}}
+</section>
+
+<section>
+    favorite games
+</section>
+
+

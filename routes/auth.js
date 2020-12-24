@@ -3,6 +3,17 @@ const router = new Router();
 
 const mongoose = require('mongoose');
 const User = require('../models/User.model.js');
+const Play = require('../models/Play.model.js');
+const { 
+  findPlaysByLocation, 
+  findPlaysByLocAndDate, 
+  findPlayById 
+} = require('../queries/plays.query');
+const Game = require('../models/Game.model.js');
+const { 
+  findGameById, 
+  findAllGames 
+} = require('../queries/games.query');
 
 const bcryptjs = require('bcrypt');
 const saltRounds = 10;
@@ -88,10 +99,29 @@ router.get('/auth/twitter/callback',
     failureRedirect: '/login' 
   }));
 
-router.get('/userProfile', ensureAuthenticated, (req, res) => {
+router.get('/userProfile', ensureAuthenticated, async (req, res) => {
+  const userId = req.user.id;
+
+  const [
+    playsOrganized,
+    playsParticipate,
+    gamesCreated
+  ] = await Promise.all([
+    Play.find({organizer: userId})
+      .populate('gamesForPlay', 'smImg name')
+      .populate('players', 'username avatar'),
+    Play.find({players: userId})
+      .populate('gamesForPlay', 'smImg name')
+      .populate('players', 'username avatar'),
+    Game.find({createdBy: userId})
+  ]);
+
   res.render('user/userProfile', { 
     user: req.user,
-    isLoggedIn: req.isAuthenticated()
+    isLoggedIn: req.isAuthenticated(),
+    playsOrganized,
+    playsParticipate,
+    gamesCreated,
   });
 });
 
