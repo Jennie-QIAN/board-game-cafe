@@ -1,56 +1,64 @@
+{{#if isCreator}}
 <section>
-    <form action="/games/{{id}}" method="POST" enctype="multipart/form-data">
+    <form action="/games/{{game.id}}/edit" method="POST" enctype="multipart/form-data">
         <label for="image">
-            <input type="file" name="image">
+            Image:
+            <input type="file" name="image" id="image-input" class="form-control-file" />
+            <input type="text" name="existingImage" hidden id="" value="{{game.img}}">
         </label>
         <label for="name">
             Name:
-            <input type="text" name="name">
+            <input type="text" name="name" value="{{game.name}}">
         </label>
         <label for="minPlayer">
             Minimum player:
-            <input type="number" name="minPlayer">
+            <input type="number" name="minPlayer" value="{{game.minPlayer}}">
         </label>
         <label for="maxPlayer">
             Maximum player:
-            <input type="number" name="maxPlayer">
+            <input type="number" name="maxPlayer" value="{{game.maxPlayer}}">
         </label>
         <label for="gamePlayTime">
             Game play time(minutes):
-            <input type="number" name="gamePlayTime">
+            <input type="number" name="gamePlayTime" value="{{game.gamePlayTime}}">
         </label>
         <label for="description">
             Description
-            <textarea name="description" cols="50" rows="20"></textarea>
+            <textarea name="description" cols="50" rows="20">{{game.description}}</textarea>
         </label>
         <label for="shortDescription">
             Short Description
-            <textarea name="shortDescription" cols="50" rows="20" minlength="10" maxlength="250"></textarea>
+            <textarea name="shortDescription" cols="50" rows="20" minlength="10" maxlength="250">{{game.shortDescription}}</textarea>
         </label>
         <label for="yearOfPublish">
             Published in:
-            <input type="text" name="yearOfPublish">
+            <input type="text" name="yearOfPublish" value="{{game.yearOfPublish}}">
         </label>
         <label for="designer">
             Designer:
-            <input type="text" name="designer">
+            <input type="text" name="designer" value="{{game.designer}}">
         </label>
         <label for="artist">
             Artist:
-            <input type="text" name="artist">
+            <input type="text" name="artist" value="{{game.artist}}">
         </label>
         <label for="publisher">
             Publisher:
-            <input type="text" name="publisher">
+            <input type="text" name="publisher" value="{{game.publisher}}">
         </label>
         <label for="category">
             Category:
-            <input type="text" name="category">
+            <input type="text" name="category" value="{{game.category}}">
         </label>
         <label for="mechanic">
             Mechanic:
-            <input type="text" name="mechanic">
+            <input type="text" name="mechanic" value="{{game.mechanic}}">
         </label>
         <input type="submit">
     </form>
 </section>
+{{else}}
+<div class="error-message">
+    <p>Sorry, only the creator of the game can modify/delete</p>
+</div>
+{{/if}}

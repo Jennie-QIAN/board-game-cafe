@@ -44,15 +44,15 @@ router.get('/games/new', ensureAuthenticated, (req, res, next) => {
 router.post('/games/new', uploadGameImg.single('image'), (req, res, next) => {
     let img;
     let smImg;
-   if (req.file) {
+    if (req.file) {
     img = req.file.path;
     const BASE_PATH = 'https://res.cloudinary.com/zhennisapp/image/upload';
     const scaledHeight = '/c_scale,h_150';
     smImg = BASE_PATH + scaledHeight + img.replace(BASE_PATH, '');
-   } else {
+    } else {
        img = 'https://via.placeholder.com/468x60';
        smImg = 'https://via.placeholder.com/150';
-   }
+    }
 
     const {
         name,
@@ -135,9 +135,52 @@ router.get('/games/:id/edit', ensureAuthenticated, async(req, res, next) => {
     });
 });
 
-router.post('/games/:id/edit', (req, res, next) => {
+router.post('/games/:id/edit', uploadGameImg.single('image'), (req, res, next) => {
     const gameId = req.params.id;
-    const updatedGame = req.body;
+
+    const {
+        name,
+        minPlayer,
+        maxPlayer,
+        gamePlayTime,
+        description,
+        shortDescription,
+        yearOfPublish,
+        designer,
+        artist,
+        publisher,
+        category,
+        mechanic,
+    } = req.body;
+
+    let img;
+
+    if (req.file) {
+        img = req.file.path;
+    } else {
+        img = req.body.existingImage;
+    }
+
+    const BASE_PATH = 'https://res.cloudinary.com/zhennisapp/image/upload';
+    const scaledHeight = '/c_scale,h_150';
+    const smImg = BASE_PATH + scaledHeight + img.replace(BASE_PATH, '');
+
+    const updatedGame = {
+        name,
+        minPlayer,
+        maxPlayer,
+        gamePlayTime,
+        description,
+        shortDescription,
+        yearOfPublish,
+        designer,
+        artist,
+        publisher,
+        category,
+        mechanic,
+        img,
+        smImg,
+    };
 
     Game.findByIdAndUpdate(gameId, updatedGame)
         .then(() => res.redirect(`/games/${gameId}`))

@@ -1,7 +1,9 @@
 <section>
     <form action="/games/new" method="POST" enctype="multipart/form-data">
         <label for="image">
-            <input type="file" name="image">
+            Image:
+            <input type="file" name="image" id="image-input" class="form-control-file" />
+            <input type="text" name="existingImage" hidden id="" value="{{game.img}}">
         </label>
         <label for="name">
             Name:
