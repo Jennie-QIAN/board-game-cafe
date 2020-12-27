@@ -49,6 +49,13 @@ hbs.registerHelper('isodate', function(dateTime) {
   return (new Date(dateTime)).toISOString().slice(0, 16);
 });
 
+hbs.registerHelper('ifin', function(elem, list, options) {
+  if (list.indexOf(elem) > -1) {
+    return options.fn(this);
+  } 
+  return options.inverse(this);
+});
+
 // default value for title local
 app.locals.title = 'Board Game Café';
 

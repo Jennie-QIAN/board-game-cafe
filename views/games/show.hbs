@@ -12,7 +12,7 @@
     </div>
     {{else}}
     <div>
-        <button>like</button>
+        <button class="like-game{{#ifin game.id  favoriteGames }} favorite{{/ifin}}" data-game-id="{{game.id}}">like</button>
     </div>
     {{/if}}
 

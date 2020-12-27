@@ -6,13 +6,11 @@ const userSchema = new Schema(
         username: {
             type: String,
             trim: true,
-            //required: [true, 'Username is required.'],
             unique: true
         },
 
         email: {
             type: String,
-            //required: [true, 'Email is required.'],
             match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'],
             unique: true,
             lowercase: true,
@@ -23,10 +21,7 @@ const userSchema = new Schema(
 
         location: String,
 
-        passwordHash: {
-            type: String,
-            //required: [true, 'Password is required']
-        },
+        passwordHash: String,
 
         bio: String,
 
@@ -37,10 +32,30 @@ const userSchema = new Schema(
             ref: 'Game'
         }],
 
+        createdGames: [{
+            type: Schema.Types.ObjectId, 
+            ref: 'Game'
+        }],
+
         comments: [{
             type: Schema.Types.ObjectId, 
             ref: 'Comment'
-        }]
+        }],
+
+        savedPlays: [{
+            type: Schema.Types.ObjectId, 
+            ref: 'Play'
+        }],
+
+        organizedPlays: [{
+            type: Schema.Types.ObjectId, 
+            ref: 'Play'
+        }],
+
+        joinedPlays: [{
+            type: Schema.Types.ObjectId, 
+            ref: 'Play'
+        }],
     },
 
     {

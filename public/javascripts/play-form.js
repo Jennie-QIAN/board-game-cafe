@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    console.log('DOM content loaded for play form');
+    console.log('DOM content loaded - play form');
     const searchBar = document.querySelector(".search-bar-games");
     const form = document.body.querySelector("form");
     const labelMinPlayer = form.querySelector(".label-minplayer");

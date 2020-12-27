@@ -1,4 +1,4 @@
-<div class="container-games">
+<div class="container-games"> 
     {{#each games}}
     <div class="vertical-card-game">
         <div>
@@ -7,7 +7,7 @@
         <div>
             <a href="/games/{{this.id}}"><h4>{{this.name}}</h4></a>
             <p>By {{this.designer}}</p>
-            <button>like</button>
+            <button class="like-game{{#ifin this.id  ../favoriteGames }} favorite{{/ifin}}" data-game-id="{{this.id}}">like</button>
         </div>
     </div>
     {{/each}}

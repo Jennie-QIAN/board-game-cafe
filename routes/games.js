@@ -5,6 +5,7 @@ const { ensureAuthenticated } = require('../utils/middleware.js');
 
 const Comment = require('../models/Comment.model.js');
 const Game = require('../models/Game.model.js');
+const User = require('../models/User.model.js');
 
 const { findPlaysByGame } = require('../queries/plays.query');
 const { findGameById, findAllGames } = require('../queries/games.query');
@@ -22,6 +23,13 @@ router.get('/games', async (req, res, next) => {
         findAllGames(game, category, mechanic, minPlayer, maxPlayer)
       ]);
 
+    let favoriteGames = [];
+
+    if (req.isAuthenticated()) {
+    const user = await User.findById(req.user.id);
+    favoriteGames = user.favoriteGames;
+    }
+
     res.render('games/games', {
         game,
         category,
@@ -31,7 +39,11 @@ router.get('/games', async (req, res, next) => {
         isLoggedIn: req.isAuthenticated(),
         games,
         categories,
-        mechanics
+        mechanics,
+        favoriteGames,
+        scripts: [
+            "https://unpkg.com/axios@0.21.0/dist/axios.min.js"
+        ],
     });
 });
 
@@ -88,7 +100,9 @@ router.post('/games/new', uploadGameImg.single('image'), (req, res, next) => {
     })
         .then(newGame => {
             const id = newGame._id;
-            res.redirect(`/games/${id}`);
+            User.findByIdAndUpdate(req.user.id, { $push: {createdGames: id} })
+                .then(() => res.redirect(`/games/${id}`))
+                .catch(err => next(err));   
         })
         .catch(err => {
             console.log(err);
@@ -108,12 +122,23 @@ router.get('/games/:id', async (req, res, next) => {
 
     const isCreator = isLoggedIn? (req.user.id === game.createdBy.id) : false;
 
+    let favoriteGames = [];
+
+    if (isLoggedIn) {
+    const user = await User.findById(req.user.id);
+    favoriteGames = user.favoriteGames;
+    }    
+
     res.render('games/show', {
         game,
         plays,
         comments,
         isLoggedIn: req.isAuthenticated(),
         isCreator,
+        favoriteGames,
+        scripts: [
+            "https://unpkg.com/axios@0.21.0/dist/axios.min.js"
+        ],
     });
 });
 

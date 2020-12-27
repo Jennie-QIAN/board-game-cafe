@@ -4,16 +4,7 @@ const router = new Router();
 const mongoose = require('mongoose');
 const User = require('../models/User.model.js');
 const Play = require('../models/Play.model.js');
-const { 
-  findPlaysByLocation, 
-  findPlaysByLocAndDate, 
-  findPlayById 
-} = require('../queries/plays.query');
 const Game = require('../models/Game.model.js');
-const { 
-  findGameById, 
-  findAllGames 
-} = require('../queries/games.query');
 
 const bcryptjs = require('bcrypt');
 const saltRounds = 10;
@@ -113,7 +104,9 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     Play.find({players: userId})
       .populate('gamesForPlay', 'smImg name')
       .populate('players', 'username avatar'),
-    Game.find({createdBy: userId})
+    User.findById(userId)
+      .populate('createdGames', 'designer name smImg')
+      .then(userData => userData.createdGames)     
   ]);
 
   res.render('user/userProfile', { 

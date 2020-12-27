@@ -5,9 +5,7 @@
             <img src="{{this.smImg}}" alt="{{this.name}}">
         </div>
         <div class="info-game">
-            <div class="btn-save">
-                <button>like</button>
-            </div>
+            <button class="like-game{{#ifin this.id  ../favoriteGames }} favorite{{/ifin}}" data-game-id="{{this.id}}">like</button>
             <a href="/games/{{this.id}}">{{this.name}}</a>
             <p>{{this.shortDescription}}</p>
         </div>
