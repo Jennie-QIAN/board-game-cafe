@@ -42,11 +42,6 @@ const userSchema = new Schema(
             ref: 'Comment'
         }],
 
-        savedPlays: [{
-            type: Schema.Types.ObjectId, 
-            ref: 'Play'
-        }],
-
         organizedPlays: [{
             type: Schema.Types.ObjectId, 
             ref: 'Play'

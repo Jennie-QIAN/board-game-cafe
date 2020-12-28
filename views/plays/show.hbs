@@ -20,8 +20,7 @@
         </div>
         {{else}}
         <div>
-            <button>save</button>
-            <button>join</button>
+            <button class="join-play{{#ifin play.id  joinedPlays }} joined{{/ifin}}" data-play-id="{{play.id}}">join</button>
         </div>
         {{/if}}
 
@@ -56,9 +55,9 @@
     </div>
     <div>
         <h4>participants:</h4>
-        <div>
+        <div class="list-players">
             {{#each play.players}}
-                <div>
+                <div class="card-player" data-player-id="{{this._id}}">
                     <img src="{{this.avatar}}">
                     <a href="/users/{{this._id}}"><h5>{{this.username}}</h5></a>
                 </div>

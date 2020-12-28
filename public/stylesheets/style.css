@@ -11,4 +11,10 @@ a {
 button.favorite {
   background-color: pink; }
 
+button.joined {
+  background-color: orange; }
+
+img#bgc-title {
+  height: 50px; }
+
 /*# sourceMappingURL=style.css.map */

@@ -2,10 +2,11 @@ const express = require('express');
 const router  = express.Router();
 
 const Play = require('../models/Play.model.js');
+const User = require('../models/User.model.js');
 
 const { ensureAuthenticated } = require('../utils/middleware.js');
 
-const { findPlaysByLocation, findPlaysByLocAndDate, findPlayById } = require('../queries/plays.query');
+const { findPlaysByLocAndDate, findPlayById } = require('../queries/plays.query');
 
 router.get('/plays', async (req, res, next) => {
     const {
@@ -77,13 +78,26 @@ router.get('/plays/:id', async(req, res, next) => {
     const playId = req.params.id;
     const play = await findPlayById(playId);
     const isLoggedIn = req.isAuthenticated();
-
     const isOrganizer = isLoggedIn? (req.user.id === play.organizer.id) : false;
+
+    let favoriteGames = [];
+
+    if (isLoggedIn) {
+        const user = await User.findById(req.user.id);
+        favoriteGames = user.favoriteGames;
+        joinedPlays = user.joinedPlays;
+    } 
 
     res.render('plays/show', {
         play,
         isLoggedIn,
         isOrganizer,
+        favoriteGames,
+        joinedPlays,
+        scripts: [
+            "https://unpkg.com/axios@0.21.0/dist/axios.min.js",
+            "/javascripts/join-play.js"
+        ],
     });
 });
 
