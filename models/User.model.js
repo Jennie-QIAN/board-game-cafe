@@ -32,11 +32,6 @@ const userSchema = new Schema(
             ref: 'Game'
         }],
 
-        createdGames: [{
-            type: Schema.Types.ObjectId, 
-            ref: 'Game'
-        }],
-
         comments: [{
             type: Schema.Types.ObjectId, 
             ref: 'Comment'

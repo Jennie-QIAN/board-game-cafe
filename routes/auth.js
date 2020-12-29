@@ -4,6 +4,7 @@ const router = new Router();
 const mongoose = require('mongoose');
 const User = require('../models/User.model.js');
 const Play = require('../models/Play.model.js');
+const Game = require('../models/Game.model.js');
 
 const bcryptjs = require('bcrypt');
 const saltRounds = 10;
@@ -128,12 +129,14 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     id: userId,
     avatar: userImg,
     username: userName,
+    favoriteGames,
   } = req.user;
 
   const [
     playsOrganized,
     playsParticipate,
-    gamesCreated
+    gamesCreated,
+    favGamesPopulated
   ] = await Promise.all([
     Play.find({organizer: userId})
       .populate('gamesForPlay', 'smImg name')
@@ -141,9 +144,10 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     Play.find({players: userId})
       .populate('gamesForPlay', 'smImg name')
       .populate('players', 'username avatar'),
+    Game.find({createdBy: userId}),
     User.findById(userId)
-      .populate('createdGames', 'designer name smImg')
-      .then(userData => userData.createdGames)     
+      .populate('favoriteGames', 'smImg name designer')
+      .then(userData => userData.favoriteGames)
   ]);
 
   res.render('user/userProfile', { 
@@ -153,8 +157,14 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     playsOrganized,
     playsParticipate,
     gamesCreated,
+    favoriteGames,
+    favGamesPopulated,
   });
 });
+
+// router.post('/userProfile', (req, res) => {
+
+// })
 
 router.get('/logout', (req, res, next) => {
   req.logout();
