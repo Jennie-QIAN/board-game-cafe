@@ -20,7 +20,7 @@
         </div>
         {{else}}
         <div>
-            <button class="join-play{{#ifin play.id  joinedPlays }} joined{{/ifin}}" data-play-id="{{play.id}}">join</button>
+            <button class="join-play{{#if ifJoined}} joined{{/if}}" data-play-id="{{play.id}}">join</button>
         </div>
         {{/if}}
 

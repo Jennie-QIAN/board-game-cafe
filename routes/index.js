@@ -3,16 +3,22 @@ const router  = express.Router();
 
 const { findPlaysByLocation } = require('../queries/plays.query');
 const { findAllGames, findLatestFeaturedGame } = require('../queries/games.query');
-const User = require('../models/User.model.js');
 
 router.get('/', async (req, res, next) => {
-  let location;
-  let favoriteGames = [];
+  let userId,
+      userName,
+      userImg,
+      location,
+      favoriteGames = [];
 
   if (req.isAuthenticated()) {
-    location = req.user.location;
-    const user = await User.findById(req.user.id);
-    favoriteGames = user.favoriteGames;
+    ({
+      id: userId,
+      username: userName,
+      avatar: userImg,
+      location,
+      favoriteGames,
+    } = req.user);
   }
 
   const [ games, plays, latestFeaturedGame ] = await Promise.all([
@@ -22,10 +28,12 @@ router.get('/', async (req, res, next) => {
   ]);
     
   res.render('index', {
+    userId,
+    userName,
+    userImg,
     games,
     plays,
     latestFeaturedGame,
-    isLoggedIn: req.isAuthenticated(),
     favoriteGames,
     scripts: [
       "https://unpkg.com/axios@0.21.0/dist/axios.min.js"

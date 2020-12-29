@@ -18,23 +18,42 @@ router.get('/plays', async (req, res, next) => {
     const availableLocations = ["Paris", "Lyon", "Nice", "Hyères", "Corse"];
     const nonSelectedLocations = availableLocations.filter((loc => loc !== location));
 
-    const plays = await findPlaysByLocAndDate(location, dateFrom, dateTo);
+    let userId,
+        userName,
+        userImg;
 
-    //const plays = await findPlaysByLocation(location);
+    if (req.isAuthenticated()) {
+        ({
+        id: userId,
+        username: userName,
+        avatar: userImg,
+        } = req.user);
+    }
+
+    const plays = await findPlaysByLocAndDate(location, dateFrom, dateTo);
 
     res.render('plays/plays', {
         location,
         dateFrom,
         dateTo,
         nonSelectedLocations,
-        isLoggedIn: req.isAuthenticated(),
         plays,
+        userId,
+        userName,
+        userImg,
     });
 });
 
 router.get('/plays/new', ensureAuthenticated, (req, res, next) => {
+    const {
+        id: userId,
+        avatar: userImg,
+        username: userName,
+    } = req.user;
     res.render('plays/new', {
-        isLoggedIn: req.isAuthenticated(),
+        userId,
+        userName,
+        userImg,
         scripts: [
             "https://unpkg.com/axios@0.21.0/dist/axios.min.js",
             "/javascripts/play-form.js"
@@ -75,25 +94,35 @@ router.post('/plays/new', (req, res, next) => {
 });
 
 router.get('/plays/:id', async(req, res, next) => {
+    let userId,
+        userName,
+        userImg,
+        favoriteGames = [];
+    
     const playId = req.params.id;
-    const play = await findPlayById(playId);
     const isLoggedIn = req.isAuthenticated();
-    const isOrganizer = isLoggedIn? (req.user.id === play.organizer.id) : false;
-
-    let favoriteGames = [];
-
+    
     if (isLoggedIn) {
-        const user = await User.findById(req.user.id);
-        favoriteGames = user.favoriteGames;
-        joinedPlays = user.joinedPlays;
+        ({
+            id: userId,
+            username: userName,
+            avatar: userImg,
+            favoriteGames,
+         } = req.user);
     } 
 
+    const play = await findPlayById(playId);
+    const ifJoined = play.players.map(player => player._id).includes(userId);
+    const isOrganizer = isLoggedIn? (req.user.id === play.organizer.id) : false;
+
     res.render('plays/show', {
+        userId,
+        userName,
+        userImg,
         play,
-        isLoggedIn,
         isOrganizer,
         favoriteGames,
-        joinedPlays,
+        ifJoined,
         scripts: [
             "https://unpkg.com/axios@0.21.0/dist/axios.min.js",
             "/javascripts/join-play.js"
@@ -108,9 +137,17 @@ router.get('/plays/:id/edit', ensureAuthenticated, async(req, res, next) => {
 
     const isOrganizer = isLoggedIn? (req.user.id === play.organizer.id) : false;
 
+    const {
+        id: userId,
+        username: userName,
+        avatar: userImg,
+    } = req.user;
+
     res.render('plays/edit', {
+        userId,
+        userName,
+        userImg,
         play,
-        isLoggedIn,
         isOrganizer,
         scripts: [
             "https://unpkg.com/axios@0.21.0/dist/axios.min.js",

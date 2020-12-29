@@ -23,20 +23,30 @@ router.get('/games', async (req, res, next) => {
         findAllGames(game, category, mechanic, minPlayer, maxPlayer)
       ]);
 
-    let favoriteGames = [];
+    let userId,
+        userName,
+        userImg,
+        favoriteGames = [];
 
     if (req.isAuthenticated()) {
-    const user = await User.findById(req.user.id);
-    favoriteGames = user.favoriteGames;
+        ({
+            id: userId,
+            username: userName,
+            avatar: userImg,
+            location,
+            favoriteGames,
+          } = req.user);
     }
 
     res.render('games/games', {
+        userId,
+        userName,
+        userImg,
         game,
         category,
         mechanic,
         minPlayer,
         maxPlayer,
-        isLoggedIn: req.isAuthenticated(),
         games,
         categories,
         mechanics,
@@ -48,8 +58,15 @@ router.get('/games', async (req, res, next) => {
 });
 
 router.get('/games/new', ensureAuthenticated, (req, res, next) => {
+    const {
+        id: userId,
+        avatar: userImg,
+        username: userName,
+    } = req.user;
     res.render('games/new', {
-        isLoggedIn: req.isAuthenticated(),
+        userId,
+        userName,
+        userImg,
     });
 });
 
@@ -122,20 +139,32 @@ router.get('/games/:id', async (req, res, next) => {
 
     const isCreator = isLoggedIn? (req.user.id === game.createdBy.id) : false;
 
-    let favoriteGames = [];
+    let userId,
+        userName,
+        userImg,
+        favoriteGames = [];
 
-    if (isLoggedIn) {
-    const user = await User.findById(req.user.id);
-    favoriteGames = user.favoriteGames;
-    }    
+    if (req.isAuthenticated()) {
+        ({
+            id: userId,
+            username: userName,
+            avatar: userImg,
+            location,
+            favoriteGames,
+          } = req.user);
+    }
+    
+    const ifFavorite = favoriteGames.includes(gameId);
 
     res.render('games/show', {
+        userId,
+        userName,
+        userImg,
         game,
         plays,
         comments,
-        isLoggedIn: req.isAuthenticated(),
         isCreator,
-        favoriteGames,
+        ifFavorite,
         scripts: [
             "https://unpkg.com/axios@0.21.0/dist/axios.min.js"
         ],
@@ -153,9 +182,17 @@ router.get('/games/:id/edit', ensureAuthenticated, async(req, res, next) => {
 
     const isCreator = isLoggedIn? (req.user.id === game.createdBy.id) : false;
 
+    const {
+        id: userId,
+        username: userName,
+        avatar: userImg,
+    } = req.user;
+
     res.render('games/edit', {
+        userId,
+        userName,
+        userImg,
         game,
-        isLoggedIn,
         isCreator,
     });
 });
@@ -218,9 +255,17 @@ router.post('/games/:id/delete', (req, res, next) => {
         .catch(err => next(err));
 });
 
-router.get('/games/:id/addcomment', async (req, res) => {
+router.get('/games/:id/addcomment', ensureAuthenticated, async (req, res) => {
     const game = await findGameById(req.params.id);
+    const {
+        id: userId,
+        username: userName,
+        avatar: userImg,
+    } = req.user;
     res.render('games/comment', {
+        userId,
+        userName,
+        userImg,
         game,
         isLoggedIn: req.isAuthenticated(),
     });

@@ -4,7 +4,6 @@ const router = new Router();
 const mongoose = require('mongoose');
 const User = require('../models/User.model.js');
 const Play = require('../models/Play.model.js');
-const Game = require('../models/Game.model.js');
 
 const bcryptjs = require('bcrypt');
 const saltRounds = 10;
@@ -13,7 +12,24 @@ const passport = require('passport');
 
 const { ensureAuthenticated } = require('../utils/middleware.js');
 
-router.get('/register', (req, res, next) => res.render('auth/register'));
+router.get('/register', (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    res.render('auth/register');
+  } else {
+    const {
+      id: userId,
+      username: userName,
+      avatar: userImg,
+    } = req.user;
+
+    res.status(403).render('error', {
+      userId,
+      userName,
+      userImg,
+      errorMessage: "Hey, you are already loggedin!"
+    });
+  }
+});
 
 router.post('/register', (req, res, next) => {
     const { username, email, password } = req.body;
@@ -55,7 +71,24 @@ router.post('/register', (req, res, next) => {
         });
 });
 
-router.get('/login', (req, res, next) => res.render('auth/login'));
+router.get('/login', (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.render('auth/login');
+  } else {
+    const {
+      id: userId,
+      username: userName,
+      avatar: userImg,
+    } = req.user;
+
+    res.status(403).render('error', {
+      userId,
+      userName,
+      userImg,
+      errorMessage: "Hey, you are already loggedin!"
+    });
+  }
+});
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, theUser, failureDetails) => {
@@ -91,7 +124,11 @@ router.get('/auth/twitter/callback',
   }));
 
 router.get('/userProfile', ensureAuthenticated, async (req, res) => {
-  const userId = req.user.id;
+  const {
+    id: userId,
+    avatar: userImg,
+    username: userName,
+  } = req.user;
 
   const [
     playsOrganized,
@@ -110,8 +147,9 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
   ]);
 
   res.render('user/userProfile', { 
-    user: req.user,
-    isLoggedIn: req.isAuthenticated(),
+    userId,
+    userImg,
+    userName,
     playsOrganized,
     playsParticipate,
     gamesCreated,

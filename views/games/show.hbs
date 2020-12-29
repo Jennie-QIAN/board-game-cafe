@@ -12,7 +12,7 @@
     </div>
     {{else}}
     <div>
-        <button class="like-game{{#ifin game.id  favoriteGames }} favorite{{/ifin}}" data-game-id="{{game.id}}">like</button>
+        <button class="like-game{{#if ifFavorite}} favorite{{/if}}" data-game-id="{{game.id}}">like</button>
     </div>
     {{/if}}
 
@@ -79,7 +79,7 @@
         Comments:
     </h3>
 
-    {{#if isLoggedIn}}
+    {{#if userId}}
     <div class="new-comment">
         <form action="/games/{{game._id}}" method="POST">
             <input type="submit" value="Add comment">

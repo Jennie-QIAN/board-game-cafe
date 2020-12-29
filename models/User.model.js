@@ -41,16 +41,6 @@ const userSchema = new Schema(
             type: Schema.Types.ObjectId, 
             ref: 'Comment'
         }],
-
-        organizedPlays: [{
-            type: Schema.Types.ObjectId, 
-            ref: 'Play'
-        }],
-
-        joinedPlays: [{
-            type: Schema.Types.ObjectId, 
-            ref: 'Play'
-        }],
     },
 
     {

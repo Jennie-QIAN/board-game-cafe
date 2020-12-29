@@ -11,33 +11,31 @@ document.addEventListener('DOMContentLoaded', () => {
     joinButton.addEventListener('click', () => {
         const playId = joinButton.getAttribute("data-play-id");
         const playersList = document.querySelector("div.list-players");
+        const userInfoEle = document.querySelector("#auth a");
+        const userId = userInfoEle.getAttribute("data-user-id");
+        const userName = userInfoEle.getAttribute("data-user-name");
+        const userImg = document.querySelector("#auth img").getAttribute("src");
+
 
         if (joinButton.classList.contains("joined")) {
             axios.patch('/api/unjoin-play', {
                 playId,
             })
-            .then(async user => {
+            .then(() => {
                 joinButton.classList.remove("joined");
-                const { _id: id } = await user.data;
-                playersList.querySelector(`div[data-player-id="${id}"]`).remove();
+                playersList.querySelector(`div[data-player-id="${userId}"]`).remove();
             })
             .catch(err => console.log(err));
         } else {
             axios.post('/api/join-play', {
                 playId,
             })
-            .then(async user => {
-                const {
-                    _id: id, 
-                    avatar, 
-                    username,
-                } = await user.data;
-
+            .then(() => {
                 joinButton.classList.add("joined");
                 const newPlayerCard = document.createElement("div");
                 newPlayerCard.className = "card-player";
-                newPlayerCard.setAttribute("data-player-id", id);
-                newPlayerCard.innerHTML = `<img src=${avatar}><a href="/users/${id}"><h5>${username}</h5></a>`;
+                newPlayerCard.setAttribute("data-player-id", userId);
+                newPlayerCard.innerHTML = `<img src=${userImg}><a href="/users/${userId}"><h5>${userName}</h5></a>`;
                 playersList.appendChild(newPlayerCard);
             })
             .catch(err => console.log(err));

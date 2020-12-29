@@ -30,30 +30,16 @@ router.post('/join-play', async (req, res) => {
     if (!req.isAuthenticated()) {
         return;
     }
-
-    const userId = req.user.id;
-    const playId = req.body.playId;
-    const [ user ] = await Promise.all([
-        User.findByIdAndUpdate(userId, { $push: {joinedPlays: playId}}),
-        Play.findByIdAndUpdate(playId, { $push: {players: userId}})
-    ]);
-    
-    res.json(user);
+    await Play.findByIdAndUpdate(req.body.playId, { $push: {players: req.user.id}});
+    res.send("you have joined this game play");
 });
 
 router.patch('/unjoin-play', async (req, res) => {
     if (!req.isAuthenticated()) {
         return;
     }
-
-    const userId = req.user.id;
-    const playId = req.body.playId;
-    const [ user ] = await Promise.all([
-        User.findByIdAndUpdate(userId, { $pull: {joinedPlays: playId}}),
-        Play.findByIdAndUpdate(playId, { $pull: {players: userId}})
-    ]);
-   
-    res.json(user);
+    await Play.findByIdAndUpdate(req.body.playId, { $pull: {players: req.user.id}});
+    res.send("you have dropped out of this game play");
 });
 
 module.exports = router;
