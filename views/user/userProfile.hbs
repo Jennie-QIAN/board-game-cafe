@@ -1,41 +1,35 @@
 <section>
-    <h4>Welcome back, {{user.username}}</h4>
+    <h4>Welcome back, {{userName}}</h4>
     <a href="/logout">logout</a>
-    <button>modify profile</button>
 </section>
 
-<section class="user-account-info">
-    <img src="{{user.avatar}}">
-    <p><strong>Bio:</strong><br>{{user.bio}}</p>
-</section>
-
-<section class="user-account-modification hidden">
+<section class="user-account-modification">
     <form action="/userProfile" method="POST" enctype="multipart/form-data">
         <label for="image">
             Avatar:
             <input type="file" name="image" id="image-input" class="form-control-file" />
-            <input type="text" name="existingImage" hidden id="" value="{{user.avatar}}">
+            <input type="text" name="existingImage" hidden id="" value="{{userImg}}">
         </label>
 
         <label for="username">
             Username
-            <input id="username" type="text" name="username">
+            <input id="username" type="text" name="username" value="{{userName}}">
         </label>
 
         <label for="email">
             Email
-            <input id="email" type="text" name="email">
+            <input id="email" type="text" name="email" value="{{email}}">
         </label>
 
         <label for="password">
             Password
-            <input id="password" type="password" name="password">
+            <input id="password" type="password" name="password" placeholder="******">
         </label>
             
         <label for="location">
             Location
             <select name="location">
-                <option value="">choose a location</option>
+                <option value="{{location}}">{{location}}</option>
                 <option value="Paris">Paris</option>
                 <option value="Lyon">Lyon</option>
                 <option value="Nice">Nice</option>
@@ -46,14 +40,15 @@
 
         <label for="bio">
             Bio
-            <textarea name="bio" cols="30" rows="50"></textarea>
+            <textarea name="bio" cols="30" rows="10">{{bio}}</textarea>
         </label>
 
-        {{#if errorMessage}}
-        <div class="error-message">{{errorMessage}}</div>
-        {{/if}}
-
+        <input type="submit">
     </form>
+
+    {{#if errorMessage}}
+    <div class="error-message">{{errorMessage}}</div>
+    {{/if}}
 </section>
 
 <section>

@@ -15,46 +15,74 @@ const { uploadGameImg } = require('../configs/cloudinary.config');
 
 router.get('/games', async (req, res, next) => {
 
-    const { game, category, mechanic, minPlayer, maxPlayer } = req.query;
-
-    const [ categories, mechanics, games  ] = await Promise.all([
-        Game.distinct('category'),
-        Game.distinct('mechanic'),
-        findAllGames(game, category, mechanic, minPlayer, maxPlayer)
-      ]);
-
-    let userId,
-        userName,
-        userImg,
-        favoriteGames = [];
-
-    if (req.isAuthenticated()) {
-        ({
-            id: userId,
-            username: userName,
-            avatar: userImg,
-            location,
-            favoriteGames,
-          } = req.user);
-    }
-
-    res.render('games/games', {
-        userId,
-        userName,
-        userImg,
-        game,
-        category,
-        mechanic,
-        minPlayer,
+    const {
+        game, 
+        category, 
+        mechanic, 
+        minPlayer, 
         maxPlayer,
-        games,
-        categories,
-        mechanics,
-        favoriteGames,
-        scripts: [
-            "https://unpkg.com/axios@0.21.0/dist/axios.min.js"
-        ],
-    });
+        page = 1
+    } = req.query;
+
+    const limit = 10;
+
+    try {
+        const [ categories, mechanics, games, numOfGames  ] = await Promise.all([
+            Game.distinct('category'),
+            Game.distinct('mechanic'),
+            findAllGames(game, category, mechanic, minPlayer, maxPlayer)
+                .limit(limit * 1)
+                .skip((page - 1) * limit)
+                .exec(),
+            findAllGames(game, category, mechanic, minPlayer, maxPlayer)
+                .countDocuments()
+        ]);
+
+        let userId,
+            userName,
+            userImg,
+            favoriteGames = [];
+
+        if (req.isAuthenticated()) {
+            ({
+                id: userId,
+                username: userName,
+                avatar: userImg,
+                location,
+                favoriteGames,
+            } = req.user);
+        }
+
+        const totalPages = Math.ceil(numOfGames / limit);
+        const needPagination = totalPages > 1;
+        const pages = [];
+        for(let i = 1; i <= totalPages; i++) {
+            pages.push(i);
+        }
+
+        res.render('games/games', {
+            userId,
+            userName,
+            userImg,
+            game,
+            category,
+            mechanic,
+            minPlayer,
+            maxPlayer,
+            games,
+            categories,
+            mechanics,
+            favoriteGames,
+            needPagination,
+            pages,
+            currentPage: page,
+            scripts: [
+                "https://unpkg.com/axios@0.21.0/dist/axios.min.js"
+            ],
+        });
+    } catch(err) {
+        console.error(err.message);
+    }
 });
 
 router.get('/games/new', ensureAuthenticated, (req, res, next) => {

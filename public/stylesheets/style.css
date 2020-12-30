@@ -17,4 +17,11 @@ button.joined {
 img#bgc-title {
   height: 50px; }
 
+.hidden {
+  display: none; }
+
+img.avatar {
+  height: 48px;
+  border-radius: 50%; }
+
 /*# sourceMappingURL=style.css.map */

@@ -2,28 +2,27 @@
 
 <form action="/register" method="POST" id="form-container">
 
-    <div>
-        <label for="username">Username</label>
+    <label for="username">
+        Username
         <input id="username" type="text" name="username">
-    </div>
+    </label>
 
-    <div>
-        <label for="email">Email</label>
+    <label for="email">
+        Email
         <input id="email" type="text" name="email">
-    </div>
+    </label>
 
-    <div>
-        <label for="password">Password</label>
+    <label for="password">
+        Password
         <input id="password" type="password" name="password">
-    </div>
+    </label>
 
     {{#if errorMessage}}
     <div class="error-message">{{errorMessage}}</div>
     {{/if}}
 
-    <div>
-        <button>Create account</button>
-    </div>
+    <button>Create account</button>
+
 
     <p class="account-message">
     Do you already have an account?

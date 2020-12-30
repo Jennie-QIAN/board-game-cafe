@@ -13,6 +13,8 @@ const passport = require('passport');
 
 const { ensureAuthenticated } = require('../utils/middleware.js');
 
+const { uploadUserImg } = require('../configs/cloudinary.config');
+
 router.get('/register', (req, res, next) => {
   if (!req.isAuthenticated()) {
     res.render('auth/register');
@@ -129,6 +131,9 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     id: userId,
     avatar: userImg,
     username: userName,
+    email,
+    bio,
+    location,
     favoriteGames,
   } = req.user;
 
@@ -154,6 +159,9 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     userId,
     userImg,
     userName,
+    email,
+    bio,
+    location,
     playsOrganized,
     playsParticipate,
     gamesCreated,
@@ -162,9 +170,68 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
   });
 });
 
-// router.post('/userProfile', (req, res) => {
+router.post('/userProfile', uploadUserImg.single('image'), async (req, res) => {
+  const {
+    username,
+    email,
+    password,
+    location,
+    bio,
+  } = req.body;
 
-// })
+  const {
+    id: userId,
+    passwordHash: currentPw,
+  } = req.user;
+
+  let uploadedUserImg;
+  let avatar;
+  if (req.file) {
+    uploadedUserImg = req.file.path;
+    const BASE_PATH = 'https://res.cloudinary.com/zhennisapp/image/upload';
+    const scale = '/c_thumb,g_face,h_150,w_150';
+    avatar = BASE_PATH + scale + uploadedUserImg.replace(BASE_PATH, '');
+  } else {
+    avatar = req.body.existingImage;
+  }
+
+  let passwordHash = currentPw;
+  if (password) {
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!regex.test(password)) {
+        res
+            .status(500)
+            .render('user/userProfile', { errorMessage: 'Password should have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter' });
+        return;
+    }
+
+    passwordHash = await bcryptjs
+      .genSalt(saltRounds)
+      .then(salt => bcryptjs.hash(password, salt))
+      .catch(error => {
+        if (error instanceof mongoose.Error.ValidationError) {
+            res.status(500).render('user/userProfile', { errorMessage: error.message});
+        } else if (error.code === 11000) {
+            res.status(500).render('user/userProfile', { errorMessage: "Username and email should be unique. Either of them is already used. Try something else"});
+        } else {
+            next(error);
+        }
+      });     
+  }
+
+  const updatedUser = {
+    username,
+    email,
+    passwordHash,
+    location,
+    bio,
+    avatar,
+  };
+
+  User.findByIdAndUpdate(userId, updatedUser)
+    .then(() => res.redirect('/userProfile'))
+    .catch(err => console.log(err));
+});
 
 router.get('/logout', (req, res, next) => {
   req.logout();

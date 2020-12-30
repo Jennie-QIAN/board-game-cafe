@@ -43,7 +43,6 @@
 <section id="plays-plays">
     {{#if plays}}
     {{> playsPartial}}
-    <a href="">See more</a>
     {{else}}
     <p>Oops, there is no game play matching your search</p>
     {{/if}}
@@ -52,3 +51,11 @@
 <section id="create-new-play">
     <a href="/plays/new">Initiate a new game play</a>
 </section>
+
+{{#if needPagination}}
+<div class="pagination">
+    {{#each pages}}
+    <a href="/games?page={{this}}">{{this}}</a>
+    {{/each}}
+</div>
+{{/if}}

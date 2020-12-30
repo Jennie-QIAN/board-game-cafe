@@ -42,6 +42,14 @@
 
     {{> gamesPartial}}
 
-    <a href="">See more</a>
 </section>
-</section>
+
+{{#if needPagination}}
+<div class="pagination">
+    <a href="/games">&laquo;</a>
+    {{#each pages}}
+    <a href="/games?page={{this}}">{{this}}</a>
+    {{/each}}
+    <a href="/games?page={{pages.length}}">&raquo;</a>
+</div>
+{{/if}}
