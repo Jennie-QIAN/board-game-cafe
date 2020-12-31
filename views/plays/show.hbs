@@ -7,7 +7,7 @@
             <h3>{{localdate play.dateTime}}</h3>
             {{/if}}
             <div>
-                <img src="{{play.organizer.avatar}}">
+                <img src="{{play.organizer.avatar}}" class="avatar">
                 <p>Initiated by:<br>{{play.organizer.username}}</p>
             </div>
         </div>
@@ -36,9 +36,6 @@
         <h4>
             {{play.location.street}}<br>{{play.location.city}}, {{play.location.postCode}}, {{play.location.country}}
         </h4>
-        <div id="map">
-            placeholder for googleMap
-        </div>
     </div>
 </section>
 
@@ -58,7 +55,7 @@
         <div class="list-players">
             {{#each play.players}}
                 <div class="card-player" data-player-id="{{this._id}}">
-                    <img src="{{this.avatar}}">
+                    <img src="{{this.avatar}}" class="avatar">
                     <a href="/users/{{this._id}}"><h5>{{this.username}}</h5></a>
                 </div>
             {{/each}}

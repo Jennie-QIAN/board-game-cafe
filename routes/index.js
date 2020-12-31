@@ -22,8 +22,14 @@ router.get('/', async (req, res, next) => {
   }
 
   const [ games, plays, latestFeaturedGame ] = await Promise.all([
-    findAllGames(),
-    findPlaysByLocation(location),
+    findAllGames()
+      .sort({ updatedAt: -1 })
+      .limit(12)
+      .exec(),
+    findPlaysByLocation(location)
+      .where('dateTime').gt(new Date())
+      .limit(12)
+      .exec(),
     findLatestFeaturedGame()
   ]);
     

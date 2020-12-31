@@ -54,21 +54,25 @@
 <section>
     <h3>Plays organized by you</h3>
     {{> playsPartial plays=playsOrganized}}
+    <a href="/userProfile/organizedPlays">See all</a>
 </section>
 
 <section>
     <h3>Plays you are participating</h3>
     {{> playsPartial plays=playsParticipate}}
+    <a href="/userProfile/participatePlays">See all</a>
 </section>
 
 <section>
     <h3>Games you created</h3>
     {{> bisGPartial games=gamesCreated}}
+    <a href="/userProfile/createdGames">See all</a>
 </section>
 
 <section>
     <h3>Your favorite games</h3>
     {{> bisGPartial games=favGamesPopulated}}
+    <a href="/userProfile/favoriteGames">See all</a>
 </section>
 
 

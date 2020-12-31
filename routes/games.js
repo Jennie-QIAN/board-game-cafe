@@ -21,10 +21,9 @@ router.get('/games', async (req, res, next) => {
         mechanic, 
         minPlayer, 
         maxPlayer,
-        page = 1
     } = req.query;
-
-    const limit = 10;
+    const page = parseInt(req.query.page) || 1;
+    const limit = 12;
 
     try {
         const [ categories, mechanics, games, numOfGames  ] = await Promise.all([
@@ -55,9 +54,19 @@ router.get('/games', async (req, res, next) => {
 
         const totalPages = Math.ceil(numOfGames / limit);
         const needPagination = totalPages > 1;
-        const pages = [];
-        for(let i = 1; i <= totalPages; i++) {
-            pages.push(i);
+        let pages = [];
+        if (totalPages < 6) {
+            for(let i = 1; i <= totalPages; i++) {
+                pages.push(i);
+            }
+        } else if (totalPages > 5 && page < 5) {
+            pages = [1, 2, 3, 4, 5];
+        } else if (page === totalPages - 1) {
+            pages = [page - 3, page - 2, page -1, page, totalPages];
+        } else if (page === totalPages) {
+            pages = [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1,totalPages];
+        } else {
+            pages = [page - 2, page -1, page, page + 1, page + 2];
         }
 
         res.render('games/games', {
@@ -75,6 +84,7 @@ router.get('/games', async (req, res, next) => {
             favoriteGames,
             needPagination,
             pages,
+            totalPages,
             currentPage: page,
             scripts: [
                 "https://unpkg.com/axios@0.21.0/dist/axios.min.js"

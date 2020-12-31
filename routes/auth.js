@@ -144,15 +144,24 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     favGamesPopulated
   ] = await Promise.all([
     Play.find({organizer: userId})
+      .limit(12)
       .populate('gamesForPlay', 'smImg name')
       .populate('players', 'username avatar'),
     Play.find({players: userId})
+      .limit(12)
       .populate('gamesForPlay', 'smImg name')
       .populate('players', 'username avatar'),
-    Game.find({createdBy: userId}),
+    Game.find({createdBy: userId})
+      .limit(12),
     User.findById(userId)
       .populate('favoriteGames', 'smImg name designer')
       .then(userData => userData.favoriteGames)
+      .then(games => {
+        if (games.length > 12) {
+          return games.slice(0, 12);
+        }
+        return games;
+      })
   ]);
 
   res.render('user/userProfile', { 

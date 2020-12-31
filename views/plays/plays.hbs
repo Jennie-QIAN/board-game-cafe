@@ -54,8 +54,10 @@
 
 {{#if needPagination}}
 <div class="pagination">
+    <a href="/plays">&laquo;</a>
     {{#each pages}}
-    <a href="/games?page={{this}}">{{this}}</a>
+    <a href="/plays?page={{this}}">{{this}}</a>
     {{/each}}
+    <a href="/plays?page={{totalPages}}">&raquo;</a>
 </div>
 {{/if}}

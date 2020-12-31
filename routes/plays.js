@@ -13,7 +13,10 @@ router.get('/plays', async (req, res, next) => {
         location,
         dateFrom,
         dateTo,
+        page = 1,
     } = req.query;
+
+    const limit = 12;
 
     const availableLocations = ["Paris", "Lyon", "Nice", "Hyères", "Corse"];
     const nonSelectedLocations = availableLocations.filter((loc => loc !== location));
@@ -30,7 +33,40 @@ router.get('/plays', async (req, res, next) => {
         } = req.user);
     }
 
-    const plays = await findPlaysByLocAndDate(location, dateFrom, dateTo);
+    let totalPlays = [];
+    try {
+        totalPlays = await findPlaysByLocAndDate(location, dateFrom, dateTo);
+    } catch(err) {
+        console.error(err.message);
+    }
+
+    let plays = [];
+    try {
+        plays = await findPlaysByLocAndDate(location, dateFrom, dateTo)
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
+        .exec();
+    } catch(err) {
+        console.log(err.message);
+    }
+
+    const numOfPlays = totalPlays.length;
+    const totalPages = Math.ceil(numOfPlays / limit);
+    const needPagination = totalPages > 1;
+    let pages = [];
+    if (totalPages < 6) {
+        for(let i = 1; i <= totalPages; i++) {
+            pages.push(i);
+        }
+    } else if (totalPages > 5 && page < 5) {
+        pages = [1, 2, 3, 4, 5];
+    } else if (page === totalPages - 1) {
+        pages = [page - 3, page - 2, page -1, page, totalPages];
+    } else if (page === totalPages) {
+        pages = [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1,totalPages];
+    } else {
+        pages = [page - 2, page -1, page, page + 1, page + 2];
+    }
 
     res.render('plays/plays', {
         location,
@@ -41,7 +77,11 @@ router.get('/plays', async (req, res, next) => {
         userId,
         userName,
         userImg,
-    });
+        needPagination,
+        pages,
+        totalPages,
+        currentPage: page,
+    });    
 });
 
 router.get('/plays/new', ensureAuthenticated, (req, res, next) => {
