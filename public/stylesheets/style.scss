@@ -1,14 +1,52 @@
+@import './variables';
+
+@import'./config';
+
+html, body {
+  height: 100%;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  @include containerFlex(column);
+}
+
+.nav-and-content {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+#manifesto {
+  @include flexCenter(column);
+
+  img {
+    width: 50vw;
+  }
+
+  @include media-md {
+    @include flexCenter(row);
+  }
 }
 
 a {
-  color: #00B7FF;
+  color: $text-color;
+  text-decoration: none;
+//by '$' it copies the parent selector
+//*interpolation by wrapping an expression in #{} to embed the result of a SassScript expression into a chunk of CSS
+  &:hover {
+    color: color(light);
+  }
 }
 
-#social-media-logos img {
-  height: 16px;
+// sass nesting functionality
+#social-media-logos {
+  background-color: color(light);
+
+  img {
+    height: 16px;
+  }
 }
 
 button.favorite {
@@ -16,7 +54,9 @@ button.favorite {
 }
 
 button.joined {
-  background-color: orange;
+  //inherit the styles of an element
+  @extend button.favorite;
+  background-color: color(secondary);
 }
 
 img#bgc-title {
@@ -31,3 +71,7 @@ img.avatar {
   height: 48px;
   border-radius: 50%;
 }
+
+// .dark-theme {
+//   @include darkTheme(true);
+// }

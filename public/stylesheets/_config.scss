@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+@function color($color-name) {
+    @return map-get($brand-colors, $color-name);
+  }
+  
+@mixin containerFlex($direction) {
+    display: flex;
+    flex-direction: $direction;
+}
+
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@function media($device) {
+    @return map-get($media, $device);
+}
+
+@mixin media-sm {
+    @media (min-width: media(mobile)) {
+        @content;
+    }
+}
+
+@mixin media-md {
+    @media (min-width: media(tablet)) {
+        @content;
+    }
+}
+
+@mixin media-lg {
+    @media (min-width: media(desktop)) {
+        @content;
+    }
+}
+
+// @mixin darkTheme($dark-theme: true) {
+//   @if $dark-theme {
+//     background: $text-color;
+//     color: $text-color-light;
+//   }
+// }
