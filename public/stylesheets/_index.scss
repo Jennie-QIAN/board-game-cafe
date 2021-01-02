@@ -1,5 +1,6 @@
 #manifesto {
     padding: $block-gap;
+    flex-grow: 1;
     @include flexCenter(column);
   
     h2 {
@@ -8,14 +9,21 @@
       line-height: 1;
     }
   
-    img {
-      width: 70vw;
-      align-self: flex-end;
+    div {
+        background-image: url("/images/key-visual.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        align-self: flex-end;
+        max-height: 60vh;
+        width: 60vh;
+        flex-grow: 1;
     }
 }
 
 .search-bars {
     @include flexCenter(column);
+    padding: $block-gap 0;
 
     .input {
         width: 40vw;
@@ -38,4 +46,9 @@
             color: $text-color;
         }
     }
+}
+
+#manifesto-and-search {
+    height: 88vh;
+    @include containerFlex(column);
 }

@@ -25,7 +25,12 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: white;
+  height: 12vh; }
 
 .title {
   order: 1;
@@ -61,6 +66,7 @@ a {
 
 #manifesto {
   padding: 1.5rem;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,15 +75,22 @@ a {
     align-self: flex-start;
     font-size: 1.5rem;
     line-height: 1; }
-  #manifesto img {
-    width: 70vw;
-    align-self: flex-end; }
+  #manifesto div {
+    background-image: url("/images/key-visual.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-self: flex-end;
+    max-height: 60vh;
+    width: 60vh;
+    flex-grow: 1; }
 
 .search-bars {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; }
+  flex-direction: column;
+  padding: 1.5rem 0; }
   .search-bars .input {
     width: 40vw;
     background-color: white;
@@ -94,6 +107,11 @@ a {
     .search-bars .btn-search:hover {
       background-color: #86B9D5;
       color: #282828; }
+
+#manifesto-and-search {
+  height: 88vh;
+  display: flex;
+  flex-direction: column; }
 
 #social-media-logos {
   background-color: #86B9D5; }
@@ -114,6 +132,12 @@ img.avatar {
   border-radius: 50%; }
 
 @media (min-width: 768px) {
+  nav {
+    height: 8vh; }
+  #manifesto-and-search {
+    height: 92vh;
+    display: flex;
+    flex-direction: column; }
   .title {
     order: 2;
     flex-grow: 1;
@@ -130,14 +154,25 @@ img.avatar {
   #manifesto {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center; }
     #manifesto h2 {
-      font-size: 2.5rem;
+      font-size: 1.75rem;
       line-height: 1.25;
-      align-self: inherit; }
-    #manifesto img {
-      width: 60vw;
-      align-self: inherit; } }
+      align-self: center;
+      flex: none; }
+    #manifesto div {
+      height: 60vh;
+      width: 60vh;
+      align-self: center;
+      flex: none; }
+  .search-bars {
+    font-size: 1.25rem; }
+    .search-bars .input {
+      max-width: 350px;
+      font-size: 1.25rem; }
+    .search-bars .btn-search {
+      max-width: 200px;
+      font-size: 1.25rem; } }
 
 /*# sourceMappingURL=style.css.map */

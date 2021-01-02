@@ -1,4 +1,13 @@
-@include media-md {   
+@include media-md {  
+    nav {
+        height: 8vh;
+    }
+
+    #manifesto-and-search {
+        height: 92vh;
+        @include containerFlex(column);
+    }
+    
     .title {
     order: 2;
     flex-grow: 1;
@@ -19,18 +28,35 @@
 
     #manifesto {
         @include containerFlex(row);
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
       
         h2 {
-          font-size: 2.5rem;
-          line-height: 1.25;
-          align-self: inherit;
+            font-size: 1.75rem;
+            line-height: 1.25;
+            align-self: center;
+            flex: none;
         }
       
-        img {
-          width: 60vw;
-          align-self: inherit;
+        div {
+            height: 60vh;
+            width: 60vh;;
+            align-self: center;
+            flex: none;
+        }
+    }
+
+    .search-bars {
+        font-size: 1.25rem;
+
+        .input {
+            max-width: 350px;
+            font-size: 1.25rem;
+        }
+    
+        .btn-search {
+            max-width: 200px;
+            font-size: 1.25rem;
         }
     }
 }

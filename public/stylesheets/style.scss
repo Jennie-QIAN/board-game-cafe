@@ -27,6 +27,11 @@ nav {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: white;
+  height: 12vh;
 }
 
 .title {
@@ -72,6 +77,8 @@ a {
 }
 
 @import './index';
+
+
 
 #social-media-logos {
   background-color: color(complementary);
