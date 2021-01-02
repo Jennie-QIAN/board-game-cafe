@@ -5,20 +5,20 @@
 
 <section class="search-bars">
     <form action="/games" method="GET">
-        <input type="text" name="game" placeholder="enter a game name">
-        <input type="submit" value="search games">
+        <input type="text" name="game" placeholder="enter a game name" class="input">
+        <input type="submit" value="search games" class="btn-search">
     </form>
-
+    <p>Or</p>
     <form action="/plays" method="GET">
-        <select name="location">
-            <option value="">choose a location</option>
+        <select name="location" class="input">
+            <option value="" id="select-placeholder">choose a location</option>
             <option value="Paris">Paris</option>
             <option value="Lyon">Lyon</option>
             <option value="Nice">Nice</option>
             <option value="Hyères">Hyères</option>
             <option value="Corse">Corse</option>
         </select>
-        <input type="submit" value="search plays">      
+        <input type="submit" value="search plays" class="btn-search">      
     </form>
 </section>
 

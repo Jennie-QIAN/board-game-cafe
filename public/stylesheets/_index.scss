@@ -1,0 +1,41 @@
+#manifesto {
+    padding: $block-gap;
+    @include flexCenter(column);
+  
+    h2 {
+      align-self: flex-start;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+  
+    img {
+      width: 70vw;
+      align-self: flex-end;
+    }
+}
+
+.search-bars {
+    @include flexCenter(column);
+
+    .input {
+        width: 40vw;
+        background-color: white;
+        border: 1px solid rgb(133, 133, 133);
+        border-radius: 4px;
+        padding: $inline-gap 0;
+    }
+
+    .btn-search {
+        color: color(complementary);
+        width: 25vw;
+        border: 1px solid color(complementary);
+        background-color: white;
+        border-radius: 4px;
+        padding: $inline-gap 0;
+
+        &:hover {
+            background-color: color(complementary);
+            color: $text-color;
+        }
+    }
+}

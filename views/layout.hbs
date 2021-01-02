@@ -11,22 +11,22 @@
 <body>
   <div class="nav-and-content">
     <nav>
-      <div>
+      <div class="title">
+        <div>
           <a href="/"><img id="bgc-title" src="/images/bgc-title.svg" alt="Board Game Café"></a>
+        </div>
       </div>
-      <div id="navbar">
-          <div id="redirections">
-              <a href="/games">Games</a>
-              <a href="/plays">Plays</a>
-          </div>
-          <div id="auth">
-              {{#if userId}}
-                <a href="/userProfile" data-user-id="{{userId}}" data-user-name="{{userName}}"><img src="{{userImg}}" class="avatar"></a>
-              {{else}}
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-              {{/if}}
-          </div>
+      <div class="redirections">
+          <a href="/games">Games</a>
+          <a href="/plays">Plays</a>
+      </div>
+      <div class="auth">
+          {{#if userId}}
+            <a href="/userProfile" data-user-id="{{userId}}" data-user-name="{{userName}}"><img src="{{userImg}}" class="avatar"></a>
+          {{else}}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+          {{/if}}
       </div>
     </nav>
     {{{body}}}

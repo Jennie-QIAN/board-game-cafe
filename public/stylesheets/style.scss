@@ -8,41 +8,73 @@ html, body {
 
 body {
   @include containerFlex(column);
+  font: 14px "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: $text-color;
 }
 
 .nav-and-content {
   flex: 1 0 auto;
+  margin: 0 ;
 }
 
 .footer {
   flex-shrink: 0;
 }
 
-#manifesto {
-  @include flexCenter(column);
+nav {
+  @include containerFlex(row);
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-  img {
-    width: 50vw;
-  }
+.title {
+  order: 1;
+  flex-grow: 1;
 
-  @include media-md {
+  div {
     @include flexCenter(row);
+    width: 100vw;
+    padding: $inline-gap $block-gap;
+  }
+}
+
+#bgc-title {
+  max-width: 40vw;
+}
+
+.redirections {
+  order: 2;
+  padding-left: $block-gap;
+
+  a {
+    margin-right: $inline-gap;
+  }
+}
+
+.auth {
+  order: 3;
+  padding-right: $block-gap;
+
+  a {
+    margin-left: $inline-gap;
   }
 }
 
 a {
   color: $text-color;
   text-decoration: none;
-//by '$' it copies the parent selector
 //*interpolation by wrapping an expression in #{} to embed the result of a SassScript expression into a chunk of CSS
   &:hover {
-    color: color(light);
+    color: color(complementary);
   }
 }
 
-// sass nesting functionality
+@import './index';
+
 #social-media-logos {
-  background-color: color(light);
+  background-color: color(complementary);
 
   img {
     height: 16px;
@@ -50,17 +82,13 @@ a {
 }
 
 button.favorite {
-  background-color: pink;
+  background-color: color(harmony);
 }
 
 button.joined {
   //inherit the styles of an element
   @extend button.favorite;
-  background-color: color(secondary);
-}
-
-img#bgc-title {
-  height: 50px;
+  background-color: color(harmony);
 }
 
 .hidden {
@@ -75,3 +103,5 @@ img.avatar {
 // .dark-theme {
 //   @include darkTheme(true);
 // }
+
+@import './responsive';

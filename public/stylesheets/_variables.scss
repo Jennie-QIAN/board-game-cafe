@@ -1,11 +1,13 @@
-$text-color: #14110fff;
+$text-color: #282828;
 $text-color-light: #f3f3f4ff;
 
+$block-gap: 1.5rem;
+$inline-gap: 0.5rem;
+
 $brand-colors: (
-  "primary": #855647ff,
-  "secondary": #f79d5cff,
-  "contrast": #869d7aff,
-  "light": rgba(167, 205, 189, 0.6)
+  "primary": #D5A286,
+  "complementary": #86B9D5,
+  "harmony": #D5869F
 );
 
 $media: (
