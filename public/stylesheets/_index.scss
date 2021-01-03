@@ -19,6 +19,24 @@
         width: 60vh;
         flex-grow: 1;
     }
+
+    @include media-md {
+        @include flexCenter(row);
+      
+        h2 {
+            font-size: 1.75rem;
+            line-height: 1.25;
+            align-self: center;
+            flex: none;
+        }
+      
+        div {
+            height: 60vh;
+            width: 60vh;;
+            align-self: center;
+            flex: none;
+        }
+    }
 }
 
 .search-bars {
@@ -46,9 +64,237 @@
             color: $text-color;
         }
     }
+
+    @include media-md {
+        font-size: 1.25rem;
+
+        .input {
+            max-width: 350px;
+            font-size: 1.25rem;
+        }
+    
+        .btn-search {
+            max-width: 200px;
+            font-size: 1.25rem;
+        }
+    }
 }
 
 #manifesto-and-search {
     height: 88vh;
     @include containerFlex(column);
+
+    @include media-md {
+        height: 92vh;
+    }
 }
+
+.index-plays {
+    padding: $block-gap;
+    @include containerFlex(column);
+
+    @include media-md {
+        padding: $block-gap 15vw;
+    }
+}
+
+.slider-plays {
+    padding: $inline-gap 0;
+}
+
+.link-see-all {
+    font-size: 1rem;
+    font-weight: 500;
+    color: color(complementary);
+}
+
+.index-games {
+    @extend .index-plays;
+}
+
+.container-games {
+    @extend .slider-plays;
+}
+
+.featured-games {
+    h3 {
+        padding: $block-gap;
+    }
+
+    @include media-md {
+        @include containerFlex(column);
+
+        h3 {
+            padding: 0 15vw;
+        }
+    }
+}
+
+.featured-game-info {
+    padding: $block-gap;
+
+    p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 10;
+        overflow: hidden;
+        padding-top: $inline-gap;
+    };
+
+    .designer {
+        padding-top: $inline-gap;
+        color: lighten($text-color, 30);
+    }
+
+    .editor-note {
+        display: inline-block;
+        margin-top: $block-gap;
+        padding: $inline-gap;
+        font-style: italic;
+        background-color: color(complementary);
+        border-radius: 4px;
+        box-shadow: 10px 5px 5px color(primary);
+    }
+}
+
+@include media-md {
+    .card-featured-game {
+        padding: $inline-gap 15vw;
+        @include flexCenter(row);
+        background-color: lighten(color(harmony), 15) ;
+        
+        .featured-img {
+            max-height: 50vh;
+            max-width: 40vw;
+            min-width: 20vw;
+        }
+        img {
+            max-height: 100%;
+        }
+    }
+}
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: scroll;
+    justify-content: space-between;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    -webkit-overflow-scrolling: touch;
+}
+
+.card {
+    background: $text-color-light;
+    border-radius: 8px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    //flex-basis: calc(100% / #{$cols-mobile} - (#{$inline-gap} * 2) - (#{$block-gap} / #{$cols-mobile}));
+    flex-basis: calc(100% / #{$cols-mobile} - (#{$inline-gap} * 2));
+    margin-right: $inline-gap;
+    @include containerFlex(column);
+
+    @include media-md {
+        flex-basis: calc(100% / #{$cols-tablet} - (#{$inline-gap} * 2));
+    }
+
+    @include media-lg {
+        flex-basis: calc(100% / #{$cols-desktop} - (#{$inline-gap} * 2));
+    }
+}
+
+.carousel {
+    position: relative;
+    height: 20vh;
+    width: 100%;
+    overflow: hidden;
+    @include flexCenter(column);
+}
+
+.slide {
+    float: right;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: #eee;
+    text-align: center;
+    transition: opacity 0.4s;
+    opacity: 1;
+
+    &:before {
+        display: block;
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        color: rgba(255,255,255,0.9);
+        z-index: 12;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+  
+    &:after {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        transition: opacity 0.3s;
+        width: auto;
+        height: 100%;
+        opacity: 0;
+    }   
+}
+
+.faux-ui-facia {
+    top: 0;
+    right: 0;
+    float: right;
+    position: absolute;
+    margin-top:0;
+    z-index: 9;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+  
+    &:checked {
+        z-index: 8;
+  
+        + .slide {
+            opacity: 0;
+        }
+        
+
+        &:nth-child(1):checked {
+            z-index: 9;
+        }   
+    }
+        
+    &:nth-child(1):checked {
+        float: left;
+        z-index: 9;
+        
+        + .slide {
+            opacity: 1;
+        }
+            
+        ~ .faux-ui-facia {
+            float: left;
+            z-index: 8;
+
+            + .slide {
+                opacity: 0;
+            }
+                            
+            &:checked {
+                z-index: 9;
+
+                + .slide {
+                    opacity: 1;
+                }               
+            }               
+        }
+        
+    }
+        
+}
+  

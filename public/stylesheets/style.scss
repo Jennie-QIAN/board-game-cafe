@@ -18,8 +18,37 @@ body {
   margin: 0 ;
 }
 
-.footer {
+footer {
   flex-shrink: 0;
+  @include containerFlex(column);
+  justify-content: center;
+  align-items: stretch;
+  background-color: lighten(color(primary), 15);
+  padding: $block-gap 0;  
+}
+
+.footer-tribute {
+  P {
+    text-align: center;
+    margin-bottom: $inline-gap;
+    font-weight: 500;
+  }
+}
+
+.footer-brand {
+  @include containerFlex(row);
+  justify-content: space-between;
+  padding: 0 $block-gap;
+  margin-top: $inline-gap;
+
+  img {
+    height: 16px;
+    padding-left: $inline-gap;
+
+    @include media-md {
+      height: 24px;
+    }
+  }
 }
 
 nav {
@@ -32,6 +61,10 @@ nav {
   left: 0;
   background-color: white;
   height: 12vh;
+
+  @include media-md {
+    height: 8vh;
+  }
 }
 
 .title {
@@ -43,15 +76,31 @@ nav {
     width: 100vw;
     padding: $inline-gap $block-gap;
   }
+
+  @include media-md {
+    order: 2;
+    
+    div {
+        width: initial;
+    }
+  }
 }
 
 #bgc-title {
   max-width: 40vw;
+
+  @include media-md {
+    max-width: 20vw;
+  }
 }
 
 .redirections {
   order: 2;
   padding-left: $block-gap;
+
+  @include media-md {
+    order: 1;
+  }
 
   a {
     margin-right: $inline-gap;
@@ -79,15 +128,6 @@ a {
 @import './index';
 
 
-
-#social-media-logos {
-  background-color: color(complementary);
-
-  img {
-    height: 16px;
-  }
-}
-
 button.favorite {
   background-color: color(harmony);
 }
@@ -103,12 +143,10 @@ button.joined {
 }
 
 img.avatar {
-  height: 48px;
+  height: 32px;
   border-radius: 50%;
 }
 
 // .dark-theme {
 //   @include darkTheme(true);
 // }
-
-@import './responsive';

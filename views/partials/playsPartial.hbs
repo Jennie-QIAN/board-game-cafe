@@ -1,9 +1,12 @@
-<div class="slider-plays">
+<div class="slider-plays horizontal-scroll">
     {{#each plays}}
-    <div class="card-play">
-        <div class="img-games">
+    <div class="card-play card">
+        <div class="img-games carousel">
             {{#each this.gamesForPlay}}
-            <img src="{{this.smImg}}" alt="{{this.name}}">
+            <input type="checkbox" class="faux-ui-facia">
+            <div class="slide">
+                <img src="{{this.smImg}}" alt="{{this.name}}">
+            </div>
             {{/each}}
         </div>
         <div class="info-play">

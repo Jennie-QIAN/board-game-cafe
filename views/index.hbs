@@ -24,33 +24,34 @@
     </section>
 </div>
 
-<section id="index-plays">
-    <h3>Game plays</h3>
+<section class="index-plays">
+    <h3>Discover and join upcoming game plays</h3>
 
     {{> playsPartial}}
 
-    <a href="/plays">See all</a>
+    <a href="/plays" class="link-see-all">See all</a>
 </section>
 
-<section id="featured">
+<section class="featured-games">
     <h3>Featured game</h3>
 
-    <div id="card-featured-game">
-        <div>
+    <div class="card-featured-game">
+        <div class="featured-img">
             <img src="{{latestFeaturedGame.img}}" alt="{{latestFeaturedGame.name}}">
         </div>
-        <div>
+        <div class="featured-game-info">
             <a href="/games/{{latestFeaturedGame.id}}"><h4>{{latestFeaturedGame.name}}</h4></a>
             <p>{{{latestFeaturedGame.description}}}</p>
-            <span>By {{latestFeaturedGame.designer}}</span>
+            <p class="designer">By {{latestFeaturedGame.designer}}</p>
+            <blockquote class="editor-note">{{latestFeaturedGame.editorNote}}</blockquote>
         </div>
     </div>
 </section>
 
-<section>
+<section class="index-games">
     <h3>Discover games</h3>
 
     {{> bisGPartial favoriteGames=favoriteGames}}
 
-    <a href="/games">See all</a>
+    <a href="/games" class="link-see-all">See all</a>
 </section>

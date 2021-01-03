@@ -4,6 +4,16 @@
     padding: 0;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
 @function color($color-name) {
     @return map-get($brand-colors, $color-name);
   }
