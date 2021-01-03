@@ -60,7 +60,7 @@ nav {
   flex-wrap: wrap;
   position: sticky;
   top: 0;
-  left: 0;
+  z-index: 100;
   background-color: white;
   height: 12vh; }
   @media (min-width: 768px) {
@@ -160,9 +160,9 @@ a {
     border-radius: 4px;
     padding: 0.5rem 0; }
   .search-bars .btn-search {
-    color: #86B9D5;
+    color: #4d98c1;
     width: 25vw;
-    border: 1px solid #86B9D5;
+    border: 1px solid #4d98c1;
     background-color: white;
     border-radius: 4px;
     padding: 0.5rem 0; }
@@ -193,7 +193,7 @@ a {
   flex-direction: column; }
   @media (min-width: 768px) {
     .index-plays, .index-games {
-      padding: 1.5rem 15vw; } }
+      padding: calc(3 * 1.5rem) 15vw; } }
 
 .slider-plays, .container-games {
   padding: 0.5rem 0; }
@@ -208,10 +208,11 @@ a {
 
 @media (min-width: 768px) {
   .featured-games {
+    margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column; }
     .featured-games h3 {
-      padding: 0 15vw; } }
+      padding: 1.5rem 15vw 0 15vw; } }
 
 .featured-game-info {
   padding: 1.5rem; }
@@ -290,34 +291,27 @@ a {
   z-index: 1;
   height: 100%;
   width: 100%;
-  background-color: #eee;
+  background-color: #f3f3f4ff;
+  border-radius: 8px;
   text-align: center;
   transition: opacity 0.4s;
   opacity: 1; }
   .slide:before {
     display: block;
     position: absolute;
-    left: 20px;
-    bottom: 20px;
-    color: rgba(255, 255, 255, 0.9);
     z-index: 12;
     opacity: 0;
     transition: opacity 0.3s; }
   .slide:after {
     display: block;
     position: absolute;
-    bottom: 0;
     transition: opacity 0.3s;
     width: auto;
     height: 100%;
     opacity: 0; }
 
 .faux-ui-facia {
-  top: 0;
-  right: 0;
-  float: right;
   position: absolute;
-  margin-top: 0;
   z-index: 9;
   height: 100%;
   width: 100%;
@@ -343,6 +337,47 @@ a {
         z-index: 9; }
         .faux-ui-facia:nth-child(1):checked ~ .faux-ui-facia:checked + .slide {
           opacity: 1; }
+
+.info-play {
+  padding: 0 0.5rem; }
+  .info-play .play-time {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4d98c1; }
+    .info-play .play-time:hover {
+      background-color: #4d98c1;
+      color: #f3f3f4ff;
+      border-radius: 4px; }
+  .info-play .names-games {
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+    .info-play .names-games a {
+      margin-right: calc( 2 * 0.5rem); }
+
+.vertical-card-game {
+  flex-basis: calc(100% / 2 - (0.5rem * 2));
+  justify-content: space-between;
+  overflow: hidden; }
+  @media (min-width: 768px) {
+    .vertical-card-game {
+      flex-basis: calc(100% / 3 - (0.5rem * 2)); } }
+  @media (min-width: 1440px) {
+    .vertical-card-game {
+      flex-basis: calc(100% / 4 - (0.5rem * 2)); } }
+  .vertical-card-game .game-img {
+    text-align: center; }
+    .vertical-card-game .game-img img {
+      height: 100%;
+      width: auto;
+      object-fit: cover; }
+  .vertical-card-game .game-info {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; }
 
 button.favorite, button.joined {
   background-color: #D5869F; }

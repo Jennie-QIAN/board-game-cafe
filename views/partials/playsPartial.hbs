@@ -10,11 +10,14 @@
             {{/each}}
         </div>
         <div class="info-play">
-            <a href="/plays/{{this._id}}">
-            <p>{{localdate this.dateTime}}</p>
-            <div id="names-games">
+            <a href="/plays/{{this._id}}" class="play-time">
+                {{localdate this.dateTime}}
+            </a>
+            <div class="names-games">
                 {{#each this.gamesForPlay}}
-                <a href="/games/{{this._id}}">{{this.name}}</a>
+                <a href="/games/{{this._id}}">
+                    <h4>{{this.name}}</h4>
+                </a>
                 {{/each}}
             </div>
             <div class="players">
@@ -27,7 +30,6 @@
                     <p>{{this.players.length}} / {{this.maxPlayer}}</p>
                 </div>
             </div>
-            </a>
         </div>
     </div>
     {{/each}}

@@ -1,0 +1,86 @@
+.carousel {
+    position: relative;
+    height: 20vh;
+    width: 100%;
+    overflow: hidden;
+    @include flexCenter(column);
+}
+
+.slide {
+    float: right;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: $text-color-light;
+    border-radius: 8px;
+    text-align: center;
+    transition: opacity 0.4s;
+    opacity: 1;
+
+    &:before {
+        display: block;
+        position: absolute;
+        z-index: 12;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+  
+    &:after {
+        display: block;
+        position: absolute;
+        transition: opacity 0.3s;
+        width: auto;
+        height: 100%;
+        opacity: 0;
+    }   
+}
+
+.faux-ui-facia {
+    position: absolute;
+    z-index: 9;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+  
+    &:checked {
+        z-index: 8;
+  
+        + .slide {
+            opacity: 0;
+        }
+        
+
+        &:nth-child(1):checked {
+            z-index: 9;
+        }   
+    }
+        
+    &:nth-child(1):checked {
+        float: left;
+        z-index: 9;
+        
+        + .slide {
+            opacity: 1;
+        }
+            
+        ~ .faux-ui-facia {
+            float: left;
+            z-index: 8;
+
+            + .slide {
+                opacity: 0;
+            }
+                            
+            &:checked {
+                z-index: 9;
+
+                + .slide {
+                    opacity: 1;
+                }               
+            }               
+        }     
+    }     
+}

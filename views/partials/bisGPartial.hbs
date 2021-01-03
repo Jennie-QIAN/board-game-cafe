@@ -1,13 +1,15 @@
-<div class="container-games"> 
+<div class="container-games horizontal-scroll"> 
     {{#each games}}
-    <div class="vertical-card-game">
-        <div>
+    <div class="vertical-card-game card">
+        <div class="game-img">
             <img src="{{this.smImg}}" alt="{{this.name}}">
         </div>
-        <div>
-            <a href="/games/{{this.id}}"><h4>{{this.name}}</h4></a>
-            <p>By {{this.designer}}</p>
-            <button class="like-game{{#ifin this.id  ../favoriteGames }} favorite{{/ifin}}" data-game-id="{{this.id}}">like</button>
+        <div class="game-info">
+            <div>
+                <a href="/games/{{this.id}}"><h4>{{this.name}}</h4></a>
+                <p>By {{this.designer}}</p>
+            </div>
+            <button class="like-game{{#ifin this.id  ../favoriteGames }} favorite{{/ifin}}" data-game-id="{{this.id}}">like</button>       
         </div>
     </div>
     {{/each}}
