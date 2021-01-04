@@ -1,7 +1,9 @@
-<section class="search-bars">
-    <div>
+<div class="search-and-new-play">
+    <section class="search-bars-plays">
         <form action="/plays" method="GET">
-            <select name="location">
+            <label for="location" class="location">
+                Location
+                <select name="location">
                 {{#if location}}
                 <option value={{location}}>{{location}}</option>
                 {{#each nonSelectedLocations}}
@@ -16,41 +18,45 @@
                 <option value="Hyères">Hyères</option>
                 <option value="Corse">Corse</option>
                 {{/if}}
-            </select>
+                </select>
+            </label>
 
-            <label for="date-from">
-                from
+            <label for="date-from" class="date-from">
+                Date From
                 {{#if dateFrom}}
                 <input type="datetime-local" name="dateFrom" value="{{isodate dateFrom}}">
                 {{else}}
                 <input type="datetime-local" name="dateFrom">
                 {{/if}}
             </label>
-            <label for="date-to">
-                to
+            <label for="date-to" class="date-to">
+                To
                 {{#if dateTo}}
                 <input type="datetime-local" name="dateTo" value="{{isodate dateTo}}">
                 {{else}}
                 <input type="datetime-local" name="dateTo">
                 {{/if}}
             </label>
-            
-            <input type="submit" name="search-plays">
+
+            <input type="submit" name="search-plays" value="Search" class="btn-search">
         </form>
-    </div>
-</section>
+    </section>
 
-<section id="plays-plays">
-    {{#if plays}}
+    <section class="btn-create-new">
+        <a href="/plays/new">Organize a new game play</a>
+    </section>
+</div>
+
+{{#if plays}}
+<section class="plays-plays">
     {{> playsPartial}}
-    {{else}}
+</section>
+{{else}}
+<section>
     <p>Oops, there is no game play matching your search</p>
-    {{/if}}
 </section>
+{{/if}}
 
-<section id="create-new-play">
-    <a href="/plays/new">Initiate a new game play</a>
-</section>
 
 {{#if needPagination}}
 <div class="pagination">

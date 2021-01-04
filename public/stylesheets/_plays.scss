@@ -1,0 +1,72 @@
+.plays-plays {
+    padding: $block-gap;
+    @include media-md-side-margin;
+
+    .slider-plays {
+        flex-wrap: wrap;
+    }
+
+    .card-play {
+        margin-bottom: $inline-gap;
+    }
+}
+
+.search-bars-plays form {
+    padding-top: $block-gap;
+    @include flexCenter(column);
+
+    label {
+        @include flexCenter(column); 
+    }
+
+    .location,
+    .date-to {
+        margin-bottom: $inline-gap;
+    }
+
+    .btn-search {
+        font-size: 14px;
+        width: auto;
+        padding: 5px;
+        color: darken(color(complementary), 15);
+        border: 1px solid darken(color(complementary), 15);
+        background-color: white;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: color(complementary);
+            color: $text-color;
+        }
+    }
+
+    @include media-md {
+        padding-top: calc(3 * #{$block-gap});
+        @include flexCenter(row);
+
+        label {
+            @include flexCenter(row);
+            margin-right: $inline-gap;
+            font-size: 14px;
+        }
+
+        select,
+        input {
+            margin-left: $inline-gap;
+        }
+
+        .location,
+        .date-to {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.pagination {
+    @include flexCenter(row);
+    margin-bottom: $block-gap;
+
+    a {
+        padding: 0 $inline-gap;
+    }
+    
+}

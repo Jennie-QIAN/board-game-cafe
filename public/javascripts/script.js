@@ -5,10 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const likeButtons = document.querySelectorAll("button.like-game");
  
   likeButtons.forEach(btn => btn.addEventListener('click', e => {
-    const targetButton = e.target;
-    const gameId = targetButton.getAttribute("data-game-id");
+    const gameId = btn.getAttribute("data-game-id");
   
-    if (targetButton.classList.contains("favorite")) {
+    if (btn.classList.contains("favorite")) {
       axios.patch('/api/unlike-game', {
         gameId,
       })

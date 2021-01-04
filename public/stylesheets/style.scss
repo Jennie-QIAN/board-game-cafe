@@ -125,16 +125,13 @@ a {
   }
 }
 
-@import './index';
-
-
 button.favorite {
-  background-color: color(harmony);
+  .heart {
+    fill: red;
+  }
 }
 
 button.joined {
-  //inherit the styles of an element
-  @extend button.favorite;
   background-color: color(harmony);
 }
 
@@ -147,6 +144,23 @@ img.avatar {
   border-radius: 50%;
 }
 
-// .dark-theme {
-//   @include darkTheme(true);
-// }
+@import './index';
+@import './plays';
+
+.btn-create-new {
+  margin-top: $block-gap;
+  @include flexCenter(column);
+
+  a {
+    border: 1px solid darken(color(complementary), 15);
+    background-color: color(complementary);
+    color: $text-color;
+    padding: 5px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: white;
+      color: darken(color(complementary), 15);
+    }
+  }
+}

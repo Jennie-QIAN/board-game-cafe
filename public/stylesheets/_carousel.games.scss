@@ -1,12 +1,13 @@
 .carousel {
     position: relative;
-    height: 20vh;
+    height: calc(150px + #{$inline-gap});
     width: 100%;
     overflow: hidden;
     @include flexCenter(column);
 }
 
 .slide {
+    overflow: hidden;
     float: right;
     position: absolute;
     z-index: 1;

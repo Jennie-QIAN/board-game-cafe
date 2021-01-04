@@ -58,6 +58,7 @@
         background-color: white;
         border-radius: 4px;
         padding: $inline-gap 0;
+        cursor: pointer;
 
         &:hover {
             background-color: color(complementary);
@@ -92,10 +93,7 @@
 .index-plays {
     padding: $block-gap;
     @include containerFlex(column);
-
-    @include media-md {
-        padding: calc(3 * #{$block-gap}) 15vw;
-    }
+    @include media-md-side-margin;
 }
 
 .slider-plays {
@@ -106,10 +104,14 @@
     font-size: 1rem;
     font-weight: 500;
     color: color(complementary);
+    align-self: flex-start;
+    display: inline-block;
 }
 
 .index-games {
     @extend .index-plays;
+    margin-bottom: $block-gap;
+
 }
 
 .container-games {
@@ -118,7 +120,7 @@
 
 .featured-games {
     h3 {
-        padding: $block-gap;
+        padding: $block-gap 0 $inline-gap $block-gap;
     }
 
     @include media-md {
@@ -127,7 +129,7 @@
         @include containerFlex(column);
 
         h3 {
-            padding: $block-gap 15vw 0 15vw;
+            padding: $block-gap $side-margin 0 $side-margin;
         }
     }
 }
@@ -161,12 +163,11 @@
 
 @include media-md {
     .card-featured-game {
-        padding: $inline-gap 15vw;
+        padding: $inline-gap $side-margin;
         @include flexCenter(row);
         background-color: lighten(color(harmony), 15) ;
         
         .featured-img {
-            max-height: 50vh;
             max-width: 40vw;
             min-width: 20vw;
         }
@@ -247,8 +248,21 @@
 
     .game-img {
         text-align: center;
+        position: relative;
+        height: 150px;
+
+        .game-img-bg {
+            background-size: cover;
+            filter: blur(3px);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
         img {
+            position: relative;
             height: 100%;
             width: auto;
             object-fit: cover;
@@ -260,6 +274,18 @@
         @include containerFlex(row);
         justify-content: space-between;
         align-items: center;
+    }
+
+    .like-game {
+        height: 16px;
+        width: 16px;
+        border: none;
+        outline: none;
+    }
+    .heart {
+        height: 100%;
+        width: 100%;
+        fill: grey;
     }
 }
   
