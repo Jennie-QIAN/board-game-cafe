@@ -127,7 +127,7 @@ a {
 
 button.favorite {
   .heart {
-    fill: red;
+    fill: darken(color(harmony), 15);
   }
 }
 
@@ -164,3 +164,6 @@ img.avatar {
     }
   }
 }
+
+@import './auth';
+@import './profile';

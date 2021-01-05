@@ -2,12 +2,13 @@
     {{#each plays}}
     <div class="card-play card">
         <div class="img-games carousel">
-            {{#each this.gamesForPlay}}
-            <input type="checkbox" class="faux-ui-facia">
-            <div class="slide">
-                <img src="{{this.smImg}}" alt="{{this.name}}">
-            </div>
-            {{/each}}
+            <div class="carousel-viewport">{{!--
+                --}}{{#each this.gamesForPlay}}{{!--
+                    --}}<div class="slide">{{!--
+                        --}}<div class="slide-img" style="background-image: url('{{this.img}}')"></div>{{!--
+                    --}}</div>{{!--
+                --}}{{/each}}{{!--
+            --}}</div>
         </div>
         <div class="info-play">
             <a href="/plays/{{this._id}}" class="play-time">

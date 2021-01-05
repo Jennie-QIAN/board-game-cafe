@@ -1,0 +1,77 @@
+.auth-form {    
+    @include flexCenter(column);
+    @include media-md-side-margin;
+    margin: calc(3 * #{$block-gap}) 0;
+
+    @include media-md {
+        margin: calc(3 * #{$block-gap}) $side-margin;
+    }
+        
+    form {
+        background-color: $text-color-light;
+        width: 80vw;
+        padding: $block-gap;
+        border-radius: 8px;
+        @include flexCenter(column);
+
+        .form-fields {
+            @include containerFlex(column);
+            justify-content: flex-start;
+            align-items: stretch;
+        }
+
+        label {
+            @include containerFlex(row);
+            justify-content: space-between;
+            margin-top: $inline-gap;
+            
+            input {
+                margin-left: $inline-gap;
+            }
+        }
+
+        button {
+            margin-top: $block-gap;
+            width: auto;
+            padding: 5px;
+            color: darken(color(complementary), 15);
+            border: 1px solid darken(color(complementary), 15);
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: color(complementary);
+                color: $text-color;
+            }
+        }
+
+        @include media-md {
+            padding: calc(3 * #{$block-gap});
+            width: 45vw;
+        }
+    }
+}
+
+.login-twitter {
+    margin-top: $block-gap;
+    @include flexCenter(row);
+
+    img {
+        width: 16px;
+        height: 16px;
+        margin-left: $inline-gap;
+    }
+}
+
+.link-login {
+    margin-top: $block-gap;
+    border-top: 1px solid color(complementary);
+    padding-top: $inline-gap;
+}
+
+.error-message {
+    margin-top: $block-gap;
+    color: darken(color(harmony), 30);
+    font-size: 1.5rem;
+}

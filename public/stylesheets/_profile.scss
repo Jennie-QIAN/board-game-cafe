@@ -1,0 +1,5 @@
+.content-my-profile {
+    padding: $block-gap;
+
+    @include media-md-side-margin;
+}

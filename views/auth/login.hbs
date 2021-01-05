@@ -1,21 +1,26 @@
-<form action="/login" method="POST">
-    <div>
-        <label for="email">Email:</label>
-        <input type="text" name="email">
-    </div>
+<div class="auth-form">
+    <form action="/login" method="POST">
+        <div class="form-fields">
+            <label for="email">
+                <p>Email</p>
+                <input type="text" name="email">
+            </label>
 
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password">
-    </div>
+            <label for="password">
+                <p>Password</p>
+                <input type="password" name="password">
+            </label>
+        </div>
+        
+        <button>Login</button>
+
+        <div class="login-twitter">
+            <a href="/auth/twitter">Login with Twitter</a>
+            <img src="/images/twitter.svg" alt="twitter">
+        </div>
+    </form>
 
     {{#if errorMessage}}
     <div class="error-message">{{errorMessage}}</div>
     {{/if}}
-
-    <div>
-    <button>Login</button>
-    </div>
-</form>
-
-<a href="/auth/twitter">Login with Twitter</a>
+</div>

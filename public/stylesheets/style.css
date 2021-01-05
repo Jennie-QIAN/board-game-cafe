@@ -111,7 +111,7 @@ a {
     color: #86B9D5; }
 
 button.favorite .heart {
-  fill: red; }
+  fill: #c14d72; }
 
 button.joined {
   background-color: #D5869F; }
@@ -278,7 +278,8 @@ img.avatar {
   -webkit-overflow-scrolling: touch; }
 
 .card {
-  background: #f3f3f4ff;
+  overflow: hidden;
+  background: #f3f3f4;
   border-radius: 8px;
   flex-grow: 1;
   flex-shrink: 0;
@@ -293,69 +294,80 @@ img.avatar {
     .card {
       flex-basis: calc(100% / 4 - (0.5rem * 2)); } }
 
+@keyframes tonext {
+  75% {
+    left: 0; }
+  95% {
+    left: 100%; }
+  98% {
+    left: 100%; }
+  99% {
+    left: 0; } }
+
+@keyframes tostart {
+  75% {
+    left: 0; }
+  95% {
+    left: -300%; }
+  98% {
+    left: -300%; }
+  99% {
+    left: 0; } }
+
+@keyframes snap {
+  96% {
+    scroll-snap-align: center; }
+  97% {
+    scroll-snap-align: none; }
+  99% {
+    scroll-snap-align: none; }
+  100% {
+    scroll-snap-align: center; } }
+
 .carousel {
   position: relative;
-  height: calc(150px + 0.5rem);
+  height: 150px;
   width: 100%;
-  overflow: hidden;
+  background-color: inherit;
+  margin-bottom: 0.5rem; }
+
+.carousel-viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; }
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; }
 
 .slide {
-  overflow: hidden;
-  float: right;
-  position: absolute;
-  z-index: 1;
-  height: 100%;
+  position: relative;
+  flex: 0 0 100%;
   width: 100%;
-  background-color: #f3f3f4ff;
-  border-radius: 8px;
-  text-align: center;
-  transition: opacity 0.4s;
-  opacity: 1; }
-  .slide:before {
-    display: block;
-    position: absolute;
-    z-index: 12;
-    opacity: 0;
-    transition: opacity 0.3s; }
-  .slide:after {
-    display: block;
-    position: absolute;
-    transition: opacity 0.3s;
-    width: auto;
-    height: 100%;
-    opacity: 0; }
+  height: 100%; }
 
-.faux-ui-facia {
+.slide-img {
   position: absolute;
-  z-index: 9;
-  height: 100%;
+  top: 0;
+  left: 0;
   width: 100%;
-  opacity: 0;
-  cursor: pointer; }
-  .faux-ui-facia:checked {
-    z-index: 8; }
-    .faux-ui-facia:checked + .slide {
-      opacity: 0; }
-    .faux-ui-facia:checked:nth-child(1):checked {
-      z-index: 9; }
-  .faux-ui-facia:nth-child(1):checked {
-    float: left;
-    z-index: 9; }
-    .faux-ui-facia:nth-child(1):checked + .slide {
-      opacity: 1; }
-    .faux-ui-facia:nth-child(1):checked ~ .faux-ui-facia {
-      float: left;
-      z-index: 8; }
-      .faux-ui-facia:nth-child(1):checked ~ .faux-ui-facia + .slide {
-        opacity: 0; }
-      .faux-ui-facia:nth-child(1):checked ~ .faux-ui-facia:checked {
-        z-index: 9; }
-        .faux-ui-facia:nth-child(1):checked ~ .faux-ui-facia:checked + .slide {
-          opacity: 1; }
+  height: 100%;
+  scroll-snap-align: center;
+  background-color: inherit;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat; }
+
+.carousel:hover .slide-img {
+  animation-name: tonext, snap;
+  animation-timing-function: ease;
+  animation-duration: 2s;
+  animation-iteration-count: infinite; }
+
+.carousel:hover .slide:last-child .slide-img {
+  animation-name: tostart, snap; }
 
 .info-play {
   padding: 0 0.5rem; }
@@ -365,7 +377,7 @@ img.avatar {
     color: #4d98c1; }
     .info-play .play-time:hover {
       background-color: #4d98c1;
-      color: #f3f3f4ff;
+      color: #f3f3f4;
       border-radius: 4px; }
   .info-play .names-games {
     padding: 0.5rem 0;
@@ -409,14 +421,15 @@ img.avatar {
     justify-content: space-between;
     align-items: center; }
   .vertical-card-game .like-game {
-    height: 16px;
-    width: 16px;
+    height: 18px;
+    width: 18px;
     border: none;
-    outline: none; }
+    outline: none;
+    cursor: pointer; }
   .vertical-card-game .heart {
     height: 100%;
     width: 100%;
-    fill: grey; }
+    fill: #c5c3c3; }
 
 .plays-plays {
   padding: 1.5rem; }
@@ -498,5 +511,82 @@ img.avatar {
     .btn-create-new a:hover {
       background-color: white;
       color: #4d98c1; }
+
+.auth-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: calc(3 * 1.5rem) 0; }
+  @media (min-width: 768px) {
+    .auth-form {
+      padding: calc(3 * 1.5rem) 15vw; } }
+  @media (min-width: 768px) {
+    .auth-form {
+      margin: calc(3 * 1.5rem) 15vw; } }
+  .auth-form form {
+    background-color: #f3f3f4;
+    width: 80vw;
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+    .auth-form form .form-fields {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch; }
+    .auth-form form label {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 0.5rem; }
+      .auth-form form label input {
+        margin-left: 0.5rem; }
+    .auth-form form button {
+      margin-top: 1.5rem;
+      width: auto;
+      padding: 5px;
+      color: #4d98c1;
+      border: 1px solid #4d98c1;
+      background-color: white;
+      border-radius: 4px;
+      cursor: pointer; }
+      .auth-form form button:hover {
+        background-color: #86B9D5;
+        color: #282828; }
+    @media (min-width: 768px) {
+      .auth-form form {
+        padding: calc(3 * 1.5rem);
+        width: 45vw; } }
+
+.login-twitter {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row; }
+  .login-twitter img {
+    width: 16px;
+    height: 16px;
+    margin-left: 0.5rem; }
+
+.link-login {
+  margin-top: 1.5rem;
+  border-top: 1px solid #86B9D5;
+  padding-top: 0.5rem; }
+
+.error-message {
+  margin-top: 1.5rem;
+  color: #903250;
+  font-size: 1.5rem; }
+
+.content-my-profile {
+  padding: 1.5rem; }
+  @media (min-width: 768px) {
+    .content-my-profile {
+      padding: calc(3 * 1.5rem) 15vw; } }
 
 /*# sourceMappingURL=style.css.map */

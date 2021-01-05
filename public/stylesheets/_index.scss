@@ -187,6 +187,7 @@
 }
 
 .card {
+    overflow: hidden;
     background: $text-color-light;
     border-radius: 8px;
     flex-grow: 1;
@@ -277,15 +278,16 @@
     }
 
     .like-game {
-        height: 16px;
-        width: 16px;
+        height: 18px;
+        width: 18px;
         border: none;
         outline: none;
+        cursor: pointer;
     }
     .heart {
         height: 100%;
         width: 100%;
-        fill: grey;
+        fill: #c5c3c3;
     }
 }
   

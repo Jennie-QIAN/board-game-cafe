@@ -1,32 +1,36 @@
-<h2>Register</h2>
+<div class="auth-form">
+    <form action="/register" method="POST">
+        <div class="form-fields">
+            <label for="username">
+                <p>Username</p>
+                <input id="username" type="text" name="username">
+            </label>
 
-<form action="/register" method="POST" id="form-container">
+            <label for="email">
+                <p>Email</p>           
+                <input id="email" type="text" name="email">
+            </label>
 
-    <label for="username">
-        Username
-        <input id="username" type="text" name="username">
-    </label>
+            <label for="password">
+                <p>Password</p>            
+                <input id="password" type="password" name="password">
+            </label>
+        </div>
+        
+        <button>Join our café</button>
 
-    <label for="email">
-        Email
-        <input id="email" type="text" name="email">
-    </label>
-
-    <label for="password">
-        Password
-        <input id="password" type="password" name="password">
-    </label>
+        <div class="link-login">
+            <a href="/login">Already registered? Login here</a>
+            <div class="login-twitter">
+                <a href="/auth/twitter">Login with Twitter</a>
+                <img src="/images/twitter.svg" alt="twitter">
+            </div>
+        </div>
+        
+    </form>
 
     {{#if errorMessage}}
     <div class="error-message">{{errorMessage}}</div>
     {{/if}}
+</div>
 
-    <button>Create account</button>
-
-
-    <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-    </p>
-
-</form>

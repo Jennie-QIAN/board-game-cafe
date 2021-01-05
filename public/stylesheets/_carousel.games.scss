@@ -1,87 +1,96 @@
+@keyframes tonext {
+    75% {
+      left: 0;
+    }
+    95% {
+      left: 100%;
+    }
+    98% {
+      left: 100%;
+    }
+    99% {
+      left: 0;
+    }
+  }
+  
+  @keyframes tostart {
+    75% {
+      left: 0;
+    }
+    95% {
+      left: -300%;
+    }
+    98% {
+      left: -300%;
+    }
+    99% {
+      left: 0;
+    }
+  }
+  
+  @keyframes snap {
+    96% {
+      scroll-snap-align: center;
+    }
+    97% {
+      scroll-snap-align: none;
+    }
+    99% {
+      scroll-snap-align: none;
+    }
+    100% {
+      scroll-snap-align: center;
+    }
+}
+
 .carousel {
     position: relative;
-    height: calc(150px + #{$inline-gap});
+    height: 150px;
     width: 100%;
-    overflow: hidden;
-    @include flexCenter(column);
+    background-color: inherit;
+    margin-bottom: $inline-gap;
+}
+
+.carousel-viewport {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
 }
 
 .slide {
-    overflow: hidden;
-    float: right;
-    position: absolute;
-    z-index: 1;
-    height: 100%;
+    position: relative;
+    flex: 0 0 100%;
     width: 100%;
-    background-color: $text-color-light;
-    border-radius: 8px;
-    text-align: center;
-    transition: opacity 0.4s;
-    opacity: 1;
-
-    &:before {
-        display: block;
-        position: absolute;
-        z-index: 12;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-
-  
-    &:after {
-        display: block;
-        position: absolute;
-        transition: opacity 0.3s;
-        width: auto;
-        height: 100%;
-        opacity: 0;
-    }   
+    height: 100%;
 }
 
-.faux-ui-facia {
+.slide-img {
     position: absolute;
-    z-index: 9;
-    height: 100%;
+    top: 0;
+    left: 0;
     width: 100%;
-    opacity: 0;
-    cursor: pointer;
-  
-    &:checked {
-        z-index: 8;
-  
-        + .slide {
-            opacity: 0;
-        }
-        
+    height: 100%;
+    scroll-snap-align: center;
+    background-color: inherit;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+}
 
-        &:nth-child(1):checked {
-            z-index: 9;
-        }   
+.carousel:hover {
+    .slide-img {
+        animation-name: tonext, snap;
+        animation-timing-function: ease;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
     }
-        
-    &:nth-child(1):checked {
-        float: left;
-        z-index: 9;
-        
-        + .slide {
-            opacity: 1;
-        }
-            
-        ~ .faux-ui-facia {
-            float: left;
-            z-index: 8;
-
-            + .slide {
-                opacity: 0;
-            }
-                            
-            &:checked {
-                z-index: 9;
-
-                + .slide {
-                    opacity: 1;
-                }               
-            }               
-        }     
-    }     
+    .slide:last-child .slide-img {
+        animation-name: tostart, snap;
+    }
 }

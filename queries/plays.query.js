@@ -9,7 +9,7 @@ function findPlaysByLocation(location) {
     }
 
     return Play.find(filter)
-        .populate('gamesForPlay', 'name smImg')
+        .populate('gamesForPlay', 'name smImg img')
         .populate('players', 'username avatar');
 }
 
@@ -28,7 +28,7 @@ function findPlaysByLocAndDate(location, dateFrom, dateTo) {
     }
 
     return Play.find(filter)
-        .populate('gamesForPlay', 'name smImg')
+        .populate('gamesForPlay', 'name smImg img')
         .populate('players', 'username avatar');
 }
 
@@ -40,14 +40,14 @@ function findPlaysByGame(gameId) {
     }
 
     return Play.find(filter)
-        .populate('gamesForPlay', 'name smImg')
+        .populate('gamesForPlay', 'name smImg img')
         .populate('players', 'username avatar');
 }
 
 function findPlayById(id) {
     return Play.findById(id)
         .populate('organizer', 'username avatar')
-        .populate('gamesForPlay', 'name smImg designer')
+        .populate('gamesForPlay', 'name smImg designer img')
         .populate('players', 'username avatar');
 }
 

@@ -1,78 +1,79 @@
-<section>
-    <h4>Welcome back, {{userName}}</h4>
-    <a href="/logout">logout</a>
-</section>
+<div class="content-my-profile">
+    <section>
+        <h4>Welcome back, {{userName}}</h4>
+        <a href="/logout">logout</a>
+    </section>
 
-<section class="user-account-modification">
-    <form action="/userProfile" method="POST" enctype="multipart/form-data">
-        <label for="image">
-            Avatar:
-            <input type="file" name="image" id="image-input" class="form-control-file" />
-            <input type="text" name="existingImage" hidden id="" value="{{userImg}}">
-        </label>
+    <section class="user-account-modification">
+        <form action="/userProfile" method="POST" enctype="multipart/form-data">
+            <label for="image">
+                Avatar:
+                <input type="file" name="image" id="image-input" class="form-control-file" />
+                <input type="text" name="existingImage" hidden id="" value="{{userImg}}">
+            </label>
 
-        <label for="username">
-            Username
-            <input id="username" type="text" name="username" value="{{userName}}">
-        </label>
+            <label for="username">
+                Username
+                <input id="username" type="text" name="username" value="{{userName}}">
+            </label>
 
-        <label for="email">
-            Email
-            <input id="email" type="text" name="email" value="{{email}}">
-        </label>
+            <label for="email">
+                Email
+                <input id="email" type="text" name="email" value="{{email}}">
+            </label>
 
-        <label for="password">
-            Password
-            <input id="password" type="password" name="password" placeholder="******">
-        </label>
-            
-        <label for="location">
-            Location
-            <select name="location">
-                <option value="{{location}}">{{location}}</option>
-                <option value="Paris">Paris</option>
-                <option value="Lyon">Lyon</option>
-                <option value="Nice">Nice</option>
-                <option value="Hyères">Hyères</option>
-                <option value="Corse">Corse</option>
-            </select>
-        </label>
+            <label for="password">
+                Password
+                <input id="password" type="password" name="password" placeholder="******">
+            </label>
+                
+            <label for="location">
+                Location
+                <select name="location">
+                    <option value="{{location}}">{{location}}</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Lyon">Lyon</option>
+                    <option value="Nice">Nice</option>
+                    <option value="Hyères">Hyères</option>
+                    <option value="Corse">Corse</option>
+                </select>
+            </label>
 
-        <label for="bio">
-            Bio
-            <textarea name="bio" cols="30" rows="10">{{bio}}</textarea>
-        </label>
+            <label for="bio">
+                Bio
+                <textarea name="bio" cols="30" rows="10">{{bio}}</textarea>
+            </label>
 
-        <input type="submit">
-    </form>
+            <input type="submit">
+        </form>
 
-    {{#if errorMessage}}
-    <div class="error-message">{{errorMessage}}</div>
-    {{/if}}
-</section>
+        {{#if errorMessage}}
+        <div class="error-message">{{errorMessage}}</div>
+        {{/if}}
+    </section>
 
-<section>
-    <h3>Plays organized by you</h3>
-    {{> playsPartial plays=playsOrganized}}
-    <a href="/userProfile/organizedPlays">See all</a>
-</section>
+    <section>
+        <h3>Plays organized by you</h3>
+        {{> playsPartial plays=playsOrganized}}
+        <a href="/userProfile/organizedPlays">See all</a>
+    </section>
 
-<section>
-    <h3>Plays you are participating</h3>
-    {{> playsPartial plays=playsParticipate}}
-    <a href="/userProfile/participatePlays">See all</a>
-</section>
+    <section>
+        <h3>Plays you are participating</h3>
+        {{> playsPartial plays=playsParticipate}}
+        <a href="/userProfile/participatePlays">See all</a>
+    </section>
 
-<section>
-    <h3>Games you created</h3>
-    {{> bisGPartial games=gamesCreated}}
-    <a href="/userProfile/createdGames">See all</a>
-</section>
+    <section>
+        <h3>Games you created</h3>
+        {{> bisGPartial games=gamesCreated}}
+        <a href="/userProfile/createdGames">See all</a>
+    </section>
 
-<section>
-    <h3>Your favorite games</h3>
-    {{> bisGPartial games=favGamesPopulated}}
-    <a href="/userProfile/favoriteGames">See all</a>
-</section>
-
+    <section>
+        <h3>Your favorite games</h3>
+        {{> bisGPartial games=favGamesPopulated}}
+        <a href="/userProfile/favoriteGames">See all</a>
+    </section>
+</div>
 
