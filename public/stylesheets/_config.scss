@@ -35,19 +35,19 @@ img {
 }
 
 @mixin media-sm {
-    @media (min-width: media(mobile)) {
+    @media screen and (min-width: media(mobile)) {
         @content;
     }
 }
 
 @mixin media-md {
-    @media (min-width: media(tablet)) {
+    @media screen and (min-width: media(tablet)) {
         @content;
     }
 }
 
 @mixin media-lg {
-    @media (min-width: media(desktop)) {
+    @media screen and (min-width: media(desktop)) {
         @content;
     }
 }

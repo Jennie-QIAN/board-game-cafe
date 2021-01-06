@@ -1,12 +1,12 @@
-<section>
+<section class="container--form">
     <form action="/plays/new" method="POST">
         <label for="datetime">
-            When:
+            Date and Time
             <input type="datetime-local" name="datetime">
         </label>
 
-        <label>
-            Where:
+        <label class="location">
+            <p>Location</p>           
             <input type="text" name="nameOfCommerce" placeholder="name of the venue,ex: Happy Café">
             <input type="text" name="street" placeholder="the address">
             <input type="text" name="postCode" placeholder="post code">
@@ -18,26 +18,28 @@
                 <option value="Hyères">Hyères</option>
                 <option value="Corse">Corse</option>
             </select>
-            <textarea name="moreInstruction" cols="30" rows="10"></textarea>
+            <p>Notes for the participants</p>
+            <textarea name="moreInstruction" cols="30" rows="5"></textarea>         
         </label>
 
         <label for="gamesForPlay" class="label-games-play">
-            Games:
-            <input type="search" class="search-bar-games">
+            <p>Games</p> 
+            <input type="search" class="search-bar-games" placeholder="type game name here">
+            <div class="container--select-games">
+                <ul class="games-selected"></ul>
+            </div>
         </label>
         
-        <ul class="games-selected"></ul>
-
         <label for="minPlayer" class="label-minplayer">
-            Minimum player:
+            Minimum Player
             <input type="number" name="minPlayer">
         </label>
 
         <label for="maxPlayer">
-            Maximum player:
+            Maximum Player
             <input type="number" name="maxPlayer">
         </label>
 
-        <input type="submit">
+        <button class="btn-submit">Create</button>
     </form>
 </section>

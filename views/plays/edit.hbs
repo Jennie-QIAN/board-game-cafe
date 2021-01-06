@@ -1,13 +1,13 @@
-{{#if isOrganizer}}
-<section>
+<section class="container--form">
+    {{#if isOrganizer}}
     <form action="/plays/{{play.id}}/edit" method="POST">
         <label for="datetime">
-            When:
+            Date and Time
             <input type="datetime-local" name="dateTime" value="{{isodate play.dateTime}}">
         </label>
 
-        <label>
-            Where:
+        <label class="location">
+            <p>Location</p>  
             <input type="text" name="nameOfCommerce" value="{{play.location.nameOfCommerce}}">
             <input type="text" name="street" value="{{play.location.street}}">
             <input type="text" name="postCode" value="{{play.location.postCode}}">
@@ -19,40 +19,43 @@
                 <option value="Hyères">Hyères</option>
                 <option value="Corse">Corse</option>
             </select>
-            <textarea name="moreInstruction" cols="30" rows="10">{{play.location.moreInstruction}}</textarea>
+            <textarea name="moreInstruction" cols="30" rows="5">{{play.location.moreInstruction}}</textarea>
         </label>
        
         <label for="gamesForPlay" class="label-games-play">
-            Games:
+            Games
             <input type="search" class="search-bar-games">
             {{#each play.gamesForPlay}}
                 <input type="hidden" name="gamesForPlay" value="{{this.id}}">
             {{/each}}
+
+            <div class="container--select-games">
+                <ul class="games-selected">
+                    {{#each play.gamesForPlay}}
+                    <li data-game-id="{{this.id}}">
+                        {{this.name}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
         </label>
 
-        <ul class="games-selected">
-            {{#each play.gamesForPlay}}
-            <li data-game-id="{{this.id}}">
-                {{this.name}}
-            </li>
-            {{/each}}
-        </ul>
-
         <label for="minPlayer" class="label-minplayer">
-            Minimum player:
+            Minimum Player
             <input type="number" name="minPlayer" value="{{play.minPlayer}}">
         </label>
 
         <label for="maxPlayer">
-            Maximum player:
+            Maximum Player
             <input type="number" name="maxPlayer" value="{{play.maxPlayer}}">
         </label>
 
-        <input type="submit">
+        <button class="btn-submit">Update</button>
     </form>
+
+    {{else}}
+    <div class="error-message">
+        <p>Sorry, only the organizer of the play can modify/delete</p>
+    </div>
+    {{/if}}
 </section>
-{{else}}
-<div class="error-message">
-    <p>Sorry, only the organizer of the play can modify/delete</p>
-</div>
-{{/if}}

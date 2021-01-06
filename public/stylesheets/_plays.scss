@@ -1,6 +1,8 @@
 .plays-plays {
     padding: $block-gap;
-    @include media-md-side-margin;
+    @include media-md {
+        padding: calc(3 * #{$block-gap}) $side-margin 0 $side-margin;
+    }
 
     .slider-plays {
         flex-wrap: wrap;
@@ -22,21 +24,6 @@
     .location,
     .date-to {
         margin-bottom: $inline-gap;
-    }
-
-    .btn-search {
-        font-size: 14px;
-        width: auto;
-        padding: 5px;
-        color: darken(color(complementary), 15);
-        border: 1px solid darken(color(complementary), 15);
-        background-color: white;
-        border-radius: 4px;
-
-        &:hover {
-            background-color: color(complementary);
-            color: $text-color;
-        }
     }
 
     @include media-md {
@@ -67,6 +54,71 @@
 
     a {
         padding: 0 $inline-gap;
+    }   
+}
+
+.container--form {
+    padding: $block-gap;
+    @include media-md-side-margin;
+    @include media-lg {
+        padding: calc(3 * #{$block-gap}) calc(2 * #{$side-margin});
     }
-    
+
+    form {
+        @include containerFlex(column);
+        justify-content: start;
+        align-items: stretch;
+    }   
+
+    label,
+    ul {
+        margin-bottom: $block-gap;
+    }
+
+    .location {
+        @include containerFlex(column);
+
+        input,
+        select {
+            margin-bottom: $inline-gap;
+        }
+    }
+
+    button {
+        align-self: center;
+    }
+}
+
+
+.container--select-games {
+    margin-top: $inline-gap;
+    height: 20vh;
+    width: auto;
+    border: 1px dotted color(complementary);
+    border-radius: 4px;
+    overflow: scroll;
+    @include containerFlex(row);
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .games-selected {
+        flex: 0 1 50%;
+
+        li {
+            display: inline-block;
+            margin: $inline-gap;
+            background-color: lighten(color(harmony), 15);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+
+    .games-options {
+        margin: $inline-gap;
+        list-style-type: none;
+        
+        li {
+            cursor: pointer;
+        }
+    }
 }

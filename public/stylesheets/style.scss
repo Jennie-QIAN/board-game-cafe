@@ -11,6 +11,26 @@ body {
   font: 14px "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
   color: $text-color;
+  background-color: lighten(color(primary), 30);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+input,
+select,
+textarea {
+  border: solid 1px rgb(199, 199, 199);
+  border-radius: 4px;
+}
+
+input {
+  line-height: 1.5rem;
+}
+
+select {
+  padding: calc(0.5 * #{$inline-gap}) 0;
 }
 
 .nav-and-content {
@@ -125,18 +145,8 @@ a {
   }
 }
 
-button.favorite {
-  .heart {
-    fill: darken(color(harmony), 15);
-  }
-}
-
 button.joined {
   background-color: color(harmony);
-}
-
-.hidden {
-  display: none;
 }
 
 img.avatar {
@@ -162,6 +172,22 @@ img.avatar {
       background-color: white;
       color: darken(color(complementary), 15);
     }
+  }
+}
+
+.btn-submit {
+  font-size: 14px;
+  width: auto;
+  padding: 5px;
+  color: darken(color(complementary), 15);
+  border: 1px solid darken(color(complementary), 15);
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+      background-color: color(complementary);
+      color: $text-color;
   }
 }
 

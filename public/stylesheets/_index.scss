@@ -188,21 +188,28 @@
 
 .card {
     overflow: hidden;
-    background: $text-color-light;
+    background: white;
     border-radius: 8px;
     flex-grow: 1;
     flex-shrink: 0;
     //flex-basis: calc(100% / #{$cols-mobile} - (#{$inline-gap} * 2) - (#{$block-gap} / #{$cols-mobile}));
-    flex-basis: calc(100% / #{$cols-mobile-plays} - (#{$inline-gap} * 2));
+    flex-basis: calc(100% / #{$cols-sm-plays} - (#{$inline-gap} * 2));
     margin-right: $inline-gap;
+    margin-bottom: $block-gap;
     @include containerFlex(column);
 
+    @media screen and (max-width: media(mobile)) {
+        flex-basis: calc(100% / #{$cols-xs-plays} - (#{$inline-gap} * 2));
+    }
+
     @include media-md {
-        flex-basis: calc(100% / #{$cols-tablet-plays} - (#{$inline-gap} * 2));
+        flex-basis: calc(100% / #{$cols-md-plays} - (#{$inline-gap} * 2));
+        margin-bottom: calc(2 * #{$block-gap});
     }
 
     @include media-lg {
-        flex-basis: calc(100% / #{$cols-desktop-plays} - (#{$inline-gap} * 2));
+        flex-basis: calc(100% / #{$cols-lg-plays} - (#{$inline-gap} * 2));
+        margin-bottom: calc(3 * #{$block-gap});
     }
 }
 
@@ -216,7 +223,7 @@
         font-weight: 600;
         color: darken(color(complementary), 15);
 
-        &:hover {
+        p:hover {
             background-color: darken(color(complementary), 15);
             color: $text-color-light;
             border-radius: 4px;
@@ -283,11 +290,18 @@
         border: none;
         outline: none;
         cursor: pointer;
+        background-color: white;
     }
     .heart {
         height: 100%;
         width: 100%;
         fill: #c5c3c3;
+    }
+}
+
+button.favorite {
+    .heart {
+      fill: darken(color(harmony), 15);
     }
 }
   

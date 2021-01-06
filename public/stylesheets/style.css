@@ -19,7 +19,23 @@ body {
   flex-direction: column;
   font: 14px "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  color: #282828; }
+  color: #282828;
+  background-color: #fcf9f8; }
+
+.hidden {
+  visibility: hidden; }
+
+input,
+select,
+textarea {
+  border: solid 1px #c7c7c7;
+  border-radius: 4px; }
+
+input {
+  line-height: 1.5rem; }
+
+select {
+  padding: calc(0.5 * 0.5rem) 0; }
 
 .nav-and-content {
   flex: 1 0 auto;
@@ -48,7 +64,7 @@ footer {
   .footer-brand img {
     height: 16px;
     padding-left: 0.5rem; }
-    @media (min-width: 768px) {
+    @media screen and (min-width: 768px) {
       .footer-brand img {
         height: 24px; } }
 
@@ -63,7 +79,7 @@ nav {
   z-index: 100;
   background-color: white;
   height: 12vh; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     nav {
       height: 8vh; } }
 
@@ -77,7 +93,7 @@ nav {
     flex-direction: row;
     width: 100vw;
     padding: 0.5rem 1.5rem; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .title {
       order: 2; }
       .title div {
@@ -85,14 +101,14 @@ nav {
 
 #bgc-title {
   max-width: 40vw; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     #bgc-title {
       max-width: 20vw; } }
 
 .redirections {
   order: 2;
   padding-left: 1.5rem; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .redirections {
       order: 1; } }
   .redirections a {
@@ -110,14 +126,8 @@ a {
   a:hover {
     color: #86B9D5; }
 
-button.favorite .heart {
-  fill: #c14d72; }
-
 button.joined {
   background-color: #D5869F; }
-
-.hidden {
-  display: none; }
 
 img.avatar {
   height: 32px;
@@ -143,7 +153,7 @@ img.avatar {
     max-height: 60vh;
     width: 60vh;
     flex-grow: 1; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     #manifesto {
       display: flex;
       justify-content: center;
@@ -183,7 +193,7 @@ img.avatar {
     .search-bars .btn-search:hover {
       background-color: #86B9D5;
       color: #282828; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .search-bars {
       font-size: 1.25rem; }
       .search-bars .input {
@@ -197,7 +207,7 @@ img.avatar {
   height: 88vh;
   display: flex;
   flex-direction: column; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     #manifesto-and-search {
       height: 92vh; } }
 
@@ -205,7 +215,7 @@ img.avatar {
   padding: 1.5rem;
   display: flex;
   flex-direction: column; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .index-plays, .index-games {
       padding: calc(3 * 1.5rem) 15vw; } }
 
@@ -225,7 +235,7 @@ img.avatar {
 .featured-games h3 {
   padding: 1.5rem 0 0.5rem 1.5rem; }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .featured-games {
     margin-bottom: 1.5rem;
     display: flex;
@@ -253,7 +263,7 @@ img.avatar {
     border-radius: 4px;
     box-shadow: 10px 5px 5px #D5A286; }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .card-featured-game {
     padding: 0.5rem 15vw;
     display: flex;
@@ -279,59 +289,36 @@ img.avatar {
 
 .card {
   overflow: hidden;
-  background: #f3f3f4;
+  background: white;
   border-radius: 8px;
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: calc(100% / 2 - (0.5rem * 2));
   margin-right: 0.5rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column; }
-  @media (min-width: 768px) {
+  @media screen and (max-width: 480px) {
     .card {
-      flex-basis: calc(100% / 3 - (0.5rem * 2)); } }
-  @media (min-width: 1440px) {
+      flex-basis: calc(100% / 1 - (0.5rem * 2)); } }
+  @media screen and (min-width: 768px) {
     .card {
-      flex-basis: calc(100% / 4 - (0.5rem * 2)); } }
+      flex-basis: calc(100% / 3 - (0.5rem * 2));
+      margin-bottom: calc(2 * 1.5rem); } }
+  @media screen and (min-width: 1440px) {
+    .card {
+      flex-basis: calc(100% / 4 - (0.5rem * 2));
+      margin-bottom: calc(3 * 1.5rem); } }
 
-@keyframes tonext {
-  75% {
-    left: 0; }
-  95% {
-    left: 100%; }
-  98% {
-    left: 100%; }
-  99% {
-    left: 0; } }
-
-@keyframes tostart {
-  75% {
-    left: 0; }
-  95% {
-    left: -300%; }
-  98% {
-    left: -300%; }
-  99% {
-    left: 0; } }
-
-@keyframes snap {
-  96% {
-    scroll-snap-align: center; }
-  97% {
-    scroll-snap-align: none; }
-  99% {
-    scroll-snap-align: none; }
-  100% {
-    scroll-snap-align: center; } }
-
-.carousel {
+.card-carousel {
   position: relative;
+  display: block;
   height: 150px;
   width: 100%;
   background-color: inherit;
   margin-bottom: 0.5rem; }
 
-.carousel-viewport {
+.card-carousel__viewport {
   position: absolute;
   top: 0;
   right: 0;
@@ -342,13 +329,13 @@ img.avatar {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory; }
 
-.slide {
+.card-carousel__slide {
   position: relative;
   flex: 0 0 100%;
   width: 100%;
   height: 100%; }
 
-.slide-img {
+.card-carousel__slide-img {
   position: absolute;
   top: 0;
   left: 0;
@@ -360,22 +347,13 @@ img.avatar {
   background-position: top center;
   background-repeat: no-repeat; }
 
-.carousel:hover .slide-img {
-  animation-name: tonext, snap;
-  animation-timing-function: ease;
-  animation-duration: 2s;
-  animation-iteration-count: infinite; }
-
-.carousel:hover .slide:last-child .slide-img {
-  animation-name: tostart, snap; }
-
 .info-play {
   padding: 0 0.5rem; }
   .info-play .play-time {
     font-size: 1rem;
     font-weight: 600;
     color: #4d98c1; }
-    .info-play .play-time:hover {
+    .info-play .play-time p:hover {
       background-color: #4d98c1;
       color: #f3f3f4;
       border-radius: 4px; }
@@ -391,10 +369,10 @@ img.avatar {
   flex-basis: calc(100% / 2 - (0.5rem * 2));
   justify-content: space-between;
   overflow: hidden; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .vertical-card-game {
       flex-basis: calc(100% / 3 - (0.5rem * 2)); } }
-  @media (min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
     .vertical-card-game {
       flex-basis: calc(100% / 4 - (0.5rem * 2)); } }
   .vertical-card-game .game-img {
@@ -425,17 +403,21 @@ img.avatar {
     width: 18px;
     border: none;
     outline: none;
-    cursor: pointer; }
+    cursor: pointer;
+    background-color: white; }
   .vertical-card-game .heart {
     height: 100%;
     width: 100%;
     fill: #c5c3c3; }
 
+button.favorite .heart {
+  fill: #c14d72; }
+
 .plays-plays {
   padding: 1.5rem; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .plays-plays {
-      padding: calc(3 * 1.5rem) 15vw; } }
+      padding: calc(3 * 1.5rem) 15vw 0 15vw; } }
   .plays-plays .slider-plays, .plays-plays .container-games {
     flex-wrap: wrap; }
   .plays-plays .card-play {
@@ -455,18 +437,7 @@ img.avatar {
   .search-bars-plays form .location,
   .search-bars-plays form .date-to {
     margin-bottom: 0.5rem; }
-  .search-bars-plays form .btn-search {
-    font-size: 14px;
-    width: auto;
-    padding: 5px;
-    color: #4d98c1;
-    border: 1px solid #4d98c1;
-    background-color: white;
-    border-radius: 4px; }
-    .search-bars-plays form .btn-search:hover {
-      background-color: #86B9D5;
-      color: #282828; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .search-bars-plays form {
       padding-top: calc(3 * 1.5rem);
       display: flex;
@@ -496,6 +467,56 @@ img.avatar {
   .pagination a {
     padding: 0 0.5rem; }
 
+.container--form {
+  padding: 1.5rem; }
+  @media screen and (min-width: 768px) {
+    .container--form {
+      padding: calc(3 * 1.5rem) 15vw; } }
+  @media screen and (min-width: 1440px) {
+    .container--form {
+      padding: calc(3 * 1.5rem) calc(2 * 15vw); } }
+  .container--form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch; }
+  .container--form label,
+  .container--form ul {
+    margin-bottom: 1.5rem; }
+  .container--form .location {
+    display: flex;
+    flex-direction: column; }
+    .container--form .location input,
+    .container--form .location select {
+      margin-bottom: 0.5rem; }
+  .container--form button {
+    align-self: center; }
+
+.container--select-games {
+  margin-top: 0.5rem;
+  height: 20vh;
+  width: auto;
+  border: 1px dotted #86B9D5;
+  border-radius: 4px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start; }
+  .container--select-games .games-selected {
+    flex: 0 1 50%; }
+    .container--select-games .games-selected li {
+      display: inline-block;
+      margin: 0.5rem;
+      background-color: #e9bfcc;
+      border-radius: 4px;
+      cursor: pointer; }
+  .container--select-games .games-options {
+    margin: 0.5rem;
+    list-style-type: none; }
+    .container--select-games .games-options li {
+      cursor: pointer; }
+
 .btn-create-new {
   margin-top: 1.5rem;
   display: flex;
@@ -512,20 +533,33 @@ img.avatar {
       background-color: white;
       color: #4d98c1; }
 
+.btn-submit {
+  font-size: 14px;
+  width: auto;
+  padding: 5px;
+  color: #4d98c1;
+  border: 1px solid #4d98c1;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer; }
+  .btn-submit:hover {
+    background-color: #86B9D5;
+    color: #282828; }
+
 .auth-form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin: calc(3 * 1.5rem) 0; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .auth-form {
       padding: calc(3 * 1.5rem) 15vw; } }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .auth-form {
       margin: calc(3 * 1.5rem) 15vw; } }
   .auth-form form {
-    background-color: #f3f3f4;
+    background-color: white;
     width: 80vw;
     padding: 1.5rem;
     border-radius: 8px;
@@ -557,7 +591,7 @@ img.avatar {
       .auth-form form button:hover {
         background-color: #86B9D5;
         color: #282828; }
-    @media (min-width: 768px) {
+    @media screen and (min-width: 768px) {
       .auth-form form {
         padding: calc(3 * 1.5rem);
         width: 45vw; } }
@@ -585,7 +619,7 @@ img.avatar {
 
 .content-my-profile {
   padding: 1.5rem; }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .content-my-profile {
       padding: calc(3 * 1.5rem) 15vw; } }
 

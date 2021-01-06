@@ -56,6 +56,20 @@ hbs.registerHelper('ifin', function(elem, list, options) {
   return options.inverse(this);
 });
 
+hbs.registerHelper('carouselPreviousIndex', function(index, list) {
+  if (index === 0) {
+    return list.length - 1;
+  }
+  return index - 1;
+});
+
+hbs.registerHelper('carouselNextIndex', function(index, list) {
+  if (index + 1 >= list.length) {
+    return 0;
+  }
+  return index + 1;
+});
+
 // default value for title local
 app.locals.title = 'Board Game Café';
 

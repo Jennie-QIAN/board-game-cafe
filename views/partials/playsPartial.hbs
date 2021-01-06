@@ -1,21 +1,23 @@
 <div class="slider-plays horizontal-scroll">
-    {{#each plays}}
-    <div class="card-play card">
-        <div class="img-games carousel">
-            <div class="carousel-viewport">{{!--
-                --}}{{#each this.gamesForPlay}}{{!--
-                    --}}<div class="slide">{{!--
-                        --}}<div class="slide-img" style="background-image: url('{{this.img}}')"></div>{{!--
-                    --}}</div>{{!--
-                --}}{{/each}}{{!--
-            --}}</div>
+    {{#each plays as |play playIndex| }}
+    <div class="card card--play">
+        <div class="img-games card__carousel">
+            <a class="card-carousel" href="/plays/{{play._id}}">
+                <div class="card-carousel__viewport">
+                    {{#each play.gamesForPlay}}
+                        <div class="card-carousel__slide">
+                            <div class="card-carousel__slide-img" style="background-image: url('{{this.img}}')"></div>
+                        </div>
+                    {{/each}}
+                </div>
+            </a>
         </div>
         <div class="info-play">
-            <a href="/plays/{{this._id}}" class="play-time">
-                {{localdate this.dateTime}}
+            <a href="/plays/{{play._id}}" class="play-time">
+                    <p>{{localdate play.dateTime}}<br>{{play.location.street}}, {{play.location.city}}</p>
             </a>
             <div class="names-games">
-                {{#each this.gamesForPlay}}
+                {{#each play.gamesForPlay}}
                 <a href="/games/{{this._id}}">
                     <h4>{{this.name}}</h4>
                 </a>
@@ -23,12 +25,12 @@
             </div>
             <div class="players">
                 <div class="avatars">
-                    {{#each this.players}}
+                    {{#each play.players}}
                     <img src="{{this.avatar}}" alt="{{this.username}}" class="avatar">
                     {{/each}}
                 </div>
                 <div>
-                    <p>{{this.players.length}} / {{this.maxPlayer}}</p>
+                    <p>{{play.players.length}} / {{play.maxPlayer}}</p>
                 </div>
             </div>
         </div>

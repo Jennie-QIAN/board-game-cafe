@@ -145,11 +145,11 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
   ] = await Promise.all([
     Play.find({organizer: userId})
       .limit(12)
-      .populate('gamesForPlay', 'smImg name')
+      .populate('gamesForPlay', 'smImg name img')
       .populate('players', 'username avatar'),
     Play.find({players: userId})
       .limit(12)
-      .populate('gamesForPlay', 'smImg name')
+      .populate('gamesForPlay', 'smImg name img')
       .populate('players', 'username avatar'),
     Game.find({createdBy: userId})
       .limit(12),
