@@ -1,11 +1,12 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 const Game = require('../models/Game.model');
 
 const axios = require('axios');
 const parser = require('xml2json');
 
-//const MONGODB_URI = process.env.MONGODB_URI;
-MONGODB_URI = "mongodb://localhost/board-game-salon";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URI, {
   useCreateIndex: true,
@@ -14,7 +15,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 const baseBggApiUrl = "https://www.boardgamegeek.com/xmlapi2/";
-const collectionParam = "collection?username=pikaqq";
+const collectionParam = "collection?username=pikaq";
 const gameIdParam = "thing?id=";
 
 function getObjectFromBgg(url) {
@@ -29,7 +30,8 @@ function getObjectFromBgg(url) {
                 arrayNotation: false,
                 alternateTextNode: false
             };
-            return JSON.parse(parser.toJson(res.data, options)).items.item;
+            const items = JSON.parse(parser.toJson(res.data, options)).items.item;
+            return Array.isArray(items) ? items : [items];
         })
         .catch(err => console.log(err));
 }
@@ -39,7 +41,9 @@ function getPropertyValueFromApi(property, array) {
 }
 
 getObjectFromBgg(baseBggApiUrl + collectionParam)
-    .then(bggCollection => bggCollection.map(game => game.objectid))
+    .then(bggCollection => {
+        return bggCollection.map(game => game.objectid);
+    })
     .then(bggGameIds => {
         const gamesPromises = bggGameIds.map(bggGameId => {
             return getObjectFromBgg(baseBggApiUrl + gameIdParam + bggGameId)
@@ -55,7 +59,7 @@ getObjectFromBgg(baseBggApiUrl + collectionParam)
                         playingtime,
                         yearpublished,
                         link
-                    } = data;
+                    } = data[0];
 
                     const designer = getPropertyValueFromApi("boardgamedesigner", link);
                     const artist = getPropertyValueFromApi("boardgameartist", link);
@@ -64,7 +68,7 @@ getObjectFromBgg(baseBggApiUrl + collectionParam)
                     const mechanic = getPropertyValueFromApi("boardgamemechanic", link);
 
                     const game = {
-                        name: nameList[0].value,
+                        name: Array.isArray(nameList) ? nameList[0].value : nameList.value,
                         bggId,
                         smImg,
                         img,
