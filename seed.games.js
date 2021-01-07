@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const Game = require('../models/Game.model');
+const Game = require('./models/Game.model');
 
 const axios = require('axios');
 const parser = require('xml2json');
