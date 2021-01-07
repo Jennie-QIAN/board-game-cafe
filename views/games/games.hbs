@@ -1,48 +1,64 @@
-<section class="search-bars">
-    <div>
+<div>
+    <section class="search-bars--games">
         <form action="/games" method="GET">
-            <label for="game">
-                Name of game
-                <input type="text" name="game" value="{{game}}">
-            </label>
-            <label for="category">
-                Category
-                <select name="category">
-                    <option value={{category}}>{{category}}</option>
-                    <option value=""></option>
-                    {{#each categories}}
-                    <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-                </select>
-            </label>
-            <label for="mechanic">
-                Mechanic
-                <select name="mechanic">
-                    <option value={{mechanic}}>{{mechanic}}</option>
-                    <option value=""></option>
-                    {{#each mechanics}}
-                    <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-                </select>   
-            </label>
-            <input type="number" name="minPlayer" placeholder="min player"> 
-            <input type="number" name="maxPlayer" placeholder="max player">      
-            <input type="submit" value="search">
+            <div>
+                <label for="game">
+                    Name of game
+                    <input type="text" name="game" value="{{game}}">
+                </label>
+                <label for="category">
+                    Category
+                    <select name="category">
+                        <option value={{category}}>{{category}}</option>
+                        <option value=""></option>
+                        {{#each categories}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </label>
+                <label for="mechanic">
+                    Mechanic
+                    <select name="mechanic">
+                        <option value={{mechanic}}>{{mechanic}}</option>
+                        <option value=""></option>
+                        {{#each mechanics}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>   
+                </label>
+            </div>
+
+            <div class="min-max-player">
+                <label for="minPlayer">
+                    Menimum player
+                    <input type="number" name="minPlayer">
+                </label>
+
+                <label for="maxPlayer">
+                    Maximum player
+                    <input type="number" name="maxPlayer">
+                </label>
+
+                <button class="btn-submit">Search</button>
+            </div>
+                                         
         </form>
-    </div>
-</section>
+    </section>
 
-<section>
-    <div>
+    <section class="btn-create-new">
         <a href="/games/new">Create your own game</a>
-    </div>
-</section>
+    </section>
+</div>
 
-<section id="games-games">
-
+{{#if games}}
+<section class="games-games">
     {{> gamesPartial}}
-
 </section>
+{{else}}
+<section>
+    <p>Oops, there is no game play matching your search</p>
+</section>
+{{/if}}
 
 {{#if needPagination}}
 <div class="pagination">

@@ -15,7 +15,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 const baseBggApiUrl = "https://www.boardgamegeek.com/xmlapi2/";
-const collectionParam = "collection?username=pikaq";
+const collectionParam = "collection?username=pikaqq";
 const gameIdParam = "thing?id=";
 
 function getObjectFromBgg(url) {

@@ -1,19 +1,4 @@
-.plays-plays {
-    padding: $block-gap;
-    @include media-md {
-        padding: calc(3 * #{$block-gap}) $side-margin 0 $side-margin;
-    }
-
-    .slider-plays {
-        flex-wrap: wrap;
-    }
-
-    .card-play {
-        margin-bottom: $inline-gap;
-    }
-}
-
-.search-bars-plays form {
+.search-bars--plays form {
     padding-top: $block-gap;
     @include flexCenter(column);
 
@@ -45,6 +30,17 @@
         .date-to {
             margin-bottom: 0;
         }
+    }
+}
+
+.plays-plays {
+    padding: $block-gap;
+    @include media-md {
+        padding: calc(3 * #{$block-gap}) $side-margin 0 $side-margin;
+    }
+
+    .slider-plays {
+        flex-wrap: wrap;
     }
 }
 

@@ -367,7 +367,6 @@ img.avatar {
 
 .vertical-card-game {
   flex-basis: calc(100% / 2 - (0.5rem * 2));
-  justify-content: space-between;
   overflow: hidden; }
   @media screen and (min-width: 768px) {
     .vertical-card-game {
@@ -397,21 +396,64 @@ img.avatar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center; }
-  .vertical-card-game .like-game {
-    height: 18px;
-    width: 18px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: white; }
-  .vertical-card-game .heart {
-    height: 100%;
-    width: 100%;
-    fill: #c5c3c3; }
+    align-items: flex-start; }
+    .vertical-card-game .game-info div {
+      flex: 1 1 auto; }
+
+.like-game {
+  height: 18px;
+  width: 18px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  margin: calc(0.5 * 0.5rem);
+  flex: 0 0 auto; }
+
+.heart {
+  height: 100%;
+  width: 100%;
+  fill: #c5c3c3; }
+  .heart:hover {
+    fill: #c14d72; }
 
 button.favorite .heart {
   fill: #c14d72; }
+
+.search-bars--plays form {
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .search-bars--plays form label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+  .search-bars--plays form .location,
+  .search-bars--plays form .date-to {
+    margin-bottom: 0.5rem; }
+  @media screen and (min-width: 768px) {
+    .search-bars--plays form {
+      padding-top: calc(3 * 1.5rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row; }
+      .search-bars--plays form label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-right: 0.5rem;
+        font-size: 14px; }
+      .search-bars--plays form select,
+      .search-bars--plays form input {
+        margin-left: 0.5rem; }
+      .search-bars--plays form .location,
+      .search-bars--plays form .date-to {
+        margin-bottom: 0; } }
 
 .plays-plays {
   padding: 1.5rem; }
@@ -420,43 +462,6 @@ button.favorite .heart {
       padding: calc(3 * 1.5rem) 15vw 0 15vw; } }
   .plays-plays .slider-plays, .plays-plays .container-games {
     flex-wrap: wrap; }
-  .plays-plays .card-play {
-    margin-bottom: 0.5rem; }
-
-.search-bars-plays form {
-  padding-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; }
-  .search-bars-plays form label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; }
-  .search-bars-plays form .location,
-  .search-bars-plays form .date-to {
-    margin-bottom: 0.5rem; }
-  @media screen and (min-width: 768px) {
-    .search-bars-plays form {
-      padding-top: calc(3 * 1.5rem);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: row; }
-      .search-bars-plays form label {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        margin-right: 0.5rem;
-        font-size: 14px; }
-      .search-bars-plays form select,
-      .search-bars-plays form input {
-        margin-left: 0.5rem; }
-      .search-bars-plays form .location,
-      .search-bars-plays form .date-to {
-        margin-bottom: 0; } }
 
 .pagination {
   display: flex;
@@ -622,5 +627,108 @@ button.favorite .heart {
   @media screen and (min-width: 768px) {
     .content-my-profile {
       padding: calc(3 * 1.5rem) 15vw; } }
+
+.search-bars--games form {
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .search-bars--games form div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+  .search-bars--games form label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+  .search-bars--games form .btn-submit {
+    margin-top: 0.5rem; }
+  @media screen and (min-width: 768px) {
+    .search-bars--games form {
+      padding-top: calc(3 * 1.5rem); }
+      .search-bars--games form div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap; }
+      .search-bars--games form label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-right: 0.5rem;
+        font-size: 14px; }
+      .search-bars--games form select,
+      .search-bars--games form input {
+        margin-left: 0.5rem; }
+      .search-bars--games form .btn-submit {
+        margin-top: 0; } }
+
+.games-games {
+  padding: 1.5rem; }
+  @media screen and (min-width: 768px) {
+    .games-games {
+      padding: calc(3 * 1.5rem) 15vw 0 15vw; } }
+
+.container-games {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; }
+
+.horizontal-card-game {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; }
+  .horizontal-card-game .info-game {
+    flex-shrink: 1; }
+    .horizontal-card-game .info-game p {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      padding-top: 0.5rem; }
+      @media screen and (min-width: 768px) {
+        .horizontal-card-game .info-game p {
+          -webkit-line-clamp: 4; } }
+
+.horizontal-card-game__image {
+  height: 100px;
+  width: 100px;
+  flex-shrink: 0; }
+  @media screen and (min-width: 768px) {
+    .horizontal-card-game__image {
+      height: auto;
+      min-height: 100%;
+      width: 25%; } }
+
+.cover-blurred {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row; }
+
+.cover-blurred__bg {
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.cover-blurred__image {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: auto;
+  object-fit: cover; }
 
 /*# sourceMappingURL=style.css.map */

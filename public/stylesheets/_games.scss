@@ -1,0 +1,85 @@
+.search-bars--games form {
+    padding-top: $block-gap;
+    @include flexCenter(column);
+
+    div {
+        @include flexCenter(column);
+    }
+
+    label {
+        @include flexCenter(column); 
+    }
+
+    .btn-submit {
+        margin-top: $inline-gap;
+    }
+
+    @include media-md {
+        padding-top: calc(3 * #{$block-gap});
+
+        div {
+            @include flexCenter(row);
+            flex-wrap: wrap;
+        }
+
+        label {
+            @include flexCenter(row);
+            margin-right: $inline-gap;
+            font-size: 14px;
+        }
+
+        select,
+        input {
+            margin-left: $inline-gap;
+        }
+
+        .btn-submit {
+            margin-top: 0;
+        }
+    }
+}
+
+.games-games {
+    padding: $block-gap;
+    @include media-md {
+        padding: calc(3 * #{$block-gap}) $side-margin 0 $side-margin;
+    }
+}
+
+.container-games {
+    @include containerFlex(column);
+    align-items: stretch;
+}
+
+.horizontal-card-game {
+    @include containerFlex(row);
+    align-items: stretch;
+
+    .info-game {
+        flex-shrink: 1;
+
+        p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            padding-top: $inline-gap;
+
+            @include media-md {
+                -webkit-line-clamp: 4;
+            }
+        }
+    }
+}
+
+.horizontal-card-game__image{
+    height: 100px;
+    width: 100px;
+    flex-shrink: 0;
+
+    @include media-md {
+        height: auto;
+        min-height: 100%;
+        width: 25%;
+    }
+}

@@ -1,0 +1,25 @@
+.cover-blurred {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    @include flexCenter(row);
+}
+
+.cover-blurred__bg {
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.cover-blurred__image {
+    position: relative;
+    display: block;
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
