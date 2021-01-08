@@ -37,6 +37,10 @@
     padding: $block-gap;
     @include media-md {
         padding: calc(3 * #{$block-gap}) $side-margin 0 $side-margin;
+
+        .card--play {
+            margin-bottom: calc(3 * #{$block-gap});
+        }
     }
 
     .slider-plays {
@@ -64,6 +68,7 @@
         @include containerFlex(column);
         justify-content: start;
         align-items: stretch;
+        align-content: center;
     }   
 
     label,

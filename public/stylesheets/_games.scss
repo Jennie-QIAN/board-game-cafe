@@ -46,7 +46,7 @@
     }
 }
 
-.container-games {
+.container-games-rows {
     @include containerFlex(column);
     align-items: stretch;
 }
@@ -54,9 +54,18 @@
 .horizontal-card-game {
     @include containerFlex(row);
     align-items: stretch;
+    margin-bottom: $block-gap;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+
+    @include media-md {
+        margin-bottom: calc(2 * #{$block-gap});
+    }
 
     .info-game {
         flex-shrink: 1;
+        padding: $inline-gap;
 
         p {
             display: -webkit-box;
@@ -73,13 +82,131 @@
 }
 
 .horizontal-card-game__image{
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     flex-shrink: 0;
 
     @include media-md {
         height: auto;
         min-height: 100%;
         width: 25%;
+    }
+}
+
+.game__like-and-title {
+    @include containerFlex(row);
+
+    h3 {
+        margin-left: $inline-gap;
+    }
+}
+
+.game__designer {
+    color: lighten($text-color, 30);
+    font-style: italic;
+}
+
+.banner--game__image {
+    height: 20vh;
+    @include media-md {
+        height: 35vh;
+    }
+}
+
+.content--game-all {
+    padding: $block-gap;
+
+    @include media-md {
+        padding: $block-gap $side-margin calc(3 * #{$block-gap}) $side-margin;
+    }
+}
+
+.game-infos__name {
+    font-size: 2rem;
+}
+
+.game__edit-delete {
+    @include containerFlex(row);
+    
+    form {
+        margin-left: $inline-gap;
+    }
+
+    button {
+        height: 100%;
+    }
+}
+
+.game-infos {
+    div {
+        margin-bottom: $inline-gap;
+    }
+}
+
+.container--game-plays {
+    .btn-create-new {
+        display: inline-block;
+    }
+}
+
+.container--game-plays,
+.section--game-comments {
+    margin-top: $block-gap;
+
+    h3 {
+        padding-bottom: $inline-gap;
+    }
+
+    @include media-md {
+        margin-top: calc(3 * #{$block-gap});
+    }
+}
+
+.card--comment {
+    @include containerFlex(column);
+    margin-bottom: $inline-gap;
+}
+
+.card--comment__user {
+    @include containerFlex(row);
+    align-items: center;
+
+    img {
+        margin-right: $inline-gap;
+    }
+}
+
+.container--form__game {
+    @include flexCenter(column);
+    padding: $block-gap 0;
+
+    @include media-md {
+        padding: calc(3 * #{$block-gap}) 0;
+    }
+}
+
+.form--game {
+    @include containerFlex(column);
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    label {
+        margin-bottom: $block-gap;
+    }
+
+    button {
+        align-self: center;
+    }
+}
+
+.game__textarea {
+    flex-shrink: 1;
+}
+
+.game-form__image-upload {
+    @include containerFlex(column);
+
+    img{
+        max-width: 30vw;
     }
 }

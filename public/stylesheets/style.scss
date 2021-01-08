@@ -1,6 +1,11 @@
-@import './variables';
 
 @import'./config';
+@import './index';
+@import './plays';
+@import './auth';
+@import './profile';
+@import './games';
+@import './cover-blurred';
 
 html, body {
   height: 100%;
@@ -154,9 +159,6 @@ img.avatar {
   border-radius: 50%;
 }
 
-@import './index';
-@import './plays';
-
 .btn-create-new {
   margin-top: $block-gap;
   @include flexCenter(column);
@@ -190,8 +192,3 @@ img.avatar {
       color: $text-color;
   }
 }
-
-@import './auth';
-@import './profile';
-@import './games';
-@import './cover-blurred';

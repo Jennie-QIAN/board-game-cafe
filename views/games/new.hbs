@@ -1,58 +1,72 @@
-<section>
-    <form action="/games/new" method="POST" enctype="multipart/form-data">
+<section class="container--form__game">
+    <form class="form--game" action="/games/new" method="POST" enctype="multipart/form-data">
         <label for="image">
-            Image:
+            <p>Image</p>            
             <input type="file" name="image" id="image-input" class="form-control-file" />
             <input type="text" name="existingImage" hidden id="" value="{{game.img}}">
         </label>
+
         <label for="name">
-            Name:
+            <p>Name</p>           
             <input type="text" name="name">
         </label>
+
         <label for="minPlayer">
-            Minimum player:
+            <p>Minimum player</p>           
             <input type="number" name="minPlayer">
         </label>
+
         <label for="maxPlayer">
-            Maximum player:
+            <p>Maximum player</p>            
             <input type="number" name="maxPlayer">
         </label>
+
         <label for="gamePlayTime">
-            Game play time(minutes):
+            <p>Game play time in minutes</p>
             <input type="number" name="gamePlayTime">
         </label>
+
         <label for="description">
-            Description
-            <textarea name="description" cols="50" rows="20"></textarea>
+            <p>Description</p>           
+            <textarea class="game__textarea" name="description" cols="50" rows="5" minlength="50"></textarea>
         </label>
+
         <label for="shortDescription">
-            Short Description
-            <textarea name="shortDescription" cols="50" rows="20" minlength="10" maxlength="250"></textarea>
+            <p> Short description</p>
+            <textarea class="game__textarea" name="shortDescription" cols="50" rows="5" minlength="10" maxlength="250"></textarea>
         </label>
+
         <label for="yearOfPublish">
-            Published in:
+            <p>Published in year</p>            
             <input type="text" name="yearOfPublish">
         </label>
+
         <label for="designer">
-            Designer:
+            <p>Designer</p>           
             <input type="text" name="designer">
         </label>
+
         <label for="artist">
-            Artist:
+            <p>Artist</p>           
             <input type="text" name="artist">
         </label>
+
         <label for="publisher">
-            Publisher:
+            <p>Publisher</p>           
             <input type="text" name="publisher">
         </label>
+
         <label for="category">
-            Category:
+            <p>Category</p>            
             <input type="text" name="category">
         </label>
+
         <label for="mechanic">
-            Mechanic:
+            <p>Mechanic</p>           
             <input type="text" name="mechanic">
         </label>
-        <input type="submit">
+
+        <button class="btn-submit">Create</button>
+
     </form>
 </section>

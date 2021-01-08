@@ -96,10 +96,6 @@
     @include media-md-side-margin;
 }
 
-.slider-plays {
-    padding: $inline-gap 0;
-}
-
 .link-see-all {
     font-size: 1rem;
     font-weight: 500;
@@ -180,7 +176,7 @@
 .horizontal-scroll {
     display: flex;
     overflow-x: scroll;
-    justify-content: space-between;
+    //justify-content: space-between;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE 10+ */
     -webkit-overflow-scrolling: touch;
@@ -194,22 +190,25 @@
     flex-shrink: 0;
     //flex-basis: calc(100% / #{$cols-mobile} - (#{$inline-gap} * 2) - (#{$block-gap} / #{$cols-mobile}));
     flex-basis: calc(100% / #{$cols-sm-plays} - (#{$inline-gap} * 2));
+    max-width: calc(100% / #{$cols-sm-plays} - (#{$inline-gap} * 2));
     margin-right: $inline-gap;
     margin-bottom: $block-gap;
     @include containerFlex(column);
 
     @media screen and (max-width: media(mobile)) {
         flex-basis: calc(100% / #{$cols-xs-plays} - (#{$inline-gap} * 2));
+        max-width: calc(100% / #{$cols-xs-plays} - (#{$inline-gap} * 2));
     }
 
     @include media-md {
         flex-basis: calc(100% / #{$cols-md-plays} - (#{$inline-gap} * 2));
-        margin-bottom: calc(2 * #{$block-gap});
+        max-width: calc(100% / #{$cols-md-plays} - (#{$inline-gap} * 2));
     }
 
     @include media-lg {
         flex-basis: calc(100% / #{$cols-lg-plays} - (#{$inline-gap} * 2));
-        margin-bottom: calc(3 * #{$block-gap});
+        max-width: calc(100% / #{$cols-lg-plays} - (#{$inline-gap} * 2));
+
     }
 }
 

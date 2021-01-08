@@ -1,105 +1,126 @@
-<section>
-    <div>
-        <img src={{game.img}}>
-    </div>
 
+<div class="banner--game__image">
+    {{> coverBlurred image=game.img name=game.name}}
+</div>
+
+<div class="content--game-all">
     {{#if isCreator}}
-    <div>
-        <a href="/games/{{game.id}}/edit">edit</a>
+    <div class="game__edit-delete">
+        <a href="/games/{{game.id}}/edit" class="btn-submit">Edit</a>
         <form action="/games/{{game.id}}/delete" method="POST">
-            <button type="submit">delete</button>
+            <button class="btn-submit" type="submit">Delete</button>
         </form>
     </div>
     {{else}}
-    <div>
-        <button class="like-game{{#if ifFavorite}} favorite{{/if}}" data-game-id="{{game.id}}">like</button>
-    </div>
+    <button class="like-game{{#if ifFavorite}} favorite{{/if}}" data-game-id="{{this.id}}">
+        <svg version="1.1" class="heart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 437.775 437.774" style="enable-background:new 0 0 437.775 437.774;"
+    xml:space="preserve"><path d="M316.722,29.761c66.852,0,121.053,54.202,121.053,121.041c0,110.478-218.893,257.212-218.893,257.212S0,266.569,0,150.801
+    C0,67.584,54.202,29.761,121.041,29.761c40.262,0,75.827,19.745,97.841,49.976C240.899,49.506,276.47,29.761,316.722,29.761z"/>
+        </svg>
+    </button> 
     {{/if}}
+    
+    <div class="game-infos">
+        <h3 class="game-infos__name">{{game.name}}</h3>
 
-    <div>
-        <p>
-            <strong>Name:</strong> {{game.name}}
-        </p>
-        <p>
-            <strong>Minimum player:</strong> {{game.minPlayer}}
-        </p>
-        <p>
-            <strong>Maximum player:</strong> {{game.maxPlayer}}
-        </p>
-        <p>
-            <strong>Game play time(minutes):</strong> {{game.gamePlayTime}}
-        </p>
-        <p>
-            <strong>Rating at BG Salon:</strong> {{game.rate}}
-        </p>
-        <strong>Description:</strong>
-        <p>{{{game.description}}}</p>
-        <p>
-            <strong>Published in:</strong> {{game.yearOfPublish}}
-        </p>
-        <p>
-            <strong>Designer:</strong> {{game.designer}}
-        </p>
-        <p>
-            <strong>Publisher:</strong> {{game.publisher}}
-        </p>
-        <p>
-            <strong>Category:</strong> {{game.category}}
-        </p>
-        <p>
-            <strong>Mechanic:</strong> {{game.mechanic}}
-        </p>
-    </div>
-</section>
-
-{{#if game.isEditorPick}}
-<section>
-    <div>
-        <h3>
-            Editor's pick:
-        </h3>
-        <p>
-            {{game.editorNote}}
-        </p>
-    </div>
-</section>
-{{/if}}
-
-<section>
-    <h3>
-        Plays with this game
-    </h3>
-    <div>
-        {{> playsPartial}}
-    </div>
-</section>
-
-<section>
-    <h3>
-        Comments:
-    </h3>
-
-    {{#if userId}}
-    <div class="new-comment">
-        <form action="/games/{{game._id}}" method="POST">
-            <input type="submit" value="Add comment">
-        </form>
-    </div>
-    {{/if}}
-
-    <div class="container-comments">
-        {{#each comments}}
-        <div class="card-comment">
-            <div>
-                <img src="{{this.author.avatar}}">
-                <h5>{{this.author.username}}</h5>
-            </div>
-            <div>
-                <p>
-                    {{this.content}}
-                </p>
-            </div>
+        <div>
+            <h4>Minimum player</h4>
+            <p>{{game.minPlayer}}</p>            
         </div>
-        {{/each}}
+
+        <div>
+            <h4>Maximum player</h4> 
+            <p>{{game.maxPlayer}}</p>            
+        </div>
+
+        <div>
+            <h4>Game play time in minutes</h4> 
+            <p>{{game.gamePlayTime}}</p>
+        </div>
+
+        <div>
+            <h4>Description</h4>
+            <p>{{{game.description}}}</p>
+        </div>
+        
+        <div>
+            <h4>Published in</h4> 
+            <p>{{game.yearOfPublish}}</p>
+        </div>
+        <div>
+            <h4>Designer</h4> 
+            <p>{{game.designer}}</p>
+        </div>
+        <div>
+            <h4>Publisher</h4> 
+            <p>{{game.publisher}}</p>
+        </div>
+        <div>
+            <h4>Category</h4> 
+            <p>{{game.category}}</p>
+        </div>
+        <div>
+            <h4>Mechanic</h4> 
+            <p>{{game.mechanic}}</p>
+        </div>
     </div>
-</section>
+
+
+    {{#if game.isEditorPick}}
+    <section>
+        <div>
+            <h4>
+                Editor's pick
+            </h3>
+            <p>
+                {{game.editorNote}}
+            </p>
+        </div>
+    </section>
+    {{/if}}
+
+    <section class="container--game-plays">
+        <h3>
+            Plays with this game
+        </h3>
+        {{#if plays}}
+        <div>
+            {{> playsPartial}}
+        </div>
+        {{else}}
+            <section class="btn-create-new">
+                <a href="/plays/new">Create a game play of this game</a>
+            </section>
+        {{/if}}
+    </section>
+
+    <section class="section--game-comments">
+        <h3>
+            Comments
+        </h3>
+
+        {{#if userId}}
+        <div class="new-comment">
+            <form action="/games/{{game._id}}" method="POST">
+                <button class="btn-submit">Add comment</button>
+            </form>
+        </div>
+        {{/if}}
+
+        <div class="container--comments">
+            {{#each comments}}
+            <div class="card--comment">
+                <div class="card--comment__user">
+                    <img class="avatar" src="{{this.author.avatar}}">
+                    <h5>{{this.author.username}}</h5>
+                </div>
+                <div>
+                    <p>
+                        {{this.content}}
+                    </p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+</div>
