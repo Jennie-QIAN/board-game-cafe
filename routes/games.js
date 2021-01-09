@@ -174,8 +174,8 @@ router.get('/games/:id', async (req, res, next) => {
     ]);
 
     const isLoggedIn = req.isAuthenticated();
-
-    const isCreator = isLoggedIn? (req.user.id === game.createdBy.id) : false;
+    const createdBy = game.createdBy || {};
+    const isCreator = isLoggedIn? (req.user.id === createdBy.id) : false;
 
     let userId,
         userName,
