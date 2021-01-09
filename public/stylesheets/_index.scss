@@ -15,8 +15,8 @@
         background-repeat: no-repeat;
         background-position: center;
         align-self: flex-end;
-        max-height: 60vh;
-        width: 60vh;
+        width: 100%;
+        height: auto;
         flex-grow: 1;
     }
 
@@ -43,8 +43,14 @@
     @include flexCenter(column);
     padding: $block-gap 0;
 
+    form {
+        @include containerFlex(row);
+    }
+
     .input {
+        line-height: 1.5rem;
         width: 40vw;
+        height: 100%;
         background-color: white;
         border: 1px solid rgb(133, 133, 133);
         border-radius: 4px;
@@ -52,6 +58,8 @@
     }
 
     .btn-search {
+        margin-left: $inline-gap;
+        line-height: 1.5rem;
         color: darken(color(complementary), 15);
         width: 25vw;
         border: 1px solid darken(color(complementary), 15);

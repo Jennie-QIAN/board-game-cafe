@@ -30,12 +30,7 @@ const userSchema = new Schema(
         favoriteGames: [{
             type: Schema.Types.ObjectId, 
             ref: 'Game'
-        }],
-
-        comments: [{
-            type: Schema.Types.ObjectId, 
-            ref: 'Comment'
-        }],
+        }]
     },
 
     {

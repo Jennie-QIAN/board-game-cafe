@@ -53,14 +53,8 @@ const gameSchema = new Schema(
 
         createdBy: {
             type: Schema.Types.ObjectId, 
-            ref: 'User',
-            default: '5fd5359958da9d9166b9aa8b'
-        },
-
-        comments: [{
-            type: Schema.Types.ObjectId, 
-            ref: 'Comment'
-        }]
+            ref: 'User'
+        }
     },
 
     {

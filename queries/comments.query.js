@@ -12,11 +12,6 @@ function findCommentsOfGame(gameId) {
         .catch(err => console.log(err));
 }
 
-function findCommentsOfUser(userId) {
-
-}
-
 module.exports = {
     findCommentsOfGame,
-    findCommentsOfUser
 };

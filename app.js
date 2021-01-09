@@ -73,7 +73,6 @@ hbs.registerHelper('carouselNextIndex', function(index, list) {
 // default value for title local
 app.locals.title = 'Board Game Café';
 
-
 const index = require('./routes/index');
 app.use('/', index);
 const auth = require('./routes/auth');
