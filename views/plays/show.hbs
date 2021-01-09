@@ -1,64 +1,72 @@
-<section>
-    <div id="play-basic-info">
-        <div>
-            {{#if play.dateTime}}
-            <h3>{{localdate play.dateTime}}</h3>
-            {{else}}
-            <h3>{{localdate play.dateTime}}</h3>
-            {{/if}}
-            <div>
-                <img src="{{play.organizer.avatar}}" class="avatar">
-                <p>Initiated by:<br>{{play.organizer.username}}</p>
-            </div>
+<div class="banner--play">
+    <div>
+        {{#if play.dateTime}}
+        <h3>{{localdate play.dateTime}}</h3>
+        {{else}}
+        <h3>{{localdate play.dateTime}}</h3>
+        {{/if}}
+        <h3>{{play.location.city}}</h3>
+    </div>
+    <div class="play-organizer-btns">
+        <div class="play-organizer">
+            <img src="{{play.organizer.avatar}}" class="avatar">
+            <p>Initiated by: {{play.organizer.username}}</p>
         </div>
         {{#if isOrganizer}}
-        <div>
-            <a href="/plays/{{play.id}}/edit">edit</a>
+        <div class="play__edit-delete">
+            <a href="/plays/{{play.id}}/edit" class="btn-submit">edit</a>
             <form action="/plays/{{play.id}}/delete" method="POST">
-                <button type="submit">delete</button>
+                <button class="btn-submit" type="submit">delete</button>
             </form>
         </div>
         {{else}}
-        <div>
-            <button class="join-play{{#if ifJoined}} joined{{/if}}" data-play-id="{{play.id}}">join</button>
-        </div>
-        {{/if}}
+        <button class="join-play{{#if ifJoined}} joined{{/if}}" data-play-id="{{play.id}}">
+            <svg version="1.1" class="svg-join" x="0px" y="0px" viewBox="0 0 300.003 300.003" style="enable-background:new 0 0 300.003 300.003;"
+        xml:space="preserve"><path d="M150,0C67.159,0,0.001,67.159,0.001,150c0,82.838,67.157,150.003,149.997,150.003S300.002,232.838,300.002,150
+			C300.002,67.159,232.839,0,150,0z M213.281,166.501h-48.27v50.469c-0.003,8.463-6.863,15.323-15.328,15.323
+			c-8.468,0-15.328-6.86-15.328-15.328v-50.464H87.37c-8.466-0.003-15.323-6.863-15.328-15.328c0-8.463,6.863-15.326,15.328-15.328
+			l46.984,0.003V91.057c0-8.466,6.863-15.328,15.326-15.328c8.468,0,15.331,6.863,15.328,15.328l0.003,44.787l48.265,0.005
+			c8.466-0.005,15.331,6.86,15.328,15.328C228.607,159.643,221.742,166.501,213.281,166.501z"/>
+            </svg>
+        </button> 
+        {{/if}} 
+    </div>  
+</div>
 
-    </div>
-</section>
-
-<section>
+<section class="container--play">
     <div>
-        <h3>Location of this game play</h3>
-        <h4>
+        <h3>Venue</h3>
+        <p>
             {{play.location.nameOfCommerce}}
-        </h4>
-        <h4>
+        </p>
+        <p>
             {{play.location.street}}<br>{{play.location.city}}, {{play.location.postCode}}, {{play.location.country}}
-        </h4>
+        </p>
     </div>
-</section>
 
-<section>
-    <h3>Games to play</h3>
-    {{> bisGPartial games=play.gamesForPlay}}
-</section>
+    <div class="play-games">
+        <h3>Games to play</h3>
+        {{> bisGPartial games=play.gamesForPlay}}
+    </div>
 
-<section>
-    <h3>Plays</h3>
-    <div>
-        <p>min: {{play.minPlayer}}</p>
-        <p>max: {{play.maxPlayer}}</p>
-    </div>
-    <div>
-        <h4>participants:</h4>
-        <div class="list-players">
-            {{#each play.players}}
-                <div class="card-player" data-player-id="{{this._id}}">
-                    <img src="{{this.avatar}}" class="avatar">
-                    <a href="/users/{{this._id}}"><h5>{{this.username}}</h5></a>
-                </div>
-            {{/each}}
-        </div>
-    </div>
+    <section>
+        <h3>Players</h3>
+        <p>min: {{play.minPlayer}} / max: {{play.maxPlayer}}</p>
+        <div class="list--participants">
+        {{#if play.players}}        
+            <h4>These players have joined this game play</h4>
+            <div class="participants__users">
+                {{#each play.players}}
+                    <div class="card--player" data-player-id="{{this._id}}">
+                        <img src="{{this.avatar}}" class="avatar">
+                        <a href="/users/{{this._id}}"><h4>{{this.username}}</h4></a>
+                    </div>
+                {{/each}}
+            </div>
+        {{else}}
+            <p>Ooo there is no other player yet. Join {{play.organizer.username}} now!</p>
+        {{/if}}
+        </div>       
+    </section>
+
 </section>

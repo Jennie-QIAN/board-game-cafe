@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     joinButton.addEventListener('click', () => {
         const playId = joinButton.getAttribute("data-play-id");
-        const playersList = document.querySelector("div.list-players");
-        const userInfoEle = document.querySelector("#auth a");
+        const playersList = document.querySelector(".list--participants");
+        const userInfoEle = document.querySelector(".auth a");
         const userId = userInfoEle.getAttribute("data-user-id");
         const userName = userInfoEle.getAttribute("data-user-name");
-        const userImg = document.querySelector("#auth img").getAttribute("src");
+        const userImg = document.querySelector(".auth img").getAttribute("src");
 
 
         if (joinButton.classList.contains("joined")) {
@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(() => {
                 joinButton.classList.add("joined");
                 const newPlayerCard = document.createElement("div");
-                newPlayerCard.className = "card-player";
+                newPlayerCard.className = "card--player";
                 newPlayerCard.setAttribute("data-player-id", userId);
-                newPlayerCard.innerHTML = `<img src=${userImg}><a href="/users/${userId}"><h5>${userName}</h5></a>`;
+                newPlayerCard.innerHTML = `<img src=${userImg} class="avatar"><a href="/users/${userId}"><h4>${userName}</h4></a>`;
                 playersList.appendChild(newPlayerCard);
             })
             .catch(err => console.log(err));

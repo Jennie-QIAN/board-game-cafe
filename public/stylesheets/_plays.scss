@@ -123,3 +123,101 @@
         }
     }
 }
+
+.banner--play {
+    background-color: lighten(color(harmony), 15);
+    padding: $block-gap;
+    @include containerFlex(column);
+
+    h3 {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+
+    @include media-md {
+        padding: $block-gap $side-margin;
+    }
+}
+
+.play-organizer-btns {
+    @include containerFlex(row);
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $block-gap;
+}
+
+.play-organizer {
+    @include containerFlex(row);
+    align-items: center;
+
+    p {
+        margin-left: $inline-gap;
+    }
+}
+
+.play__edit-delete {
+    @extend .game__edit-delete;
+}
+
+.container--play {
+    padding: $block-gap;
+
+    h3 {
+        margin-bottom: $inline-gap;
+    }
+
+    @include media-md {
+        padding: $block-gap $side-margin calc(3 * #{$block-gap}) $side-margin;
+    }
+}
+
+.play-games {
+    margin-top: $block-gap;
+}
+
+.list--participants {
+    margin-top: $inline-gap;
+}
+
+.participants__users {
+    @include containerFlex(row)
+}
+
+.card--player {
+    @include containerFlex(row);
+    align-items: center;
+    margin-top: $inline-gap;
+    margin-right: $block-gap;
+
+    a {
+        margin-left: $inline-gap;
+        margin-bottom: 0;
+    }
+}
+
+
+.join-play {
+    height: 24px;
+    width: 24px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    margin: calc(0.5 * #{$inline-gap});
+    flex: 0 0 auto;
+}
+.svg-join {
+    height: 100%;
+    width: 100%;
+    fill: white;
+
+    &:hover {
+        fill: darken(color(complementary), 15);
+    }
+}
+
+button.joined {
+    .svg-join {
+      fill: darken(color(complementary), 15);
+    }
+}

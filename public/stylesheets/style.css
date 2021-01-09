@@ -401,6 +401,80 @@ button.favorite .heart {
     .container--select-games .games-options li {
       cursor: pointer; }
 
+.banner--play {
+  background-color: #e9bfcc;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column; }
+  .banner--play h3 {
+    font-size: 1.5rem;
+    line-height: 1.5rem; }
+  @media screen and (min-width: 768px) {
+    .banner--play {
+      padding: 1.5rem 15vw; } }
+
+.play-organizer-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem; }
+
+.play-organizer {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+  .play-organizer p {
+    margin-left: 0.5rem; }
+
+.container--play {
+  padding: 1.5rem; }
+  .container--play h3 {
+    margin-bottom: 0.5rem; }
+  @media screen and (min-width: 768px) {
+    .container--play {
+      padding: 1.5rem 15vw calc(3 * 1.5rem) 15vw; } }
+
+.play-games {
+  margin-top: 1.5rem; }
+
+.list--participants {
+  margin-top: 0.5rem; }
+
+.participants__users {
+  display: flex;
+  flex-direction: row; }
+
+.card--player {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-right: 1.5rem; }
+  .card--player a {
+    margin-left: 0.5rem;
+    margin-bottom: 0; }
+
+.join-play {
+  height: 24px;
+  width: 24px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  margin: calc(0.5 * 0.5rem);
+  flex: 0 0 auto; }
+
+.svg-join {
+  height: 100%;
+  width: 100%;
+  fill: white; }
+  .svg-join:hover {
+    fill: #4d98c1; }
+
+button.joined .svg-join {
+  fill: #4d98c1; }
+
 .auth-form {
   display: flex;
   justify-content: center;
@@ -588,12 +662,12 @@ button.favorite .heart {
 .game-infos__name {
   font-size: 2rem; }
 
-.game__edit-delete {
+.game__edit-delete, .play__edit-delete {
   display: flex;
   flex-direction: row; }
-  .game__edit-delete form {
+  .game__edit-delete form, .play__edit-delete form {
     margin-left: 0.5rem; }
-  .game__edit-delete button {
+  .game__edit-delete button, .play__edit-delete button {
     height: 100%; }
 
 .game-infos div {
@@ -794,9 +868,6 @@ a {
   text-decoration: none; }
   a:hover {
     color: #86B9D5; }
-
-button.joined {
-  background-color: #D5869F; }
 
 img.avatar {
   height: 32px;
