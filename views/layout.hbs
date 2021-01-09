@@ -22,7 +22,12 @@
       </div>
       <div class="auth">
           {{#if userId}}
+            <a href="/logout">Logout</a> 
+            {{#if userImg}}
             <a href="/userProfile" data-user-id="{{userId}}" data-user-name="{{userName}}"><img src="{{userImg}}" class="avatar"></a>
+            {{else}}
+            <a href="/userProfile" data-user-id="{{userId}}" data-user-name="{{userName}}">Profile</a>
+            {{/if}}
           {{else}}
             <a href="/login">Login</a>
             <a href="/register">Register</a>
@@ -35,17 +40,17 @@
   <footer>
     <div class="footer-tribute">
       <p>We love board games<br>and the enriched off-line gaming experiences between players👾</p>
-      <p>Special thanks to <a href="https://boardgamegeek.com/">boardgamegeek.com</a><br>for making its data available to all</p>
+      <p>Data of games are fetched from boardgamegeek.com API</p>
     </div>
     <div class="footer-brand">
       <div>
         <p>Board Game Café &#169; 2021</p>
       </div>
       <div id="social-media-logos">
-        <img src="/images/instagram.svg" alt="instagram">
-        <img src="/images/twitter.svg" alt="twitter">
-        <img src="/images/discord.svg" alt="discord">
-        <img src="/images/twitch.svg" alt="twitch">
+        <a href=""><img src="/images/instagram.svg" alt="instagram"></a>
+        <a href=""><img src="/images/twitter.svg" alt="twitter"></a>
+        <a href=""><img src="/images/discord.svg" alt="discord"></a>
+        <a href=""><img src="/images/twitch.svg" alt="twitch"></a> 
       </div>
     </div>
   </footer>

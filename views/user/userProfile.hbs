@@ -1,34 +1,32 @@
 <div class="content-my-profile">
-    <section>
-        <h4>Welcome back, {{userName}}</h4>
-        <a href="/logout">logout</a>
-    </section>
+    <div class="container--form__profile">
+        <form class="form--profile" action="/userProfile" method="POST" enctype="multipart/form-data">
+            <h3>Welcome back, {{userName}}</h3> 
 
-    <section class="user-account-modification">
-        <form action="/userProfile" method="POST" enctype="multipart/form-data">
-            <label for="image">
-                Avatar:
+            <label class="profile-form__image-upload" for="image">
+                <p>Avatar</p>               
                 <input type="file" name="image" id="image-input" class="form-control-file" />
                 <input type="text" name="existingImage" hidden id="" value="{{userImg}}">
+                <img src="{{userImg}}" alt="your current avatar">
             </label>
 
             <label for="username">
-                Username
+                <p>Username</p> 
                 <input id="username" type="text" name="username" value="{{userName}}">
             </label>
 
             <label for="email">
-                Email
+                <p>Email</p>  
                 <input id="email" type="text" name="email" value="{{email}}">
             </label>
 
             <label for="password">
-                Password
+                <p>Password</p> 
                 <input id="password" type="password" name="password" placeholder="******">
             </label>
                 
             <label for="location">
-                Location
+                <p>Location</p> 
                 <select name="location">
                     <option value="{{location}}">{{location}}</option>
                     <option value="Paris">Paris</option>
@@ -40,40 +38,40 @@
             </label>
 
             <label for="bio">
-                Bio
+                <p>Bio</p> 
                 <textarea name="bio" cols="30" rows="10">{{bio}}</textarea>
             </label>
 
-            <input type="submit">
+            <button class="btn-submit">Submit profile changes</button>
         </form>
 
         {{#if errorMessage}}
         <div class="error-message">{{errorMessage}}</div>
         {{/if}}
-    </section>
+    </div>
 
     <section>
         <h3>Plays organized by you</h3>
         {{> playsPartial plays=playsOrganized}}
-        <a href="/userProfile/organizedPlays">See all</a>
+        <a href="/userProfile/organizedPlays" class="link-see-all">See all</a>
     </section>
 
     <section>
         <h3>Plays you are participating</h3>
         {{> playsPartial plays=playsParticipate}}
-        <a href="/userProfile/participatePlays">See all</a>
+        <a href="/userProfile/participatePlays" class="link-see-all">See all</a>
     </section>
 
     <section>
         <h3>Games you created</h3>
         {{> bisGPartial games=gamesCreated}}
-        <a href="/userProfile/createdGames">See all</a>
+        <a href="/userProfile/createdGames" class="link-see-all">See all</a>
     </section>
 
     <section>
         <h3>Your favorite games</h3>
         {{> bisGPartial games=favGamesPopulated}}
-        <a href="/userProfile/favoriteGames">See all</a>
+        <a href="/userProfile/favoriteGames" class="link-see-all">See all</a>
     </section>
 </div>
 

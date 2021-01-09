@@ -176,6 +176,9 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     gamesCreated,
     favoriteGames,
     favGamesPopulated,
+    scripts: [
+      "https://unpkg.com/axios@0.21.0/dist/axios.min.js"
+    ],
   });
 });
 

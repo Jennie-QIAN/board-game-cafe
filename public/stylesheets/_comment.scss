@@ -1,0 +1,21 @@
+.container--form__comment {
+    @include flexCenter(column);
+    padding: $block-gap 0;
+
+    @include media-md {
+        padding: calc(3 * #{$block-gap}) 0;
+    }
+}
+
+.form--comment {
+    @include flexCenter(column);
+
+    h3,
+    textarea {
+        margin-bottom: $block-gap;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}

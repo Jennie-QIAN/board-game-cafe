@@ -1,12 +1,11 @@
-<div>
-    <img src="{{game.img}}">
+<div class="banner--game__image">
+    {{> coverBlurred image=game.img name=game.name}}
 </div>
-<div>
-    <p>Make a new comment on {{game.name}}</p>
-</div>
-<div>
-    <form action="/games/{{game.id}}/addcomment" method="POST">
-        <textarea name="content"cols="30" rows="10"></textarea>
-        <input type="submit" name="Submit">
+    
+<div class="container--form__comment">    
+    <form class="form--comment" action="/games/{{game.id}}/addcomment" method="POST">
+        <h3>Write a new comment on {{game.name}}</h3>
+        <textarea name="content"cols="50" rows="10"></textarea>
+        <button class="btn-submit">Submit</button>
     </form>
 </div>

@@ -1,5 +1,45 @@
 .content-my-profile {
     padding: $block-gap;
 
+    section {
+        margin-top: $block-gap;
+
+        @include media-md {
+            margin-top: calc(3 * #{$block-gap});
+        }
+    }
     @include media-md-side-margin;
+}
+
+.container--form__profile {
+    @include flexCenter(column);
+}
+
+.form--profile {
+    @include containerFlex(column);
+    align-items: stretch;
+
+    h3 {
+        margin-bottom: $block-gap;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    label {
+        margin-bottom: $block-gap;
+        @include containerFlex(column);
+        align-items: stretch;
+    }
+
+    button {
+        align-self: center;
+    }
+}
+
+.profile-form__image-upload {
+    @include containerFlex(column);
+
+    img{
+        width: 100%;
+        height: auto;
+    }
 }

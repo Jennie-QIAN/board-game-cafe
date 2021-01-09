@@ -303,9 +303,11 @@
     width: 100%;
     fill: #c5c3c3;
 
-    &:hover {
-        fill: darken(color(harmony), 15);
-    }
+    @include media-lg {
+        &:hover {
+            fill: darken(color(harmony), 15);
+        }
+    }    
 }
 
 button.favorite {

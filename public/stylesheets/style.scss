@@ -1,10 +1,10 @@
-
 @import'./config';
 @import './index';
 @import './plays';
 @import './auth';
 @import './profile';
 @import './games';
+@import './comment';
 @import './cover-blurred';
 
 html, body {
@@ -48,7 +48,7 @@ footer {
   @include containerFlex(column);
   justify-content: center;
   align-items: stretch;
-  background-color: lighten(color(primary), 15);
+  background-color: lighten(color(primary), 20);
   padding: $block-gap 0;  
 }
 
@@ -135,6 +135,8 @@ nav {
 .auth {
   order: 3;
   padding-right: $block-gap;
+  @include containerFlex(row);
+  align-items: center;
 
   a {
     margin-left: $inline-gap;

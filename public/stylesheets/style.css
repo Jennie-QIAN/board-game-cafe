@@ -290,8 +290,9 @@ img {
   height: 100%;
   width: 100%;
   fill: #c5c3c3; }
-  .heart:hover {
-    fill: #c14d72; }
+  @media screen and (min-width: 1440px) {
+    .heart:hover {
+      fill: #c14d72; } }
 
 button.favorite .heart {
   fill: #c14d72; }
@@ -469,8 +470,9 @@ button.favorite .heart {
   height: 100%;
   width: 100%;
   fill: white; }
-  .svg-join:hover {
-    fill: #4d98c1; }
+  @media screen and (min-width: 1440px) {
+    .svg-join:hover {
+      fill: #4d98c1; } }
 
 button.joined .svg-join {
   fill: #4d98c1; }
@@ -548,9 +550,43 @@ button.joined .svg-join {
 
 .content-my-profile {
   padding: 1.5rem; }
+  .content-my-profile section {
+    margin-top: 1.5rem; }
+    @media screen and (min-width: 768px) {
+      .content-my-profile section {
+        margin-top: calc(3 * 1.5rem); } }
   @media screen and (min-width: 768px) {
     .content-my-profile {
       padding: calc(3 * 1.5rem) 15vw; } }
+
+.container--form__profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
+.form--profile {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; }
+  .form--profile h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center; }
+  .form--profile label {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; }
+  .form--profile button {
+    align-self: center; }
+
+.profile-form__image-upload {
+  display: flex;
+  flex-direction: column; }
+  .profile-form__image-upload img {
+    width: 100%;
+    height: auto; }
 
 .search-bars--games form {
   padding-top: 1.5rem;
@@ -728,6 +764,27 @@ button.joined .svg-join {
   .game-form__image-upload img {
     max-width: 30vw; }
 
+.container--form__comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.5rem 0; }
+  @media screen and (min-width: 768px) {
+    .container--form__comment {
+      padding: calc(3 * 1.5rem) 0; } }
+
+.form--comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .form--comment h3,
+  .form--comment textarea {
+    margin-bottom: 1.5rem; }
+  .form--comment h3 {
+    font-size: 1.5rem; }
+
 .cover-blurred {
   position: relative;
   width: 100%;
@@ -790,7 +847,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  background-color: #e9cebf;
+  background-color: #efdcd2;
   padding: 1.5rem 0; }
 
 .footer-tribute P {
@@ -859,7 +916,10 @@ nav {
 
 .auth {
   order: 3;
-  padding-right: 1.5rem; }
+  padding-right: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
   .auth a {
     margin-left: 0.5rem; }
 

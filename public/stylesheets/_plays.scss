@@ -211,9 +211,11 @@
     width: 100%;
     fill: white;
 
-    &:hover {
-        fill: darken(color(complementary), 15);
-    }
+    @include media-lg {
+        &:hover {
+            fill: darken(color(complementary), 15);
+        }
+    }    
 }
 
 button.joined {
