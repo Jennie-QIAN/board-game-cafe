@@ -189,9 +189,18 @@
     @include containerFlex(column);
     justify-content: flex-start;
     align-items: flex-start;
+    min-width: 50vw;
+    margin: 0 auto;
+
+    textarea {
+        resize: vertical;
+        width: 100%;
+        min-height: 150px;
+    }
 
     label {
         margin-bottom: $block-gap;
+        width: 100%;
     }
 
     button {
