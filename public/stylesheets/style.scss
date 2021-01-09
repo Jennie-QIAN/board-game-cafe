@@ -36,6 +36,7 @@ input {
 
 select {
   padding: calc(0.5 * #{$inline-gap}) 0;
+  background-color: #fff !important;
 }
 
 .nav-and-content {
