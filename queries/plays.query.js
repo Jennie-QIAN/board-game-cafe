@@ -47,7 +47,7 @@ function findPlaysByGame(gameId) {
 function findPlayById(id) {
     return Play.findById(id)
         .populate('organizer', 'username avatar')
-        .populate('gamesForPlay', 'name smImg designer img')
+        .populate('gamesForPlay', 'name smImg minPlayer maxPlayer img')
         .populate('players', 'username avatar');
 }
 
