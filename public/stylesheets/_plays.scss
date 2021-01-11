@@ -35,8 +35,9 @@
 
 .plays-plays {
     padding: $block-gap;
+    padding-right: calc(#{$block-gap} - 8px);
     @include media-md {
-        padding: calc(3 * #{$block-gap}) $side-margin 0 $side-margin;
+        padding: calc(3 * #{$block-gap}) calc(#{$side-margin} - 8px) 0 $side-margin;
 
         .card--play {
             margin-bottom: calc(3 * #{$block-gap});

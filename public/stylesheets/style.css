@@ -139,11 +139,12 @@ img {
   .featured-game-info .editor-note {
     display: inline-block;
     margin-top: 1.5rem;
-    padding: 0.5rem;
+    padding: calc(1.5 * 0.5rem);
     font-style: italic;
-    background-color: #86B9D5;
-    border-radius: 4px;
-    box-shadow: 10px 5px 5px #D5A286; }
+    border-radius: 8px;
+    background: linear-gradient(to bottom right, rgba(233, 191, 204, 0.6), rgba(233, 191, 204, 0.05));
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1rem); }
 
 @media screen and (min-width: 768px) {
   .card-featured-game {
@@ -175,7 +176,7 @@ img {
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: calc(100% / 2 - (0.5rem * 2));
-  max-width: calc(100% / 2 - (0.5rem * 2));
+  max-width: calc(100% / 2 - (0.5rem * 2) + (1.5rem / 2));
   margin-right: 0.5rem;
   margin-bottom: 1.5rem;
   display: flex;
@@ -183,15 +184,15 @@ img {
   @media screen and (max-width: 480px) {
     .card {
       flex-basis: calc(100% / 1 - (0.5rem * 2));
-      max-width: calc(100% / 1 - (0.5rem * 2)); } }
+      max-width: calc(100% / 1 - (0.5rem * 2) + (1.5rem / 1)); } }
   @media screen and (min-width: 768px) {
     .card {
       flex-basis: calc(100% / 3 - (0.5rem * 2));
-      max-width: calc(100% / 3 - (0.5rem * 2)); } }
+      max-width: calc(100% / 3 - (0.5rem * 2) + (1.5rem / 3)); } }
   @media screen and (min-width: 1440px) {
     .card {
       flex-basis: calc(100% / 4 - (0.5rem * 2));
-      max-width: calc(100% / 4 - (0.5rem * 2)); } }
+      max-width: calc(100% / 4 - (0.5rem * 2) + (1.5rem / 4)); } }
 
 .card-carousel {
   position: relative;
@@ -340,10 +341,11 @@ button.favorite .heart {
         margin-bottom: 0; } }
 
 .plays-plays {
-  padding: 1.5rem; }
+  padding: 1.5rem;
+  padding-right: calc(1.5rem - 8px); }
   @media screen and (min-width: 768px) {
     .plays-plays {
-      padding: calc(3 * 1.5rem) 15vw 0 15vw; }
+      padding: calc(3 * 1.5rem) calc(15vw - 8px) 0 15vw; }
       .plays-plays .card--play {
         margin-bottom: calc(3 * 1.5rem); } }
   .plays-plays .slider-plays, .plays-plays .container-games {
