@@ -6,16 +6,24 @@ document.addEventListener('DOMContentLoaded', () => {
  
   likeButtons.forEach(btn => btn.addEventListener('click', e => {
     const gameId = btn.getAttribute("data-game-id");
-  
+
     if (btn.classList.contains("favorite")) {
-      axios.patch('/api/unlike-game', {
-        gameId,
+      fetch('/api/unlike-game', {
+        method: 'PATCH',
+        body: JSON.stringify({ gameId }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
       })
         .then(() => btn.classList.remove("favorite"))
         .catch(err => console.log(err));
     } else {
-      axios.post('/api/like-game', {
-        gameId,
+      fetch('/api/like-game', {
+        method: "POST",
+        body: JSON.stringify({ gameId }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
       })
         .then(() => btn.classList.add("favorite"))
         .catch(err => console.log(err));

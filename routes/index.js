@@ -41,9 +41,9 @@ router.get('/', async (req, res, next) => {
     plays,
     latestFeaturedGame,
     favoriteGames,
-    scripts: [
-      "https://unpkg.com/axios@0.21.0/dist/axios.min.js"
-    ],
+    // scripts: [
+    //   "https://unpkg.com/axios@0.21.0/dist/axios.min.js"
+    // ],
   });
 
   return; 
