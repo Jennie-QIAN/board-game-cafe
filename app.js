@@ -17,7 +17,7 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
-require('./configs/session.config')(app); 
+require('./configs/session.config')(app);
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -32,7 +32,7 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -52,7 +52,7 @@ hbs.registerHelper('isodate', function(dateTime) {
 hbs.registerHelper('ifin', function(elem, list, options) {
   if (list.indexOf(elem) > -1) {
     return options.fn(this);
-  } 
+  }
   return options.inverse(this);
 });
 
@@ -72,6 +72,7 @@ hbs.registerHelper('carouselNextIndex', function(index, list) {
 
 // default value for title local
 app.locals.title = 'Board Game Café';
+app.locals.currentYear = (new Date()).getFullYear();
 
 const index = require('./routes/index');
 app.use('/', index);

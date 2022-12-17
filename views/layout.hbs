@@ -22,7 +22,7 @@
       </div>
       <div class="auth">
           {{#if userId}}
-            <a href="/logout">Logout</a> 
+            <a href="/logout">Logout</a>
             {{#if userImg}}
             <a class="nav__logged-user" href="/userProfile" data-user-id="{{userId}}" data-user-name="{{userName}}"><img src="{{userImg}}" class="avatar"></a>
             {{else}}
@@ -35,7 +35,7 @@
       </div>
     </nav>
     {{{body}}}
-  </div> 
+  </div>
 
   <footer>
     <div class="footer-tribute">
@@ -44,13 +44,13 @@
     </div>
     <div class="footer-brand">
       <div>
-        <p>Board Game Café &#169; 2021</p>
+        <p>Board Game Café &#169; {{currentYear}}</p>
       </div>
       <div id="social-media-logos">
         <a href=""><img src="/images/instagram.svg" alt="instagram"></a>
         <a href=""><img src="/images/twitter.svg" alt="twitter"></a>
         <a href=""><img src="/images/discord.svg" alt="discord"></a>
-        <a href=""><img src="/images/twitch.svg" alt="twitch"></a> 
+        <a href=""><img src="/images/twitch.svg" alt="twitch"></a>
       </div>
     </div>
   </footer>
